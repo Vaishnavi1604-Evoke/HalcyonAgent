@@ -1,0 +1,18 @@
+From: Purchasing <orders@client158.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-65072759
+Date: Mon, 28 Sep 2026 13:14:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-65072759 below:
+SKU-30977 | 33 EA
+Address - 1361 Logistics Way, Dock 4, Nashville, TN
+Priority: same day
+
+Thanks,
+Client 158 purchasing

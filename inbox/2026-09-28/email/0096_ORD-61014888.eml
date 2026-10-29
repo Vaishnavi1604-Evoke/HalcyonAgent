@@ -1,0 +1,18 @@
+From: Purchasing <orders@client273.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 1
+Subject: Order ORD-61014888
+Date: Mon, 28 Sep 2026 08:05:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-61014888
+Item: SKU-30977 x 31
+Deliver to: 7176 Commerce Dr, Dock 2, Pittsburgh, PA, 15276
+Service: standard
+
+Thanks,
+Client 273 purchasing

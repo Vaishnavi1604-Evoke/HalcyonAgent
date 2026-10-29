@@ -1,0 +1,18 @@
+From: Purchasing <orders@client016.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-14660677
+Date: Mon, 28 Sep 2026 07:51:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-14660677
+Item: SKU-30977 x 35
+Deliver to: 830 Mill St, Dock 8, Boston, MA, 02159
+Service: standard
+
+Thanks,
+Client 016 purchasing

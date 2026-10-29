@@ -1,0 +1,18 @@
+From: Purchasing <orders@client230.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-45655107
+Date: Mon, 28 Sep 2026 11:50:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-45655107
+Item: SKU-66014 x 17
+Deliver to: 4811 Logistics Way, Dock 3, Denver, CO, 80292
+Service: standard
+
+Thanks,
+Client 230 purchasing

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client198.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-29176485
+Date: Mon, 28 Sep 2026 07:20:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 35 units of SKU-30977 to our Portland site (8143 Depot Rd, Dock 1=
+, Portland, OR, 97259). We need this standard. PO ORD-29176485.
+
+Thanks,
+Client 198 purchasing

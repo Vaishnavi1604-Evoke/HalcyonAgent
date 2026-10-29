@@ -1,0 +1,18 @@
+From: Purchasing <orders@client136.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 1
+Subject: Order ORD-71452833
+Date: Thu, 29 Oct 2026 07:02:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-71452833
+Item: SKU-11820 x 13
+Deliver to: 7997 Harbor Ave, Dock 1, Albany, NY, 12223
+Service: standard
+
+Thanks,
+Client 136 purchasing

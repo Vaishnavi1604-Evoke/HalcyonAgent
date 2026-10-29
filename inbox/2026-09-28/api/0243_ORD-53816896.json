@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-53816896",
+  "client_id": "C234",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 234",
+    "line1": "1844 Riverside Blvd",
+    "line2": "Dock 3",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60688"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 18
+    }
+  ],
+  "submitted_at": "2026-09-28T15:53:00"
+}

@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-10707401",
+  "client_id": "C022",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 022",
+    "line1": "2883 Commerce Dr",
+    "line2": "Dock 8",
+    "city": "Orlando",
+    "state": "FL",
+    "postal_code": "32878"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 16
+    }
+  ],
+  "submitted_at": "2026-09-28T02:31:00"
+}

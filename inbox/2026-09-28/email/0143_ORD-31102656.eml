@@ -1,0 +1,18 @@
+From: Purchasing <orders@client058.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-31102656
+Date: Mon, 28 Sep 2026 10:18:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-31102656
+Item: SKU-51268 x 38
+Deliver to: 8684 Logistics Way, Dock 2, Charlotte, NC, 28214
+Service: standard
+
+Thanks,
+Client 058 purchasing

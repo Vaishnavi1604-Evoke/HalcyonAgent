@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-86807455",
+  "client_id": "C099",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 099",
+    "line1": "4692 Commerce Dr",
+    "line2": "Dock 7",
+    "city": "Columbia",
+    "state": "SC",
+    "postal_code": "29206"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 28
+    }
+  ],
+  "submitted_at": "2026-09-28T08:24:00"
+}

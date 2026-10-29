@@ -1,0 +1,18 @@
+From: Purchasing <orders@client248.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-75854269
+Date: Mon, 28 Sep 2026 07:33:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-75854269 below:
+SKU-30977 | 21 EA
+Address - Dock 3, Columbus, OH
+Priority: standard
+
+Thanks,
+Client 248 purchasing

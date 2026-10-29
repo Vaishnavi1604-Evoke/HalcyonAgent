@@ -1,0 +1,18 @@
+From: Purchasing <orders@client273.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-30084262
+Date: Mon, 28 Sep 2026 16:08:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-30084262 below:
+SKU-51268 | 28 EA
+Address - 1525 Logistics Way, Dock 7, Sacramento, CA, 95858
+Priority: standard
+
+Thanks,
+Client 273 purchasing

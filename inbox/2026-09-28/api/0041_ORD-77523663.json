@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-77523663",
+  "client_id": "C182",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 182",
+    "line1": "2157 Commerce Dr",
+    "line2": "Dock 1",
+    "city": "Milwaukee",
+    "state": "WI",
+    "postal_code": "53278"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 11
+    }
+  ],
+  "submitted_at": "2026-09-28T04:40:00"
+}

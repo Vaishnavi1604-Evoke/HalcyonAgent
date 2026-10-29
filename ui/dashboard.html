@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard · Halcyon Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FB; --surface:#FFFFFF; --sunk:#EEF4F8; --ink:#0B1F3A; --muted:#4F6680; --line:#D6E2EC;
+  --nav:#0A2A4F; --nav-ink:#EAF4F8; --nav-muted:#9FBAD3;
+  --teal:#0E9F95; --teal-soft:#D3F2EE;
+  --ok:#0E9384; --ok-soft:#D3F2EE; --late:#B8432F; --late-soft:#F6DED8; --amber:#B7791F; --amber-soft:#F7EBD3; --slate:#6B8299;
+  --focus:#0E9F95;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Roboto,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2,h3,.num{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:500;letter-spacing:0;margin:0}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:21px;line-height:1.2}
+h3{font-size:17px}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+[hidden]{display:none!important}
+
+/* ---------- Login ---------- */
+#login{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.login-brand{background:var(--nav);color:var(--nav-ink);padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:500;letter-spacing:.12em}
+.wordmark svg{flex:none}
+.login-lane{margin:48px 0}
+.login-lane h1{font-size:clamp(32px,4vw,50px);line-height:1.1;max-width:13ch;font-weight:500}
+.login-lane p{margin-top:18px;color:var(--nav-muted);max-width:42ch;font-size:16px}
+.dock{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:460px}
+.dock div{border-top:3px solid var(--teal);padding-top:8px;font-size:13px;color:var(--nav-muted)}
+.dock div b{display:block;color:var(--nav-ink);font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:18px;font-weight:600}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px;background:var(--surface)}
+.login-form{width:100%;max-width:360px}
+.login-form h2{font-size:28px;margin-bottom:6px}
+.field{display:block;margin-top:18px}
+.field span{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.input:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 25%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600}
+.btn-primary{background:var(--nav);border-color:var(--nav);color:#fff;width:100%;margin-top:24px;padding:12px}
+:root[data-theme="dark"] .btn-primary{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:#0B6E78;border-color:#0B6E78}}
+.err{color:var(--late);font-size:13px;margin-top:12px;min-height:20px}
+.demo{margin-top:22px;padding:12px 14px;background:var(--sunk);border-radius:6px;font-size:13px;color:var(--muted)}
+.demo code{color:var(--ink);font-family:inherit;font-weight:600}
+.role-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.role-row label{flex:1;min-width:96px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;font-size:14px;display:flex;gap:6px;align-items:center}
+.role-row input{accent-color:var(--nav)}
+
+/* ---------- Shell ---------- */
+#app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--nav);color:var(--nav-ink);padding:24px 16px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;text-decoration:none;color:var(--nav-muted);font-weight:500}
+.side nav a:hover{color:var(--nav-ink);background:rgba(255,255,255,.06)}
+.side nav a[aria-current="page"]{color:var(--nav-ink);background:rgba(255,255,255,.1);box-shadow:inset 3px 0 0 var(--teal)}
+.side .who{margin-top:auto;font-size:13px;color:var(--nav-muted);border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.side .who b{display:block;color:var(--nav-ink);font-weight:600;font-size:14px}
+.side .who button,.side .who a.tb{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:var(--nav-ink);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+main{padding:28px 32px 56px;min-width:0}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pagehead p{margin-top:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.panel + .panel,.grid + .panel,.panel + .grid,.grid + .grid{margin-top:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.grid{display:grid;gap:18px;align-items:start}
+.grid > .panel{margin-top:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g32{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.kpi{padding:18px 22px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .num{font-size:38px;line-height:1;font-weight:500}
+.kpi .lbl{font-size:14px;font-weight:600;margin-top:6px}
+.kpi .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Hero: the path to benchmark */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:start}
+.hero h2{font-size:26px;max-width:18ch;line-height:1.1}
+.hero .lede{margin-top:10px;color:var(--muted);max-width:52ch}
+.split{margin-top:22px}
+.splitbar{display:flex;height:34px;border-radius:5px;overflow:hidden}
+.splitbar div{height:100%}
+.legend{display:grid;gap:10px;margin-top:14px}
+.legend div{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:baseline;font-size:14px}
+.legend i{width:12px;height:12px;border-radius:2px;display:block;transform:translateY(1px)}
+.legend b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;font-weight:600}
+.steps{position:relative}
+.steps svg{width:100%;height:auto;display:block}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover{background:var(--sunk)}
+.bar{position:relative;height:8px;background:var(--sunk);border-radius:4px;min-width:90px}
+.bar span{position:absolute;inset:0 auto 0 0;border-radius:4px}
+.bar .bench{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.55}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.5}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-late{background:var(--late-soft);color:var(--late)}
+.p-amber{background:var(--amber-soft);color:var(--amber)}
+.p-slate{background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.flags{display:flex;gap:4px}
+.flag{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--amber-soft);color:var(--amber)}
+
+/* orders */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}
+.filters .input,.filters select{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);min-width:120px;font-size:14px}
+.filters .search{min-width:220px}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:14px}
+.checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.checks input{accent-color:var(--teal)}
+.summary{display:flex;gap:24px;flex-wrap:wrap;margin:16px 0 4px;font-size:14px}
+.summary b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:20px;font-weight:600;margin-right:4px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:14px;flex-wrap:wrap}
+.pager div{display:flex;gap:6px}
+.pager button{padding:6px 12px}
+.pager button:disabled{opacity:.4;cursor:default}
+th.sort{cursor:pointer}
+th.sort:hover{color:var(--ink)}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,18,24,.4);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);z-index:21;border-left:1px solid var(--line);padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;transform:translateX(0);transition:transform .22s ease}
+.drawer.closed{transform:translateX(100%)}
+.drawer .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;border:0;background:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1;padding:6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin-top:16px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:500}
+.timeline{list-style:none;padding:0;margin:20px 0 0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 14px 18px;font-size:14px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--slate)}
+.timeline li.ok::before{border-color:var(--ok);background:var(--ok)}
+.timeline li.bad::before{border-color:var(--late);background:var(--late)}
+.timeline li span{display:block;color:var(--muted);font-size:13px}
+.why{margin-top:20px;display:grid;gap:10px}
+.why div{border-left:3px solid var(--amber);padding:6px 12px;background:var(--sunk);font-size:14px;border-radius:0 6px 6px 0}
+.why div b{display:block}
+
+/* procurement */
+.decision{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.decision h2{font-size:24px;max-width:22ch}
+.verdict{border-left:4px solid var(--late);padding-left:16px;margin-top:14px}
+.plan{counter-reset:s;list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.plan li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px}
+.plan li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--nav);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.plan li b{display:block;font-size:15px}
+.chart svg{width:100%;height:auto;display:block}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.menu-btn{display:none}
+@media (max-width:980px){
+  .hero,.decision,.g32,.g2{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(3){border-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  #login{grid-template-columns:1fr}
+  .login-brand{padding:32px 24px}
+  .login-lane{margin:28px 0}
+  #app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;padding:10px 14px;gap:12px;z-index:10;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+  .side .wordmark span{display:none}
+  .side nav{flex-direction:row;flex:1;overflow-x:auto}
+  .side nav a{padding:8px 10px;white-space:nowrap}
+  .side nav a svg{display:none}
+  .side .who{margin:0;border:0;padding:0}
+  .side .who b,.side .who span{display:none}
+  .side .who button,.side .who a.tb{margin:0}
+  main{padding:20px 16px 48px}
+  .kpi .num{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.side .who .row{display:flex;gap:6px;flex-wrap:wrap}
+.side .who .row button{margin-top:10px}
+.live-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.total{font-size:15px;color:var(--muted)}
+.total b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:24px;color:var(--ink);font-weight:600;margin-right:4px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px 20px;display:flex;flex-direction:column;gap:6px;min-height:230px}
+.tile-email{border-color:var(--teal);box-shadow:inset 0 4px 0 var(--teal)}
+.tile-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tile-h h2{font-size:22px}
+.count{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:88px;line-height:1;font-weight:400;margin-top:10px;transition:color .6s ease}
+.count.bump{color:var(--ok)}
+.plus{font-size:15px;font-weight:600;color:var(--ok);opacity:0;transition:opacity .3s}
+.plus.on{opacity:1}
+.tile .how{color:var(--muted);font-size:14px;margin-top:auto}
+.tile .alltime{font-size:13px;color:var(--muted)}
+.livetag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ok)}
+.livetag i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
+.livetag.err{color:var(--late)} .livetag.err i{background:var(--late);animation:none}
+.livetag.off{color:var(--muted)} .livetag.off i{background:var(--slate);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.watch{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.watch .btn{padding:5px 10px;font-size:13px}
+.offline{background:var(--amber-soft);border:1px solid var(--amber);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:14px}
+.offline code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+.feed{list-style:none;margin:0;padding:0}
+.feed li{display:grid;grid-template-columns:70px 64px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.feed li:last-child{border-bottom:0}
+@media (max-width:900px){.tiles{grid-template-columns:minmax(0,1fr)}.tile{min-height:0}.count{font-size:72px}}
+@media (max-width:560px){.feed li{grid-template-columns:56px 56px 1fr}.feed li>:last-child{grid-column:2 / -1}}
+@media (prefers-reduced-motion:reduce){.livetag i{animation:none}}
+</style>
+</head>
+<body>
+<section id="app">
+  <aside class="side">
+    <div class="wordmark"><svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8v14M22 8v14M8 15h14" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round"/></svg><span>HALCYON</span></div>
+    <nav aria-label="Main"><a href="dashboard.html" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 13h8V3H3zM13 21h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z"/></svg>Dashboard</a><a href="live.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Live orders</a><a href="forecast.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg>Forecast</a><a href="intake.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Order inbox</a><a href="routing.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 6h3a3 3 0 013 3M9 18h3a3 3 0 003-3"/></svg>Warehouse routing</a><a href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Orders</a><a href="procurement.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7M5 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z"/></svg>Procurement</a></nav>
+    <div class="who"><b id="whoName">—</b><span id="whoRole">—</span><div class="row"><button id="themeBtn" type="button">Theme</button><button id="logout" type="button">Sign out</button></div></div>
+  </aside>
+  <main><div id="view-dashboard"></div></main>
+</section>
+
+<script>
+const AGG = {stats:{}};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('en-US');
+const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
+const usd=(n,d=0)=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const usdK=n=>n>=1e6?'$'+(n/1e6).toFixed(2)+'M':'$'+Math.round(n/1e3)+'K';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S=AGG.stats, BENCH=.94;
+const CH=['API','EDI','Email'], CM=['Standard','Next day','Same day'], RG=['Midwest','Southeast','Northeast','West'];
+const WN={1:'Midwest 1',2:'Midwest 2',3:'Southeast',4:'Northeast',5:'West'};
+
+
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+let storageOK=true; try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){storageOK=false;}
+let session=null; try{session=JSON.parse(store.get('halcyon_session')||'null')}catch(e){}
+const th=store.get('halcyon_theme'); if(th) document.documentElement.dataset.theme=th;
+if(!session && storageOK){ location.replace('login.html'); return; }
+if(session && session.role==='Customer'){ location.replace('shop.html'); return; }
+if(!session) session={name:'Demo user',role:'Operations'};
+$('#whoName').textContent=session.name; $('#whoRole').textContent=session.role==='Admin'||!session.role||session.role==='Operations'?'Admin':session.role;
+$('#logout').addEventListener('click',()=>{store.del('halcyon_session');location.href='login.html';});
+/* ---------- theme ---------- */
+function toggleTheme(){ const r=document.documentElement; const dark=r.dataset.theme? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme=dark?'light':'dark'; store.set('halcyon_theme',r.dataset.theme); }
+
+
+
+$('#themeBtn').addEventListener('click',toggleTheme);
+/* ---------- small chart helpers ---------- */
+function barCell(v,color,bench=true){ return `<div class="bar"><span style="width:${(v*100).toFixed(1)}%;background:${color}"></span>${bench?`<i class="bench" style="left:${BENCH*100}%"></i>`:''}</div>`; }
+const otColor=v=>v>=.9?'var(--ok)':v>=.72?'var(--slate)':'var(--late)';
+
+/* ================= LIVE DASHBOARD ================= */
+function buildLive(){
+  const CH=[{k:'EDI',t:'EDI orders',how:'Arrive automatically from the EDI feed (simulated each day).'},{k:'API',t:'API orders',how:'Placed by customers on the Halcyon Supply storefront, through the order API.'},{k:'Email',t:'Email orders',how:''}];
+  const today=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+  $('#view-dashboard').innerHTML=`
+  <div class="live-head"><div><h1>Orders today</h1><p class="muted">${today}</p></div><div class="total" id="total" aria-live="polite"></div></div>
+  <div class="offline" id="offline" hidden>The live agent isn’t running, so these counts can’t update. Start it with <code>python server.py</code> in the halcyon_agent folder, then open <code>http://localhost:8000/dashboard.html</code>.</div>
+  <div class="tiles">${CH.map(c=>`
+    <section class="tile ${c.k==='Email'?'tile-email':''}" aria-labelledby="h${c.k}">
+      <div class="tile-h"><h2 id="h${c.k}">${c.t}</h2>${c.k==='Email'?'<span class="livetag off" id="liveTag"><i></i><span>Connecting</span></span>':''}</div>
+      <div><span class="count" id="n${c.k}" aria-live="polite">—</span> <span class="plus" id="p${c.k}"></span></div>
+      <div class="alltime" id="a${c.k}"></div>
+      <p class="how" id="how${c.k}">${c.how}</p>
+      ${c.k==='Email'?'<div class="watch"><span id="watchTxt">Waiting for the agent</span><button class="btn" id="checkNow" type="button">Check now</button></div>':''}
+    </section>`).join('')}
+  </div>
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-head"><h2>Latest orders</h2><a class="small muted" href="live.html">View all live orders</a></div>
+    <ul class="feed" id="feed"><li style="display:block" class="muted">No orders yet today.</li></ul>
+  </div>`;
+  const last={}; let timer;
+  const pillFor=s=>({ASSIGNED:'<span class="pill p-ok">Assigned</span>',ASSIGNED_FALLBACK:'<span class="pill p-amber">Fallback</span>',HELD_ADDRESS:'<span class="pill p-late">Held: address</span>',HELD_STOCK:'<span class="pill p-late">Held: stock</span>',REVIEW:'<span class="pill p-amber">Review</span>'}[s]||esc(s));
+  const tm=iso=>iso?iso.slice(11,19):'';
+  function setCount(k,v){
+    const el=$('#n'+k), prev=last[k];
+    el.textContent=fmt(v);
+    if(prev!==undefined&&v>prev){ el.classList.add('bump'); const p=$('#p'+k); p.textContent='+'+(v-prev); p.classList.add('on'); setTimeout(()=>{el.classList.remove('bump');p.classList.remove('on');},2500); }
+    last[k]=v;
+  }
+  async function refresh(){
+    try{
+      const r=await fetch('/api/summary',{cache:'no-store'}); if(!r.ok) throw new Error(r.status);
+      const s=await r.json(); $('#offline').hidden=true;
+      ['EDI','API','Email'].forEach(k=>{ setCount(k,s.today[k]); $('#a'+k).textContent=k==='API'?`${fmt(s.storefront_today||0)} from the storefront today · ${fmt(s.all_time[k])} since the agent started`:`${fmt(s.all_time[k])} since the agent started`; });
+      const tot=s.today.EDI+s.today.API+s.today.Email; $('#total').innerHTML=`<b>${fmt(tot)}</b>orders across all channels`;
+      const w=s.watcher||{}, tag=$('#liveTag');
+      const es=s.email_sources||{outlook:0,simulated:0,pasted:0};
+      $('#howEmail').innerHTML='Email orders generated each day by the order simulator and read by the agent from the order inbox folder.';
+      if(w.watcher==='error'){ tag.className='livetag err'; tag.lastElementChild.textContent='Mailbox error'; $('#watchTxt').textContent='Couldn’t read the mailbox: '+(w.error||'unknown error')+'. Check the settings in .env.'; }
+      else if(w.watcher==='ok'){ tag.className='livetag'; tag.lastElementChild.textContent='Live';
+        $('#watchTxt').textContent=`Last checked ${tm(w.last_check)} · every ${w.poll_seconds}s · ${s.emails_checked_today} email${s.emails_checked_today===1?'':'s'} read today, ${s.email_orders_today} ${s.email_orders_today===1?'was an order':'were orders'}${w.mail_mode==='folder'?' · demo mailbox folder':''}`; }
+      else { tag.className='livetag off'; tag.lastElementChild.textContent='Starting'; }
+      $('#feed').innerHTML=s.recent.length?s.recent.map(o=>`<li><span class="muted">${tm(o.ingested_at)}</span><span class="ch ${o.channel==='Email'?'ch-Email':''}">${o.channel}</span><span><b>${esc(o.client_name||'Unknown sender')}</b> <span class="muted small">${esc(o.order_ref||'')}</span></span><span>${o.warehouse?`<span class="small muted">${o.warehouse}</span> `:''}${pillFor(o.status)}</span></li>`).join(''):'<li style="display:block" class="muted">No orders yet today.</li>';
+    }catch(e){
+      $('#offline').hidden=false; const tag=$('#liveTag'); tag.className='livetag off'; tag.lastElementChild.textContent='Offline';
+      $('#watchTxt').textContent='Not connected to the agent';
+    }
+  }
+  $('#checkNow').addEventListener('click',async()=>{ try{ await fetch('/api/check-mail',{method:'POST'}); $('#watchTxt').textContent='Checking the mailbox now…'; setTimeout(refresh,1500);}catch(e){} });
+  refresh(); timer=setInterval(refresh,3000);
+}
+
+buildLive();
+})();
+</script>
+</body>
+</html>

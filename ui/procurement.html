@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Procurement · Halcyon Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FB; --surface:#FFFFFF; --sunk:#EEF4F8; --ink:#0B1F3A; --muted:#4F6680; --line:#D6E2EC;
+  --nav:#0A2A4F; --nav-ink:#EAF4F8; --nav-muted:#9FBAD3;
+  --teal:#0E9F95; --teal-soft:#D3F2EE;
+  --ok:#0E9384; --ok-soft:#D3F2EE; --late:#B8432F; --late-soft:#F6DED8; --amber:#B7791F; --amber-soft:#F7EBD3; --slate:#6B8299;
+  --focus:#0E9F95;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Roboto,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2,h3,.num{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:500;letter-spacing:0;margin:0}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:21px;line-height:1.2}
+h3{font-size:17px}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+[hidden]{display:none!important}
+
+/* ---------- Login ---------- */
+#login{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.login-brand{background:var(--nav);color:var(--nav-ink);padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:500;letter-spacing:.12em}
+.wordmark svg{flex:none}
+.login-lane{margin:48px 0}
+.login-lane h1{font-size:clamp(32px,4vw,50px);line-height:1.1;max-width:13ch;font-weight:500}
+.login-lane p{margin-top:18px;color:var(--nav-muted);max-width:42ch;font-size:16px}
+.dock{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:460px}
+.dock div{border-top:3px solid var(--teal);padding-top:8px;font-size:13px;color:var(--nav-muted)}
+.dock div b{display:block;color:var(--nav-ink);font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:18px;font-weight:600}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px;background:var(--surface)}
+.login-form{width:100%;max-width:360px}
+.login-form h2{font-size:28px;margin-bottom:6px}
+.field{display:block;margin-top:18px}
+.field span{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.input:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 25%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600}
+.btn-primary{background:var(--nav);border-color:var(--nav);color:#fff;width:100%;margin-top:24px;padding:12px}
+:root[data-theme="dark"] .btn-primary{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:#0B6E78;border-color:#0B6E78}}
+.err{color:var(--late);font-size:13px;margin-top:12px;min-height:20px}
+.demo{margin-top:22px;padding:12px 14px;background:var(--sunk);border-radius:6px;font-size:13px;color:var(--muted)}
+.demo code{color:var(--ink);font-family:inherit;font-weight:600}
+.role-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.role-row label{flex:1;min-width:96px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;font-size:14px;display:flex;gap:6px;align-items:center}
+.role-row input{accent-color:var(--nav)}
+
+/* ---------- Shell ---------- */
+#app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--nav);color:var(--nav-ink);padding:24px 16px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;text-decoration:none;color:var(--nav-muted);font-weight:500}
+.side nav a:hover{color:var(--nav-ink);background:rgba(255,255,255,.06)}
+.side nav a[aria-current="page"]{color:var(--nav-ink);background:rgba(255,255,255,.1);box-shadow:inset 3px 0 0 var(--teal)}
+.side .who{margin-top:auto;font-size:13px;color:var(--nav-muted);border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.side .who b{display:block;color:var(--nav-ink);font-weight:600;font-size:14px}
+.side .who button,.side .who a.tb{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:var(--nav-ink);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+main{padding:28px 32px 56px;min-width:0}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pagehead p{margin-top:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.panel + .panel,.grid + .panel,.panel + .grid,.grid + .grid{margin-top:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.grid{display:grid;gap:18px;align-items:start}
+.grid > .panel{margin-top:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g32{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.kpi{padding:18px 22px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .num{font-size:38px;line-height:1;font-weight:500}
+.kpi .lbl{font-size:14px;font-weight:600;margin-top:6px}
+.kpi .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Hero: the path to benchmark */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:start}
+.hero h2{font-size:26px;max-width:18ch;line-height:1.1}
+.hero .lede{margin-top:10px;color:var(--muted);max-width:52ch}
+.split{margin-top:22px}
+.splitbar{display:flex;height:34px;border-radius:5px;overflow:hidden}
+.splitbar div{height:100%}
+.legend{display:grid;gap:10px;margin-top:14px}
+.legend div{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:baseline;font-size:14px}
+.legend i{width:12px;height:12px;border-radius:2px;display:block;transform:translateY(1px)}
+.legend b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;font-weight:600}
+.steps{position:relative}
+.steps svg{width:100%;height:auto;display:block}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover{background:var(--sunk)}
+.bar{position:relative;height:8px;background:var(--sunk);border-radius:4px;min-width:90px}
+.bar span{position:absolute;inset:0 auto 0 0;border-radius:4px}
+.bar .bench{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.55}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.5}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-late{background:var(--late-soft);color:var(--late)}
+.p-amber{background:var(--amber-soft);color:var(--amber)}
+.p-slate{background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.flags{display:flex;gap:4px}
+.flag{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--amber-soft);color:var(--amber)}
+
+/* orders */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}
+.filters .input,.filters select{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);min-width:120px;font-size:14px}
+.filters .search{min-width:220px}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:14px}
+.checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.checks input{accent-color:var(--teal)}
+.summary{display:flex;gap:24px;flex-wrap:wrap;margin:16px 0 4px;font-size:14px}
+.summary b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:20px;font-weight:600;margin-right:4px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:14px;flex-wrap:wrap}
+.pager div{display:flex;gap:6px}
+.pager button{padding:6px 12px}
+.pager button:disabled{opacity:.4;cursor:default}
+th.sort{cursor:pointer}
+th.sort:hover{color:var(--ink)}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,18,24,.4);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);z-index:21;border-left:1px solid var(--line);padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;transform:translateX(0);transition:transform .22s ease}
+.drawer.closed{transform:translateX(100%)}
+.drawer .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;border:0;background:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1;padding:6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin-top:16px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:500}
+.timeline{list-style:none;padding:0;margin:20px 0 0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 14px 18px;font-size:14px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--slate)}
+.timeline li.ok::before{border-color:var(--ok);background:var(--ok)}
+.timeline li.bad::before{border-color:var(--late);background:var(--late)}
+.timeline li span{display:block;color:var(--muted);font-size:13px}
+.why{margin-top:20px;display:grid;gap:10px}
+.why div{border-left:3px solid var(--amber);padding:6px 12px;background:var(--sunk);font-size:14px;border-radius:0 6px 6px 0}
+.why div b{display:block}
+
+/* procurement */
+.decision{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.decision h2{font-size:24px;max-width:22ch}
+.verdict{border-left:4px solid var(--late);padding-left:16px;margin-top:14px}
+.plan{counter-reset:s;list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.plan li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px}
+.plan li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--nav);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.plan li b{display:block;font-size:15px}
+.chart svg{width:100%;height:auto;display:block}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.menu-btn{display:none}
+@media (max-width:980px){
+  .hero,.decision,.g32,.g2{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(3){border-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  #login{grid-template-columns:1fr}
+  .login-brand{padding:32px 24px}
+  .login-lane{margin:28px 0}
+  #app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;padding:10px 14px;gap:12px;z-index:10;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+  .side .wordmark span{display:none}
+  .side nav{flex-direction:row;flex:1;overflow-x:auto}
+  .side nav a{padding:8px 10px;white-space:nowrap}
+  .side nav a svg{display:none}
+  .side .who{margin:0;border:0;padding:0}
+  .side .who b,.side .who span{display:none}
+  .side .who button,.side .who a.tb{margin:0}
+  main{padding:20px 16px 48px}
+  .kpi .num{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.side .who .row{display:flex;gap:6px;flex-wrap:wrap}
+.side .who .row button{margin-top:10px}
+</style>
+</head>
+<body>
+<section id="app">
+  <aside class="side">
+    <div class="wordmark"><svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8v14M22 8v14M8 15h14" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round"/></svg><span>HALCYON</span></div>
+    <nav aria-label="Main"><a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 13h8V3H3zM13 21h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z"/></svg>Dashboard</a><a href="live.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Live orders</a><a href="forecast.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg>Forecast</a><a href="intake.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Order inbox</a><a href="routing.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 6h3a3 3 0 013 3M9 18h3a3 3 0 003-3"/></svg>Warehouse routing</a><a href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Orders</a><a href="procurement.html" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7M5 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z"/></svg>Procurement</a></nav>
+    <div class="who"><b id="whoName">—</b><span id="whoRole">—</span><div class="row"><button id="themeBtn" type="button">Theme</button><button id="logout" type="button">Sign out</button></div></div>
+  </aside>
+  <main><div id="view-procurement"></div></main>
+</section>
+
+<script>
+const AGG = {"stats": {"n": 48340, "ot": 0.71, "late": 14019, "pen": 872460.0, "red": 476646.0, "npen": 4847, "rev_risk": 14200000, "rev_total": 105229000, "clean_ot": 0.8506, "clean_abc": 0.9428, "proj1": 0.8568, "proj2": 0.9092, "route_dev_late": 1.1201, "route_dev_ot": 1.0825, "email_incomplete_share": 0.709, "email_picklag": 0.7801, "avg_late_when_late": 2.25, "avg_late_all": 0.65, "clean_n": 17579}, "attr": {"upstream": 9141, "carrierD_only": 2282, "other": 2596, "total_late": 14019}, "drivers": [{"key": "f_addr", "label": "Incomplete address", "n": 5994, "ot": 0.354, "late": 3872, "avgLate": 2.23}, {"key": "f_stock", "label": "Stock not at nearest warehouse", "n": 6009, "ot": 0.4999, "late": 3005, "avgLate": 1.55}, {"key": "f_sd", "label": "Same-day order after 08:00 cut-off", "n": 4826, "ot": 0.39, "late": 2944, "avgLate": 0.82}, {"key": "f_carD", "label": "Shipped with Carrier D", "n": 8928, "ot": 0.6052, "late": 3525, "avgLate": 1.02}], "monthly": [{"m": "2026-04", "n": 8252, "ot": 0.7058}, {"m": "2026-05", "n": 8296, "ot": 0.7031}, {"m": "2026-06", "n": 8108, "ot": 0.7145}, {"m": "2026-07", "n": 8643, "ot": 0.711}, {"m": "2026-08", "n": 7948, "ot": 0.7146}, {"m": "2026-09", "n": 7093, "ot": 0.7114}], "channel": [{"k": "API", "n": 17628, "ot": 0.7083, "late": 0.6142}, {"k": "EDI", "n": 15398, "ot": 0.7148, "late": 0.59}, {"k": "Email", "n": 15314, "ot": 0.7071, "late": 0.7635}], "commit": [{"k": "next_day", "n": 15808, "ot": 0.7478, "late": 0.6251}, {"k": "same_day", "n": 9000, "ot": 0.5524, "late": 0.7471}, {"k": "standard", "n": 23532, "ot": 0.7448, "late": 0.6373}], "region": [{"k": "Midwest", "n": 14499, "ot": 0.71, "late": 0.655}, {"k": "Northeast", "n": 12668, "ot": 0.7106, "late": 0.6539}, {"k": "Southeast", "n": 10574, "ot": 0.7103, "late": 0.6451}, {"k": "West", "n": 10599, "ot": 0.7089, "late": 0.6606}], "carriers": [{"carrier_id": "A", "n": 10650, "ot": 0.7523, "rate": 16.6906, "pen": 172260.0, "red": 89692, "clean_ot": 0.9426, "carrier_name": "Carrier A", "has_api": "Y", "delivery_event_feed": "API", "preferred_supplier_agreement": "N", "base_rate_usd": 14.0, "late_cost_per": 24.5964, "eff": 41.287}, {"carrier_id": "B", "n": 9762, "ot": 0.7532, "rate": 16.0718, "pen": 150660.0, "red": 81906, "clean_ot": 0.9393, "carrier_name": "Carrier B", "has_api": "Y", "delivery_event_feed": "API", "preferred_supplier_agreement": "N", "base_rate_usd": 13.5, "late_cost_per": 23.8236, "eff": 39.8954}, {"carrier_id": "C", "n": 6745, "ot": 0.7526, "rate": 17.7955, "pen": 109620.0, "red": 56746, "clean_ot": 0.9484, "carrier_name": "Carrier C", "has_api": "Y", "delivery_event_feed": "API", "preferred_supplier_agreement": "N", "base_rate_usd": 15.0, "late_cost_per": 24.6651, "eff": 42.4606}, {"carrier_id": "D", "n": 8928, "ot": 0.6052, "rate": 13.529, "pen": 209880.0, "red": 119850, "clean_ot": 0.6596, "carrier_name": "Carrier D", "has_api": "N", "delivery_event_feed": "Portal only", "preferred_supplier_agreement": "N", "base_rate_usd": 11.5, "late_cost_per": 36.9321, "eff": 50.4611}, {"carrier_id": "E", "n": 5334, "ot": 0.7002, "rate": 14.2347, "pen": 98460.0, "red": 54366, "clean_ot": 0.8259, "carrier_name": "Carrier E", "has_api": "N", "delivery_event_feed": "Batch file", "preferred_supplier_agreement": "N", "base_rate_usd": 12.0, "late_cost_per": 28.6513, "eff": 42.8859}, {"carrier_id": "F", "n": 6921, "ot": 0.6852, "rate": 12.5246, "pen": 131580.0, "red": 74086, "clean_ot": 0.7975, "carrier_name": "Carrier F", "has_api": "N", "delivery_event_feed": "Batch file", "preferred_supplier_agreement": "Y", "base_rate_usd": 10.5, "late_cost_per": 29.7162, "eff": 42.2409}], "warehouses": [{"fulfilment_warehouse_id": "W1", "n": 7409, "ot": 0.704, "mis": 0.1381, "addr": 0.1262, "warehouse_id": "W1", "warehouse_name": "Midwest 1", "region": "Midwest", "pick_list_cutoff": "08:00", "carrier_collection_window": "14:00-18:00"}, {"fulfilment_warehouse_id": "W2", "n": 7316, "ot": 0.7086, "mis": 0.1391, "addr": 0.1214, "warehouse_id": "W2", "warehouse_name": "Midwest 2", "region": "Midwest", "pick_list_cutoff": "08:00", "carrier_collection_window": "14:00-18:00"}, {"fulfilment_warehouse_id": "W3", "n": 10676, "ot": 0.7064, "mis": 0.1262, "addr": 0.1252, "warehouse_id": "W3", "warehouse_name": "Southeast", "region": "Southeast", "pick_list_cutoff": "08:00", "carrier_collection_window": "14:00-18:00"}, {"fulfilment_warehouse_id": "W4", "n": 12337, "ot": 0.7178, "mis": 0.1054, "addr": 0.1252, "warehouse_id": "W4", "warehouse_name": "Northeast", "region": "Northeast", "pick_list_cutoff": "08:00", "carrier_collection_window": "14:00-18:00"}, {"fulfilment_warehouse_id": "W5", "n": 10602, "ot": 0.7096, "mis": 0.1246, "addr": 0.1216, "warehouse_id": "W5", "warehouse_name": "West", "region": "West", "pick_list_cutoff": "08:00", "carrier_collection_window": "14:00-18:00"}], "risk": [{"client_id": "C022", "client_name": "Client 022", "region": "Midwest", "primary_order_channel": "API", "account_tier": "Tier 2", "annual_revenue_usd": 920000, "n": 590, "ot": 0.7017, "addr": 0.0559, "stock": 0.1407, "pen": 23220.0, "complaints": 1}, {"client_id": "C033", "client_name": "Client 033", "region": "Southeast", "primary_order_channel": "API", "account_tier": "Tier 1", "annual_revenue_usd": 1650000, "n": 771, "ot": 0.7147, "addr": 0.0623, "stock": 0.131, "pen": 0.0, "complaints": 1}, {"client_id": "C049", "client_name": "Client 049", "region": "Midwest", "primary_order_channel": "EDI", "account_tier": "Tier 1", "annual_revenue_usd": 2130000, "n": 737, "ot": 0.711, "addr": 0.0733, "stock": 0.1208, "pen": 25380.0, "complaints": 1}, {"client_id": "C055", "client_name": "Client 055", "region": "Northeast", "primary_order_channel": "Email", "account_tier": "Tier 2", "annual_revenue_usd": 780000, "n": 990, "ot": 0.699, "addr": 0.2707, "stock": 0.099, "pen": 38700.0, "complaints": 4}, {"client_id": "C077", "client_name": "Client 077", "region": "Northeast", "primary_order_channel": "EDI", "account_tier": "Tier 1", "annual_revenue_usd": 1800000, "n": 740, "ot": 0.7297, "addr": 0.0419, "stock": 0.1284, "pen": 24840.0, "complaints": 0}, {"client_id": "C099", "client_name": "Client 099", "region": "West", "primary_order_channel": "API", "account_tier": "Tier 1", "annual_revenue_usd": 2000000, "n": 1065, "ot": 0.6958, "addr": 0.0601, "stock": 0.1408, "pen": 42300.0, "complaints": 2}, {"client_id": "C111", "client_name": "Client 111", "region": "Southeast", "primary_order_channel": "API", "account_tier": "Tier 1", "annual_revenue_usd": 1420000, "n": 929, "ot": 0.6975, "addr": 0.0678, "stock": 0.1302, "pen": 36720.0, "complaints": 1}, {"client_id": "C190", "client_name": "Client 190", "region": "Southeast", "primary_order_channel": "Email", "account_tier": "Tier 1", "annual_revenue_usd": 1250000, "n": 2978, "ot": 0.7005, "addr": 0.2784, "stock": 0.1088, "pen": 115560.0, "complaints": 11}, {"client_id": "C263", "client_name": "Client 263", "region": "Midwest", "primary_order_channel": "Email", "account_tier": "Tier 1", "annual_revenue_usd": 2250000, "n": 747, "ot": 0.7416, "addr": 0.2356, "stock": 0.1124, "pen": 23220.0, "complaints": 3}], "complaints": [{"complaint_id": "CMP001", "complaint_date": "2026-07-03", "client_id": "C055", "delivery_id": "D023590", "channel": "Email", "category": "Redelivery needed", "escalated_to_account_owner": "Y", "text": "The shipment did not arrive and we had to ask for it to be sent again."}, {"complaint_id": "CMP002", "complaint_date": "2026-07-09", "client_id": "C098", "delivery_id": "D025350", "channel": "Phone", "category": "Redelivery needed", "escalated_to_account_owner": "N", "text": "The shipment did not arrive and we had to ask for it to be sent again."}, {"complaint_id": "CMP003", "complaint_date": "2026-07-13", "client_id": "C022", "delivery_id": "D025711", "channel": "Phone", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP004", "complaint_date": "2026-07-15", "client_id": "C190", "delivery_id": "D026632", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "This is the third late delivery this month. Please explain what is being done."}, {"complaint_id": "CMP005", "complaint_date": "2026-07-18", "client_id": "C098", "delivery_id": "D028567", "channel": "Email", "category": "Delivery late", "escalated_to_account_owner": "N", "text": "Order arrived 2 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP006", "complaint_date": "2026-07-22", "client_id": "C099", "delivery_id": "D027961", "channel": "Phone", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP007", "complaint_date": "2026-07-24", "client_id": "C055", "delivery_id": "D028202", "channel": "Email", "category": "Redelivery needed", "escalated_to_account_owner": "Y", "text": "The shipment did not arrive and we had to ask for it to be sent again."}, {"complaint_id": "CMP008", "complaint_date": "2026-07-28", "client_id": "C263", "delivery_id": "D029625", "channel": "Email", "category": "Redelivery needed", "escalated_to_account_owner": "Y", "text": "The shipment did not arrive and we had to ask for it to be sent again."}, {"complaint_id": "CMP009", "complaint_date": "2026-08-02", "client_id": "C033", "delivery_id": "D031327", "channel": "Email", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 3 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP010", "complaint_date": "2026-08-03", "client_id": "C040", "delivery_id": "D033171", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "N", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP011", "complaint_date": "2026-08-06", "client_id": "C082", "delivery_id": "D032590", "channel": "Email", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 2 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP012", "complaint_date": "2026-08-07", "client_id": "C111", "delivery_id": "D033675", "channel": "Email", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "This is the third late delivery this month. Please explain what is being done."}, {"complaint_id": "CMP013", "complaint_date": "2026-08-10", "client_id": "C099", "delivery_id": "D034954", "channel": "Phone", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP014", "complaint_date": "2026-08-19", "client_id": "C231", "delivery_id": "D036473", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "N", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP015", "complaint_date": "2026-08-19", "client_id": "C190", "delivery_id": "D036924", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 1 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP016", "complaint_date": "2026-08-21", "client_id": "C190", "delivery_id": "D037104", "channel": "Phone", "category": "Redelivery needed", "escalated_to_account_owner": "Y", "text": "The shipment did not arrive and we had to ask for it to be sent again."}, {"complaint_id": "CMP017", "complaint_date": "2026-08-22", "client_id": "C190", "delivery_id": "D036518", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 5 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP018", "complaint_date": "2026-08-22", "client_id": "C118", "delivery_id": "D036879", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "N", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP019", "complaint_date": "2026-08-23", "client_id": "C055", "delivery_id": "D036531", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 4 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP020", "complaint_date": "2026-08-24", "client_id": "C190", "delivery_id": "D037094", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 4 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP021", "complaint_date": "2026-08-24", "client_id": "C190", "delivery_id": "D037096", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP022", "complaint_date": "2026-08-27", "client_id": "C190", "delivery_id": "D037767", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP023", "complaint_date": "2026-08-30", "client_id": "C153", "delivery_id": "D038107", "channel": "Phone", "category": "Penalty dispute", "escalated_to_account_owner": "N", "text": "We are disputing the delivery performance for this order and want to understand the cause."}, {"complaint_id": "CMP024", "complaint_date": "2026-09-04", "client_id": "C190", "delivery_id": "D040382", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 3 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP025", "complaint_date": "2026-09-05", "client_id": "C219", "delivery_id": "D040775", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "N", "text": "Order arrived 4 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP026", "complaint_date": "2026-09-06", "client_id": "C190", "delivery_id": "D039889", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP027", "complaint_date": "2026-09-07", "client_id": "C049", "delivery_id": "D042080", "channel": "Email", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 2 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP028", "complaint_date": "2026-09-08", "client_id": "C189", "delivery_id": "D042066", "channel": "Email", "category": "Penalty dispute", "escalated_to_account_owner": "N", "text": "We are disputing the delivery performance for this order and want to understand the cause."}, {"complaint_id": "CMP029", "complaint_date": "2026-09-08", "client_id": "C263", "delivery_id": "D042441", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP030", "complaint_date": "2026-09-11", "client_id": "C263", "delivery_id": "D042344", "channel": "Phone", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP031", "complaint_date": "2026-09-23", "client_id": "C034", "delivery_id": "D045999", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "This is the third late delivery this month. Please explain what is being done."}, {"complaint_id": "CMP032", "complaint_date": "2026-09-24", "client_id": "C190", "delivery_id": "D045967", "channel": "Email", "category": "Not told about the delay", "escalated_to_account_owner": "Y", "text": "Nobody told us it would be late. We only found out when we chased."}, {"complaint_id": "CMP033", "complaint_date": "2026-09-26", "client_id": "C055", "delivery_id": "D044827", "channel": "Phone", "category": "Delivery late", "escalated_to_account_owner": "Y", "text": "Order arrived 5 days after the promised date. We had customers waiting."}, {"complaint_id": "CMP034", "complaint_date": "2026-09-26", "client_id": "C190", "delivery_id": "D047125", "channel": "Email", "category": "Redelivery needed", "escalated_to_account_owner": "Y", "text": "The shipment did not arrive and we had to ask for it to be sent again."}], "complaintCats": {"Delivery late": 14, "Not told about the delay": 12, "Redelivery needed": 6, "Penalty dispute": 2}, "cs": {"hours_total": 720.0, "hours_on_delivery_complaints": 460.79999999999995, "hours_keying_email_orders": 44.4, "hours_on_proactive_client_work": 179.50000000000003}, "cs_weeks": 1, "cs_staff": 18, "clients": {"C001": ["Client 001", "Northeast", "Tier 2", "active"], "C002": ["Client 002", "Northeast", "Tier 3", "active"], "C003": ["Client 003", "Midwest", "Tier 1", "active"], "C004": ["Client 004", "West", "Tier 3", "active"], "C005": ["Client 005", "Midwest", "Tier 2", "active"], "C006": ["Client 006", "Northeast", "Tier 3", "active"], "C007": ["Client 007", "West", "Tier 3", "active"], "C008": ["Client 008", "Southeast", "Tier 3", "active"], "C009": ["Client 009", "Southeast", "Tier 3", "active"], "C010": ["Client 010", "Midwest", "Tier 3", "active"], "C011": ["Client 011", "Midwest", "Tier 2", "active"], "C012": ["Client 012", "Midwest", "Tier 2", "active"], "C013": ["Client 013", "West", "Tier 3", "active"], "C014": ["Client 014", "West", "Tier 3", "active"], "C015": ["Client 015", "Midwest", "Tier 2", "active"], "C016": ["Client 016", "Southeast", "Tier 3", "active"], "C017": ["Client 017", "Southeast", "Tier 3", "active"], "C018": ["Client 018", "Midwest", "Tier 3", "active"], "C019": ["Client 019", "Midwest", "Tier 2", "active"], "C020": ["Client 020", "Midwest", "Tier 1", "active"], "C021": ["Client 021", "Northeast", "Tier 2", "active"], "C022": ["Client 022", "Midwest", "Tier 2", "threatening_to_leave"], "C023": ["Client 023", "Northeast", "Tier 2", "active"], "C024": ["Client 024", "West", "Tier 3", "active"], "C025": ["Client 025", "Northeast", "Tier 2", "active"], "C026": ["Client 026", "Midwest", "Tier 2", "active"], "C027": ["Client 027", "Midwest", "Tier 2", "active"], "C028": ["Client 028", "Midwest", "Tier 2", "active"], "C029": ["Client 029", "Northeast", "Tier 3", "active"], "C030": ["Client 030", "Southeast", "Tier 3", "active"], "C031": ["Client 031", "Northeast", "Tier 3", "active"], "C032": ["Client 032", "West", "Tier 2", "active"], "C033": ["Client 033", "Southeast", "Tier 1", "threatening_to_leave"], "C034": ["Client 034", "West", "Tier 2", "active"], "C035": ["Client 035", "Northeast", "Tier 3", "active"], "C036": ["Client 036", "Midwest", "Tier 3", "active"], "C037": ["Client 037", "Southeast", "Tier 3", "active"], "C038": ["Client 038", "Southeast", "Tier 2", "active"], "C039": ["Client 039", "Northeast", "Tier 2", "active"], "C040": ["Client 040", "Midwest", "Tier 3", "active"], "C041": ["Client 041", "Southeast", "Tier 3", "active"], "C042": ["Client 042", "Midwest", "Tier 2", "active"], "C043": ["Client 043", "Northeast", "Tier 2", "active"], "C044": ["Client 044", "Southeast", "Tier 2", "active"], "C045": ["Client 045", "Northeast", "Tier 3", "active"], "C046": ["Client 046", "West", "Tier 2", "active"], "C047": ["Client 047", "Northeast", "Tier 2", "active"], "C048": ["Client 048", "Midwest", "Tier 1", "active"], "C049": ["Client 049", "Midwest", "Tier 1", "threatening_to_leave"], "C050": ["Client 050", "West", "Tier 3", "active"], "C051": ["Client 051", "Midwest", "Tier 3", "active"], "C052": ["Client 052", "Northeast", "Tier 2", "active"], "C053": ["Client 053", "Southeast", "Tier 3", "active"], "C054": ["Client 054", "West", "Tier 2", "active"], "C055": ["Client 055", "Northeast", "Tier 2", "threatening_to_leave"], "C056": ["Client 056", "Southeast", "Tier 3", "active"], "C057": ["Client 057", "Northeast", "Tier 2", "active"], "C058": ["Client 058", "Midwest", "Tier 3", "active"], "C059": ["Client 059", "Southeast", "Tier 3", "active"], "C060": ["Client 060", "Midwest", "Tier 2", "active"], "C061": ["Client 061", "Northeast", "Tier 2", "active"], "C062": ["Client 062", "Northeast", "Tier 2", "active"], "C063": ["Client 063", "Southeast", "Tier 3", "active"], "C064": ["Client 064", "Midwest", "Tier 3", "active"], "C065": ["Client 065", "Midwest", "Tier 3", "active"], "C066": ["Client 066", "Northeast", "Tier 3", "active"], "C067": ["Client 067", "Southeast", "Tier 3", "active"], "C068": ["Client 068", "Northeast", "Tier 2", "active"], "C069": ["Client 069", "Northeast", "Tier 2", "active"], "C070": ["Client 070", "Midwest", "Tier 3", "active"], "C071": ["Client 071", "Northeast", "Tier 2", "active"], "C072": ["Client 072", "West", "Tier 2", "active"], "C073": ["Client 073", "Midwest", "Tier 3", "active"], "C074": ["Client 074", "West", "Tier 2", "active"], "C075": ["Client 075", "Southeast", "Tier 3", "active"], "C076": ["Client 076", "Midwest", "Tier 2", "active"], "C077": ["Client 077", "Northeast", "Tier 1", "threatening_to_leave"], "C078": ["Client 078", "Northeast", "Tier 1", "active"], "C079": ["Client 079", "Midwest", "Tier 2", "active"], "C080": ["Client 080", "West", "Tier 2", "active"], "C081": ["Client 081", "Midwest", "Tier 2", "active"], "C082": ["Client 082", "Southeast", "Tier 3", "active"], "C083": ["Client 083", "Southeast", "Tier 2", "active"], "C084": ["Client 084", "Northeast", "Tier 2", "active"], "C085": ["Client 085", "Southeast", "Tier 2", "active"], "C086": ["Client 086", "Northeast", "Tier 3", "active"], "C087": ["Client 087", "Northeast", "Tier 2", "active"], "C088": ["Client 088", "Midwest", "Tier 2", "active"], "C089": ["Client 089", "West", "Tier 3", "active"], "C090": ["Client 090", "Midwest", "Tier 3", "active"], "C091": ["Client 091", "West", "Tier 2", "active"], "C092": ["Client 092", "Northeast", "Tier 2", "active"], "C093": ["Client 093", "West", "Tier 3", "active"], "C094": ["Client 094", "Northeast", "Tier 3", "active"], "C095": ["Client 095", "Northeast", "Tier 3", "active"], "C096": ["Client 096", "Southeast", "Tier 3", "active"], "C097": ["Client 097", "Midwest", "Tier 2", "active"], "C098": ["Client 098", "Northeast", "Tier 3", "active"], "C099": ["Client 099", "West", "Tier 1", "threatening_to_leave"], "C100": ["Client 100", "Midwest", "Tier 1", "active"], "C101": ["Client 101", "Midwest", "Tier 2", "active"], "C102": ["Client 102", "Northeast", "Tier 3", "active"], "C103": ["Client 103", "West", "Tier 2", "active"], "C104": ["Client 104", "Midwest", "Tier 2", "active"], "C105": ["Client 105", "Southeast", "Tier 3", "active"], "C106": ["Client 106", "Midwest", "Tier 2", "active"], "C107": ["Client 107", "Southeast", "Tier 3", "active"], "C108": ["Client 108", "Southeast", "Tier 3", "active"], "C109": ["Client 109", "Southeast", "Tier 3", "active"], "C110": ["Client 110", "Southeast", "Tier 3", "active"], "C111": ["Client 111", "Southeast", "Tier 1", "threatening_to_leave"], "C112": ["Client 112", "Midwest", "Tier 3", "active"], "C113": ["Client 113", "Midwest", "Tier 2", "active"], "C114": ["Client 114", "Southeast", "Tier 2", "active"], "C115": ["Client 115", "Midwest", "Tier 3", "active"], "C116": ["Client 116", "West", "Tier 3", "active"], "C117": ["Client 117", "Midwest", "Tier 2", "active"], "C118": ["Client 118", "Midwest", "Tier 3", "active"], "C119": ["Client 119", "Midwest", "Tier 2", "active"], "C120": ["Client 120", "West", "Tier 3", "active"], "C121": ["Client 121", "Southeast", "Tier 2", "active"], "C122": ["Client 122", "Northeast", "Tier 3", "active"], "C123": ["Client 123", "Northeast", "Tier 3", "active"], "C124": ["Client 124", "Southeast", "Tier 3", "active"], "C125": ["Client 125", "Northeast", "Tier 2", "active"], "C126": ["Client 126", "West", "Tier 2", "active"], "C127": ["Client 127", "Northeast", "Tier 2", "active"], "C128": ["Client 128", "Northeast", "Tier 2", "active"], "C129": ["Client 129", "Midwest", "Tier 2", "active"], "C130": ["Client 130", "Northeast", "Tier 3", "active"], "C131": ["Client 131", "Southeast", "Tier 3", "active"], "C132": ["Client 132", "Northeast", "Tier 2", "active"], "C133": ["Client 133", "Northeast", "Tier 3", "active"], "C134": ["Client 134", "West", "Tier 3", "active"], "C135": ["Client 135", "Northeast", "Tier 3", "active"], "C136": ["Client 136", "Midwest", "Tier 2", "active"], "C137": ["Client 137", "Midwest", "Tier 3", "active"], "C138": ["Client 138", "Northeast", "Tier 3", "active"], "C139": ["Client 139", "Midwest", "Tier 2", "active"], "C140": ["Client 140", "Midwest", "Tier 3", "active"], "C141": ["Client 141", "Midwest", "Tier 3", "active"], "C142": ["Client 142", "West", "Tier 2", "active"], "C143": ["Client 143", "Midwest", "Tier 3", "active"], "C144": ["Client 144", "West", "Tier 3", "active"], "C145": ["Client 145", "Southeast", "Tier 2", "active"], "C146": ["Client 146", "Northeast", "Tier 2", "active"], "C147": ["Client 147", "Midwest", "Tier 3", "active"], "C148": ["Client 148", "West", "Tier 2", "active"], "C149": ["Client 149", "Northeast", "Tier 3", "active"], "C150": ["Client 150", "Northeast", "Tier 2", "active"], "C151": ["Client 151", "West", "Tier 3", "active"], "C152": ["Client 152", "West", "Tier 3", "active"], "C153": ["Client 153", "Southeast", "Tier 3", "active"], "C154": ["Client 154", "Midwest", "Tier 3", "active"], "C155": ["Client 155", "West", "Tier 2", "active"], "C156": ["Client 156", "West", "Tier 2", "active"], "C157": ["Client 157", "Midwest", "Tier 2", "active"], "C158": ["Client 158", "Midwest", "Tier 3", "active"], "C159": ["Client 159", "West", "Tier 3", "active"], "C160": ["Client 160", "Northeast", "Tier 2", "active"], "C161": ["Client 161", "Northeast", "Tier 2", "active"], "C162": ["Client 162", "Southeast", "Tier 2", "active"], "C163": ["Client 163", "Northeast", "Tier 3", "active"], "C164": ["Client 164", "West", "Tier 2", "active"], "C165": ["Client 165", "Midwest", "Tier 2", "active"], "C166": ["Client 166", "Northeast", "Tier 2", "active"], "C167": ["Client 167", "Southeast", "Tier 3", "active"], "C168": ["Client 168", "Northeast", "Tier 3", "active"], "C169": ["Client 169", "Southeast", "Tier 2", "active"], "C170": ["Client 170", "Midwest", "Tier 2", "active"], "C171": ["Client 171", "Midwest", "Tier 2", "active"], "C172": ["Client 172", "Midwest", "Tier 2", "active"], "C173": ["Client 173", "Northeast", "Tier 3", "active"], "C174": ["Client 174", "Midwest", "Tier 2", "active"], "C175": ["Client 175", "Northeast", "Tier 3", "active"], "C176": ["Client 176", "West", "Tier 1", "active"], "C177": ["Client 177", "Northeast", "Tier 2", "active"], "C178": ["Client 178", "West", "Tier 2", "active"], "C179": ["Client 179", "Northeast", "Tier 3", "active"], "C180": ["Client 180", "West", "Tier 2", "active"], "C181": ["Client 181", "Midwest", "Tier 1", "active"], "C182": ["Client 182", "Midwest", "Tier 3", "active"], "C183": ["Client 183", "Northeast", "Tier 2", "active"], "C184": ["Client 184", "Northeast", "Tier 3", "active"], "C185": ["Client 185", "West", "Tier 3", "active"], "C186": ["Client 186", "Northeast", "Tier 3", "active"], "C187": ["Client 187", "West", "Tier 3", "active"], "C188": ["Client 188", "West", "Tier 3", "active"], "C189": ["Client 189", "Midwest", "Tier 3", "active"], "C190": ["Client 190", "Southeast", "Tier 1", "threatening_to_leave"], "C191": ["Client 191", "Northeast", "Tier 3", "active"], "C192": ["Client 192", "West", "Tier 3", "active"], "C193": ["Client 193", "Midwest", "Tier 2", "active"], "C194": ["Client 194", "Northeast", "Tier 2", "active"], "C195": ["Client 195", "Northeast", "Tier 3", "active"], "C196": ["Client 196", "West", "Tier 3", "active"], "C197": ["Client 197", "Midwest", "Tier 3", "active"], "C198": ["Client 198", "Midwest", "Tier 2", "active"], "C199": ["Client 199", "Northeast", "Tier 3", "active"], "C200": ["Client 200", "Midwest", "Tier 2", "active"], "C201": ["Client 201", "West", "Tier 3", "active"], "C202": ["Client 202", "Northeast", "Tier 2", "active"], "C203": ["Client 203", "West", "Tier 2", "active"], "C204": ["Client 204", "Midwest", "Tier 1", "active"], "C205": ["Client 205", "West", "Tier 2", "active"], "C206": ["Client 206", "Midwest", "Tier 3", "active"], "C207": ["Client 207", "Southeast", "Tier 3", "active"], "C208": ["Client 208", "Southeast", "Tier 3", "active"], "C209": ["Client 209", "West", "Tier 2", "active"], "C210": ["Client 210", "Midwest", "Tier 3", "active"], "C211": ["Client 211", "West", "Tier 2", "active"], "C212": ["Client 212", "Southeast", "Tier 3", "active"], "C213": ["Client 213", "West", "Tier 2", "active"], "C214": ["Client 214", "Midwest", "Tier 3", "active"], "C215": ["Client 215", "West", "Tier 2", "active"], "C216": ["Client 216", "Southeast", "Tier 2", "active"], "C217": ["Client 217", "Midwest", "Tier 2", "active"], "C218": ["Client 218", "Midwest", "Tier 2", "active"], "C219": ["Client 219", "Midwest", "Tier 2", "active"], "C220": ["Client 220", "Midwest", "Tier 3", "active"], "C221": ["Client 221", "Northeast", "Tier 2", "active"], "C222": ["Client 222", "West", "Tier 3", "active"], "C223": ["Client 223", "Southeast", "Tier 2", "active"], "C224": ["Client 224", "West", "Tier 2", "active"], "C225": ["Client 225", "West", "Tier 3", "active"], "C226": ["Client 226", "West", "Tier 1", "active"], "C227": ["Client 227", "Northeast", "Tier 2", "active"], "C228": ["Client 228", "West", "Tier 3", "active"], "C229": ["Client 229", "Northeast", "Tier 3", "active"], "C230": ["Client 230", "Midwest", "Tier 2", "active"], "C231": ["Client 231", "West", "Tier 2", "active"], "C232": ["Client 232", "Southeast", "Tier 3", "active"], "C233": ["Client 233", "Southeast", "Tier 3", "active"], "C234": ["Client 234", "Midwest", "Tier 2", "active"], "C235": ["Client 235", "Northeast", "Tier 3", "active"], "C236": ["Client 236", "Northeast", "Tier 3", "active"], "C237": ["Client 237", "Northeast", "Tier 2", "active"], "C238": ["Client 238", "West", "Tier 3", "active"], "C239": ["Client 239", "Midwest", "Tier 3", "active"], "C240": ["Client 240", "Midwest", "Tier 3", "active"], "C241": ["Client 241", "West", "Tier 2", "active"], "C242": ["Client 242", "Northeast", "Tier 3", "active"], "C243": ["Client 243", "Northeast", "Tier 3", "active"], "C244": ["Client 244", "Midwest", "Tier 3", "active"], "C245": ["Client 245", "Northeast", "Tier 2", "active"], "C246": ["Client 246", "West", "Tier 2", "active"], "C247": ["Client 247", "Northeast", "Tier 3", "active"], "C248": ["Client 248", "Midwest", "Tier 3", "active"], "C249": ["Client 249", "Northeast", "Tier 3", "active"], "C250": ["Client 250", "West", "Tier 2", "active"], "C251": ["Client 251", "Midwest", "Tier 3", "active"], "C252": ["Client 252", "Southeast", "Tier 1", "active"], "C253": ["Client 253", "Southeast", "Tier 3", "active"], "C254": ["Client 254", "Southeast", "Tier 3", "active"], "C255": ["Client 255", "Midwest", "Tier 2", "active"], "C256": ["Client 256", "Midwest", "Tier 3", "active"], "C257": ["Client 257", "Northeast", "Tier 2", "active"], "C258": ["Client 258", "Northeast", "Tier 3", "active"], "C259": ["Client 259", "Southeast", "Tier 3", "active"], "C260": ["Client 260", "Midwest", "Tier 2", "active"], "C261": ["Client 261", "Northeast", "Tier 2", "active"], "C262": ["Client 262", "Northeast", "Tier 3", "active"], "C263": ["Client 263", "Midwest", "Tier 1", "threatening_to_leave"], "C264": ["Client 264", "Northeast", "Tier 2", "active"], "C265": ["Client 265", "Midwest", "Tier 3", "active"], "C266": ["Client 266", "Midwest", "Tier 2", "active"], "C267": ["Client 267", "Midwest", "Tier 3", "active"], "C268": ["Client 268", "West", "Tier 3", "active"], "C269": ["Client 269", "Midwest", "Tier 3", "active"], "C270": ["Client 270", "Southeast", "Tier 3", "active"], "C271": ["Client 271", "Northeast", "Tier 1", "active"], "C272": ["Client 272", "Midwest", "Tier 3", "active"], "C273": ["Client 273", "Northeast", "Tier 3", "active"], "C274": ["Client 274", "West", "Tier 2", "active"], "C275": ["Client 275", "Northeast", "Tier 2", "active"], "C276": ["Client 276", "West", "Tier 2", "active"], "C277": ["Client 277", "West", "Tier 3", "active"], "C278": ["Client 278", "Northeast", "Tier 2", "active"], "C279": ["Client 279", "Southeast", "Tier 3", "active"], "C280": ["Client 280", "Midwest", "Tier 2", "active"]}};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('en-US');
+const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
+const usd=(n,d=0)=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const usdK=n=>n>=1e6?'$'+(n/1e6).toFixed(2)+'M':'$'+Math.round(n/1e3)+'K';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S=AGG.stats, BENCH=.94;
+const CH=['API','EDI','Email'], CM=['Standard','Next day','Same day'], RG=['Midwest','Southeast','Northeast','West'];
+const WN={1:'Midwest 1',2:'Midwest 2',3:'Southeast',4:'Northeast',5:'West'};
+
+
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+let storageOK=true; try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){storageOK=false;}
+let session=null; try{session=JSON.parse(store.get('halcyon_session')||'null')}catch(e){}
+const th=store.get('halcyon_theme'); if(th) document.documentElement.dataset.theme=th;
+if(!session && storageOK){ location.replace('login.html'); return; }
+if(session && session.role==='Customer'){ location.replace('shop.html'); return; }
+if(!session) session={name:'Demo user',role:'Operations'};
+$('#whoName').textContent=session.name; $('#whoRole').textContent=session.role==='Admin'||!session.role||session.role==='Operations'?'Admin':session.role;
+$('#logout').addEventListener('click',()=>{store.del('halcyon_session');location.href='login.html';});
+/* ---------- theme ---------- */
+function toggleTheme(){ const r=document.documentElement; const dark=r.dataset.theme? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme=dark?'light':'dark'; store.set('halcyon_theme',r.dataset.theme); }
+
+
+
+$('#themeBtn').addEventListener('click',toggleTheme);
+/* ---------- small chart helpers ---------- */
+function barCell(v,color,bench=true){ return `<div class="bar"><span style="width:${(v*100).toFixed(1)}%;background:${color}"></span>${bench?`<i class="bench" style="left:${BENCH*100}%"></i>`:''}</div>`; }
+const otColor=v=>v>=.9?'var(--ok)':v>=.72?'var(--slate)':'var(--late)';
+
+/* ================= PROCUREMENT ================= */
+function buildProc(){
+  const C=AGG.carriers.slice().sort((a,b)=>a.eff-b.eff);
+  const tot=C.reduce((a,b)=>a+b.n,0);
+  const A=AGG.attr;
+  $('#view-procurement').innerHTML=`
+  <div class="pagehead"><div><h1>Procurement</h1><p class="muted">Carrier contracts, true cost per shipment, and the routing vendor decision.</p></div></div>
+
+  <div class="panel">
+    <div class="decision">
+      <div>
+        <p class="muted small">Routing optimisation vendor · $680K approved · signature due in two weeks</p>
+        <h2 style="margin-top:6px">A routing engine reaches at most ${pct(A.other/A.total_late,0)} of late deliveries</h2>
+        <div class="verdict">
+          <p>Routing quality barely differs between late and on-time deliveries: actual routes run ${((S.route_dev_late-1)*100).toFixed(0)}% over plan when late and ${((S.route_dev_ot-1)*100).toFixed(0)}% when on time. Stop count on a route makes no difference to on-time rate. The lateness is set by the order and the carrier before routing begins.</p>
+          <p style="margin-top:10px"><b>Recommendation:</b> hold the signature. Narrow the proof of concept to the ${fmt(A.other)} late deliveries with no order-side cause, and fund the five fixes in this plan first.</p>
+        </div>
+        <p class="note">Evidence that would change this view: a routing pilot that lifts on-time rate on clean orders with carriers A–C, where today’s rate is already ${pct(S.clean_abc)}.</p>
+      </div>
+      <div>
+        <h3>Fix first, in this order</h3>
+        <ol class="plan">
+          <li><span><b>Validate addresses at order entry</b>Block incomplete addresses before the pick list. Templates for the 14 non-standard email formats. With steps 2 and 3, lifts on-time delivery from ${pct(S.ot)} to about ${pct(S.proj1)}.</span></li>
+          <li><span><b>Rebalance stock to the nearest warehouse</b>12% of orders ship from a farther site. Move the quarterly allocation review to monthly for high-volume clients.</span></li>
+          <li><span><b>Stop promising same-day after 08:00</b>Either add a second pick wave or offer next-day on orders received after the cut-off.</span></li>
+          <li><span><b>Shift volume away from Carrier D</b>Lowest rate, highest true cost. Moving its volume to A–C adds about ${((S.proj2-S.proj1)*100).toFixed(0)} points.</span></li>
+          <li><span><b>Require delivery events from D, E and F</b>Clients learn about delays before customer success does; 12 complaints are about not being told.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Carrier scorecard</h2><span class="muted small">Sorted by true cost per shipment · line marks the 94% benchmark</span></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Carrier</th><th>Event feed</th><th>Agreement</th><th class="r">Share of volume</th><th class="r">Base rate</th><th class="r">Avg rate paid</th><th class="r">On time</th><th class="r">On time, clean orders</th><th style="width:16%"></th><th class="r">Penalties + redelivery</th><th class="r">Late cost / shipment</th><th class="r">True cost / shipment</th></tr></thead>
+      <tbody>${C.map(c=>`<tr><td><b>${c.carrier_name}</b></td><td>${c.has_api==='Y'?'<span class="pill p-ok">API</span>':`<span class="pill p-amber">${c.delivery_event_feed}</span>`}</td><td>${c.preferred_supplier_agreement==='Y'?'<span class="pill p-slate">Preferred supplier</span>':'—'}</td><td class="r">${pct(c.n/tot)}</td><td class="r">${usd(c.base_rate_usd,2)}</td><td class="r">${usd(c.rate,2)}</td><td class="r">${pct(c.ot)}</td><td class="r" style="font-weight:600;color:${otColor(c.clean_ot)}">${pct(c.clean_ot)}</td><td>${barCell(c.clean_ot,otColor(c.clean_ot))}</td><td class="r">${usdK(c.pen+c.red)}</td><td class="r">${usd(c.late_cost_per,2)}</td><td class="r"><b>${usd(c.eff,2)}</b></td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="note">True cost is the average rate paid plus SLA penalties and redelivery per shipment. Clean orders have a complete address, stock at the nearest warehouse and no missed same-day cut-off, which isolates the carrier’s own performance.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="panel">
+      <div class="panel-head"><h2>Rate paid versus true cost</h2></div>
+      ${costChart(C)}
+      <p class="note">Carrier F, the preferred supplier, and Carrier D have the cheapest rates. Both cost more per shipment than Carrier B once lateness is counted.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h2>Warehouse stock allocation</h2></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Warehouse</th><th class="r">Shipments</th><th class="r">On time</th><th class="r">Stock not at nearest site</th><th class="r">Incomplete address</th><th>Pick cut-off</th></tr></thead>
+        <tbody>${AGG.warehouses.map(w=>`<tr><td><b>${w.warehouse_id}</b> ${w.warehouse_name}</td><td class="r">${fmt(w.n)}</td><td class="r">${pct(w.ot)}</td><td class="r">${pct(w.mis)}</td><td class="r">${pct(w.addr)}</td><td>${w.pick_list_cutoff}</td></tr>`).join('')}</tbody>
+      </table></div>
+      <p class="note">All five sites perform alike, so the cause isn’t a single warehouse. Every site shares the same 08:00 cut-off and 14:00–18:00 collection window.</p>
+    </div>
+  </div>`;
+}
+function costChart(C){
+  const W=440,rowH=40,pl=78,pr=60,H=C.length*rowH+30,max=55;
+  const x=v=>pl+(W-pl-pr)*v/max;
+  let s=`<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Rate paid versus true cost per shipment by carrier">`;
+  C.forEach((c,i)=>{ const y=i*rowH+8;
+    s+=`<text x="0" y="${y+18}" fill="var(--ink)" style="font:600 14px Roboto,sans-serif">${c.carrier_name}</text>`;
+    s+=`<rect x="${pl}" y="${y}" width="${x(c.eff)-pl}" height="26" fill="var(--late-soft)" rx="3"/>`;
+    s+=`<rect x="${pl}" y="${y}" width="${x(c.rate)-pl}" height="26" fill="var(--slate)" rx="3"/>`;
+    s+=`<text x="${pl+6}" y="${y+18}" fill="#fff" style="font:600 12px Roboto,sans-serif">${usd(c.rate,2)}</text>`;
+    s+=`<text x="${x(c.eff)+6}" y="${y+18}" fill="var(--ink)" style="font:600 13px Roboto,sans-serif">${usd(c.eff,2)}</text>`;
+  });
+  const ly=C.length*rowH+18;
+  s+=`<rect x="${pl}" y="${ly-9}" width="10" height="10" fill="var(--slate)"/><text x="${pl+14}" y="${ly}" fill="var(--muted)" style="font:12px Roboto,sans-serif">Rate paid</text><rect x="${pl+90}" y="${ly-9}" width="10" height="10" fill="var(--late-soft)" stroke="var(--late)" stroke-width=".5"/><text x="${pl+104}" y="${ly}" fill="var(--muted)" style="font:12px Roboto,sans-serif">Plus penalties and redelivery</text>`;
+  return s+'</svg></div>';
+}
+
+
+buildProc();
+})();
+</script>
+</body>
+</html>

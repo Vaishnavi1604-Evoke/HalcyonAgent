@@ -1,0 +1,16 @@
+From: Purchasing <orders@client102.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-22180154
+Date: Thu, 29 Oct 2026 14:08:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-11820 (qty 39)? Ship to 2894 Found=
+ry Ln, Dock 1, Denver, CO, 80206. Our reference is ORD-22180154.
+
+Thanks,
+Client 102 purchasing

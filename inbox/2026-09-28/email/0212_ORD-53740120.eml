@@ -1,0 +1,16 @@
+From: Purchasing <orders@client055.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-53740120
+Date: Mon, 28 Sep 2026 13:42:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 41 units of SKU-20431 to our Orlando site (2782 Depot Rd, Dock 2,=
+ Orlando, FL, 32849). We need this standard. PO ORD-53740120.
+
+Thanks,
+Client 055 purchasing

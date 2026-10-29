@@ -1,0 +1,18 @@
+From: Purchasing <orders@client124.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 1
+Subject: Order ORD-37486454
+Date: Thu, 29 Oct 2026 12:40:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-37486454
+Item: SKU-44102 x 10
+Deliver to: 3288 Depot Rd, Dock 3, Detroit, MI, 48242
+Service: standard
+
+Thanks,
+Client 124 purchasing

@@ -1,0 +1,61 @@
+order_ref,client_id,client_name,source,status,client_notice
+ORD-80607127,C161,Client 161,EDI,HELD_ADDRESS,Please confirm the street and postal code for order ORD-80607127.
+ORD-50581828,C038,Client 038,EDI,ASSIGNED,We completed the street for order ORD-50581828 from your site list; reply if it should go elsewhere.
+ORD-51947134,C163,Client 163,EDI,ASSIGNED,We completed the postal code for order ORD-51947134 from your site list; reply if it should go elsewhere.
+ORD-15604470,C083,Client 083,EDI,ASSIGNED,We completed the postal code for order ORD-15604470 from your site list; reply if it should go elsewhere.
+ORD-18549447,C009,Client 009,EDI,ASSIGNED,We completed the street for order ORD-18549447 from your site list; reply if it should go elsewhere.
+ORD-55593375,C055,Client 055,Email,ASSIGNED,We completed the postal code for order ORD-55593375 from your site list; reply if it should go elsewhere.
+ORD-77589046,C124,Client 124,Email,ASSIGNED,We completed the street and postal code for order ORD-77589046 from your site list; reply if it should go elsewhere.
+ORD-62793022,C158,Client 158,Email,ASSIGNED,We completed the street for order ORD-62793022 from your site list; reply if it should go elsewhere.
+ORD-76313367,C219,Client 219,API,HELD_ADDRESS,Please confirm the street and postal code for order ORD-76313367.
+ORD-47456306,C055,Client 055,Email,ASSIGNED,We completed the street for order ORD-47456306 from your site list; reply if it should go elsewhere.
+ORD-86653383,C076,Client 076,Email,ASSIGNED,We completed the street for order ORD-86653383 from your site list; reply if it should go elsewhere.
+ORD-75854269,C248,Client 248,Email,ASSIGNED,We completed the street and postal code for order ORD-75854269 from your site list; reply if it should go elsewhere.
+ORD-10678221,C263,Client 263,Email,ASSIGNED,We completed the street and postal code for order ORD-10678221 from your site list; reply if it should go elsewhere.
+ORD-41378382,C185,Client 185,EDI,ASSIGNED,We completed the street and postal code for order ORD-41378382 from your site list; reply if it should go elsewhere.
+ORD-17802662,C100,Client 100,EDI,ASSIGNED,We completed the postal code for order ORD-17802662 from your site list; reply if it should go elsewhere.
+ORD-91359313,C157,Client 157,Email,ASSIGNED,We completed the street for order ORD-91359313 from your site list; reply if it should go elsewhere.
+ORD-35152072,C259,Client 259,Email,ASSIGNED,We completed the postal code for order ORD-35152072 from your site list; reply if it should go elsewhere.
+ORD-59594089,C014,Client 014,Email,ASSIGNED,We completed the street and postal code for order ORD-59594089 from your site list; reply if it should go elsewhere.
+ORD-30041147,C194,Client 194,Email,ASSIGNED,We completed the postal code for order ORD-30041147 from your site list; reply if it should go elsewhere.
+ORD-29240120,C190,Client 190,Email,ASSIGNED,We completed the street for order ORD-29240120 from your site list; reply if it should go elsewhere.
+ORD-43811471,C190,Client 190,Email,HELD_ADDRESS,Please confirm the street and postal code for order ORD-43811471.
+ORD-75694605,C190,Client 190,Email,ASSIGNED,We completed the street and postal code for order ORD-75694605 from your site list; reply if it should go elsewhere.
+ORD-24411282,C073,Client 073,API,ASSIGNED,We completed the street for order ORD-24411282 from your site list; reply if it should go elsewhere.
+ORD-90974746,C003,Client 003,Email,ASSIGNED,We completed the postal code for order ORD-90974746 from your site list; reply if it should go elsewhere.
+ORD-24048176,C100,Client 100,EDI,ASSIGNED,We completed the street and postal code for order ORD-24048176 from your site list; reply if it should go elsewhere.
+ORD-14928986,C066,Client 066,Email,ASSIGNED,We completed the street and postal code for order ORD-14928986 from your site list; reply if it should go elsewhere.
+ORD-28490455,C190,Client 190,Email,ASSIGNED,We completed the street for order ORD-28490455 from your site list; reply if it should go elsewhere.
+ORD-61173036,C045,Client 045,Email,ASSIGNED,We completed the street for order ORD-61173036 from your site list; reply if it should go elsewhere.
+ORD-93155706,C051,Client 051,Email,ASSIGNED,We completed the street for order ORD-93155706 from your site list; reply if it should go elsewhere.
+ORD-83111584,C051,Client 051,Email,ASSIGNED,We completed the street for order ORD-83111584 from your site list; reply if it should go elsewhere.
+ORD-20333535,C055,Client 055,Email,ASSIGNED,We completed the street for order ORD-20333535 from your site list; reply if it should go elsewhere.
+ORD-22667001,C190,Client 190,Email,ASSIGNED,We completed the street for order ORD-22667001 from your site list; reply if it should go elsewhere.
+ORD-59820084,C280,Client 280,EDI,ASSIGNED,We completed the street and postal code for order ORD-59820084 from your site list; reply if it should go elsewhere.
+ORD-48395987,C061,Client 061,Email,ASSIGNED,We completed the postal code for order ORD-48395987 from your site list; reply if it should go elsewhere.
+ORD-62118564,C243,Client 243,Email,ASSIGNED,We completed the street and postal code for order ORD-62118564 from your site list; reply if it should go elsewhere.
+ORD-20616621,C243,Client 243,Email,ASSIGNED,We completed the street and postal code for order ORD-20616621 from your site list; reply if it should go elsewhere.
+ORD-70083272,C198,Client 198,Email,ASSIGNED,Order ORD-70083272 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-65072759,C158,Client 158,Email,ASSIGNED,Order ORD-65072759 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-88111784,C190,Client 190,Email,ASSIGNED,We completed the street for order ORD-88111784 from your site list; reply if it should go elsewhere.
+ORD-27549781,C209,Client 209,Email,ASSIGNED,Order ORD-27549781 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-87446405,C236,Client 236,API,ASSIGNED,Order ORD-87446405 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-10885383,C209,Client 209,Email,ASSIGNED,We completed the street for order ORD-10885383 from your site list; reply if it should go elsewhere.
+ORD-23182194,C190,Client 190,Email,ASSIGNED,We completed the street and postal code for order ORD-23182194 from your site list; reply if it should go elsewhere.
+ORD-32984709,C099,Client 099,API,ASSIGNED,Order ORD-32984709 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-46078588,C239,Client 239,EDI,ASSIGNED,Order ORD-46078588 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-83557816,C190,Client 190,Email,ASSIGNED,Order ORD-83557816 arrived after today's last same-day wave; delivery date set to 2026-09-30 at intake.
+ORD-10205193,C130,Client 130,Email,ASSIGNED,We completed the postal code for order ORD-10205193 from your site list; reply if it should go elsewhere.
+ORD-35188448,C049,Client 049,EDI,ASSIGNED,We completed the postal code for order ORD-35188448 from your site list; reply if it should go elsewhere.
+ORD-19465229,C059,Client 059,Email,ASSIGNED,We completed the street for order ORD-19465229 from your site list; reply if it should go elsewhere.
+ORD-10972299,C175,Client 175,Email,ASSIGNED,We completed the postal code for order ORD-10972299 from your site list; reply if it should go elsewhere.
+ORD-21993020,C066,Client 066,Email,ASSIGNED,We completed the postal code for order ORD-21993020 from your site list; reply if it should go elsewhere.
+ORD-69654876,C130,Client 130,Email,ASSIGNED,We completed the street and postal code for order ORD-69654876 from your site list; reply if it should go elsewhere.
+ORD-20011430,C024,Client 024,API,ASSIGNED,We completed the street for order ORD-20011430 from your site list; reply if it should go elsewhere.
+ORD-34319251,C001,Client 001,Email,ASSIGNED,We completed the postal code for order ORD-34319251 from your site list; reply if it should go elsewhere.
+ORD-97304434,C041,Client 041,Email,ASSIGNED,We completed the postal code for order ORD-97304434 from your site list; reply if it should go elsewhere.
+ORD-27436282,C009,Client 009,EDI,ASSIGNED,We completed the street and postal code for order ORD-27436282 from your site list; reply if it should go elsewhere.
+ORD-72780098,C215,Client 215,EDI,ASSIGNED,We completed the street for order ORD-72780098 from your site list; reply if it should go elsewhere.
+ORD-72506368,C215,Client 215,EDI,ASSIGNED,We completed the postal code for order ORD-72506368 from your site list; reply if it should go elsewhere.
+ORD-53729775,C232,Client 232,API,ASSIGNED,We completed the street for order ORD-53729775 from your site list; reply if it should go elsewhere.
+ORD-12176959,C270,Client 270,API,ASSIGNED_FALLBACK,Order ORD-12176959 ships from W2; delivery may take longer than usual.

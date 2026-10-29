@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-63289982",
+  "client_id": "C093",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 093",
+    "line1": "5237 Foundry Ln",
+    "line2": "Dock 1",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97242"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 33
+    }
+  ],
+  "submitted_at": "2026-09-28T08:55:00"
+}

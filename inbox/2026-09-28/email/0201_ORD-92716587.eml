@@ -1,0 +1,16 @@
+From: Purchasing <orders@client144.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 6
+Subject: Order ORD-92716587
+Date: Mon, 28 Sep 2026 13:11:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-44102 (qty 13)? Ship to 5936 Indus=
+trial Pkwy, Dock 4, Indianapolis, IN, 46212. Our reference is ORD-92716587.
+
+Thanks,
+Client 144 purchasing

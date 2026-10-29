@@ -1,0 +1,18 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 13
+Subject: Order ORD-46729022
+Date: Thu, 29 Oct 2026 12:02:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-46729022
+Item: SKU-44102 x 27
+Deliver to: 2853 Foundry Ln, Dock 5, Newark, NJ, 07168
+Service: standard
+
+Thanks,
+Client 263 purchasing

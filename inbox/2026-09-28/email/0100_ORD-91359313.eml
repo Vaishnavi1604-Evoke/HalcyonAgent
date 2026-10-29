@@ -1,0 +1,18 @@
+From: Purchasing <orders@client157.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-91359313
+Date: Mon, 28 Sep 2026 08:12:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-91359313
+Item: SKU-66014 x 44
+Deliver to: Dock 7, Milwaukee, WI, 53259
+Service: same day
+
+Thanks,
+Client 157 purchasing

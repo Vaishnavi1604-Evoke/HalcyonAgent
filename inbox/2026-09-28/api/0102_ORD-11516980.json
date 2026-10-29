@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-11516980",
+  "client_id": "C214",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 214",
+    "line1": "1137 Logistics Way",
+    "line2": "Dock 7",
+    "city": "Hartford",
+    "state": "CT",
+    "postal_code": "06125"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 11
+    }
+  ],
+  "submitted_at": "2026-09-28T08:15:00"
+}

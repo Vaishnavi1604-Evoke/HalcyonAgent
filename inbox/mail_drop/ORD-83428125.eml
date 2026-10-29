@@ -1,0 +1,16 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 2
+Subject: Order ORD-83428125
+Date: Thu, 29 Oct 2026 10:17:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-44102 (qty 33)? Ship to 4676 Harbo=
+r Ave, Dock 5, Milwaukee, WI. Our reference is ORD-83428125.
+
+Thanks,
+Client 190 purchasing

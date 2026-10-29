@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-76555678",
+  "client_id": "C194",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 194",
+    "line1": "8015 Commerce Dr",
+    "line2": "Dock 3",
+    "city": "Columbus",
+    "state": "OH",
+    "postal_code": "43256"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 13
+    }
+  ],
+  "submitted_at": "2026-09-28T00:53:00"
+}

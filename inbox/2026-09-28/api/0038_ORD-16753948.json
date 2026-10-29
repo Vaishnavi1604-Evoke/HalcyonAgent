@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-16753948",
+  "client_id": "C188",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 188",
+    "line1": "2280 Riverside Blvd",
+    "line2": "Dock 4",
+    "city": "Indianapolis",
+    "state": "IN",
+    "postal_code": "46217"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 41
+    }
+  ],
+  "submitted_at": "2026-09-28T04:16:00"
+}

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-43698819
+Date: Thu, 29 Oct 2026 08:51:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-44102 (qty 13)? Ship to 2853 Found=
+ry Ln, Dock 5, Newark, NJ, 07168. Our reference is ORD-43698819.
+
+Thanks,
+Client 263 purchasing

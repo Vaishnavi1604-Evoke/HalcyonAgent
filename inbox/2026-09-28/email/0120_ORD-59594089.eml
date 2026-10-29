@@ -1,0 +1,18 @@
+From: Purchasing <orders@client014.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-59594089
+Date: Mon, 28 Sep 2026 09:10:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-59594089 below:
+SKU-20431 | 44 EA
+Address - Dock 5, Newark, NJ
+Priority: standard
+
+Thanks,
+Client 014 purchasing

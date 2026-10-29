@@ -1,0 +1,18 @@
+From: Purchasing <orders@client125.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-10999443
+Date: Thu, 29 Oct 2026 07:37:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-10999443
+Item: SKU-44102 x 28
+Deliver to: 7439 Depot Rd, Dock 3, Portland, OR
+Service: standard
+
+Thanks,
+Client 125 purchasing

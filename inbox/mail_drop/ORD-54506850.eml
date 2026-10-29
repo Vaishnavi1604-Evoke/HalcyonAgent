@@ -1,0 +1,18 @@
+From: Purchasing <orders@client136.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-54506850
+Date: Thu, 29 Oct 2026 16:26:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-54506850 below:
+SKU-20431 | 9 EA
+Address - 4576 Industrial Pkwy, Dock 6, Nashville, TN, 37215
+Priority: standard
+
+Thanks,
+Client 136 purchasing

@@ -1,0 +1,18 @@
+From: Purchasing <orders@client076.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-73597804
+Date: Thu, 29 Oct 2026 06:30:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-73597804 below:
+SKU-20431 | 40 EA
+Address - 6499 Riverside Blvd, Dock 8, Nashville, TN, 37255
+Priority: same day
+
+Thanks,
+Client 076 purchasing

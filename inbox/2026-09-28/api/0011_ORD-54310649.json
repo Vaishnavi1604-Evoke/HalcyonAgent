@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-54310649",
+  "client_id": "C187",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 187",
+    "line1": "7333 Harbor Ave",
+    "line2": "Dock 9",
+    "city": "Orlando",
+    "state": "FL",
+    "postal_code": "32860"
+  },
+  "lines": [
+    {
+      "sku": "SKU-20431",
+      "qty": 26
+    }
+  ],
+  "submitted_at": "2026-09-28T00:44:00"
+}

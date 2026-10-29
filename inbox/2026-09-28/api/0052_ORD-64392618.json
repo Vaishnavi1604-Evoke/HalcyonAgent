@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-64392618",
+  "client_id": "C056",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 056",
+    "line1": "5960 Riverside Blvd",
+    "line2": "Dock 8",
+    "city": "Detroit",
+    "state": "MI",
+    "postal_code": "48276"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 14
+    }
+  ],
+  "submitted_at": "2026-09-28T05:43:00"
+}

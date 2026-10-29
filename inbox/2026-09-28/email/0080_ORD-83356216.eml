@@ -1,0 +1,16 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-83356216
+Date: Mon, 28 Sep 2026 07:19:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 25 units of SKU-30977 to our Columbia site (909 Riverside Blvd, D=
+ock 4, Columbia, SC, 29280). We need this next day. PO ORD-83356216.
+
+Thanks,
+Client 263 purchasing

@@ -1,0 +1,18 @@
+From: Purchasing <orders@client094.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-83220505
+Date: Mon, 28 Sep 2026 14:45:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-83220505 below:
+SKU-51268 | 29 EA
+Address - 6077 Industrial Pkwy, Dock 4, Pittsburgh, PA, 15256
+Priority: next day
+
+Thanks,
+Client 094 purchasing

@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-46388257",
+  "client_id": "C231",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 231",
+    "line1": "3389 Depot Rd",
+    "line2": "Dock 7",
+    "city": "Indianapolis",
+    "state": "IN",
+    "postal_code": "46254"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 39
+    }
+  ],
+  "submitted_at": "2026-09-28T16:40:00"
+}

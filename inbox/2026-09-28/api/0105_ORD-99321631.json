@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-99321631",
+  "client_id": "C217",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 217",
+    "line1": "3269 Industrial Pkwy",
+    "line2": "Dock 6",
+    "city": "Columbus",
+    "state": "OH",
+    "postal_code": "43269"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 13
+    }
+  ],
+  "submitted_at": "2026-09-28T08:20:00"
+}

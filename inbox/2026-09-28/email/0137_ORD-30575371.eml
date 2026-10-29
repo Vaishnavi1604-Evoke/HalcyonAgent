@@ -1,0 +1,16 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-30575371
+Date: Mon, 28 Sep 2026 09:53:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 24 units of SKU-20431 to our Hartford site (5792 Depot Rd, Dock 2=
+, Hartford, CT, 06131). We need this next day. PO ORD-30575371.
+
+Thanks,
+Client 263 purchasing

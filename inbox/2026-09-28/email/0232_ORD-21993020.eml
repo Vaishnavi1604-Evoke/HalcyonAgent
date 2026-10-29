@@ -1,0 +1,16 @@
+From: Purchasing <orders@client066.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 10
+Subject: Order ORD-21993020
+Date: Mon, 28 Sep 2026 15:01:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange next day delivery of SKU-51268 (qty 22)? Ship to 2331 Found=
+ry Ln, Dock 3, Phoenix, AZ. Our reference is ORD-21993020.
+
+Thanks,
+Client 066 purchasing

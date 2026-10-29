@@ -1,0 +1,16 @@
+From: Purchasing <orders@client124.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 12
+Subject: Order ORD-61820353
+Date: Mon, 28 Sep 2026 16:48:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 11 units of SKU-44102 to our Columbia site (3082 Foundry Ln, Dock=
+ 5, Columbia, SC, 29245). We need this standard. PO ORD-61820353.
+
+Thanks,
+Client 124 purchasing

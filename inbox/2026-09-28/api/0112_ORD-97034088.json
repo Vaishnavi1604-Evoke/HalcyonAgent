@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-97034088",
+  "client_id": "C121",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 121",
+    "line1": "3767 Logistics Way",
+    "line2": "Dock 2",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "postal_code": "15214"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 42
+    }
+  ],
+  "submitted_at": "2026-09-28T08:44:00"
+}

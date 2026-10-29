@@ -1,0 +1,16 @@
+From: Purchasing <orders@client051.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-93155706
+Date: Mon, 28 Sep 2026 11:17:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 34 units of SKU-44102 to our Reno site (Dock 2, Reno, NV, 89527).=
+ We need this next day. PO ORD-93155706.
+
+Thanks,
+Client 051 purchasing

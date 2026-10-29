@@ -1,0 +1,16 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 12
+Subject: Order ORD-95039652
+Date: Mon, 28 Sep 2026 14:57:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 21 units of SKU-20431 to our Sacramento site (7185 Industrial Pkw=
+y, Dock 7, Sacramento, CA, 95863). We need this standard. PO ORD-95039652.
+
+Thanks,
+Client 190 purchasing

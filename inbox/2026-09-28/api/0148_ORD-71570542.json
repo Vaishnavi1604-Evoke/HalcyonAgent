@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-71570542",
+  "client_id": "C056",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 056",
+    "line1": "8407 Commerce Dr",
+    "line2": "Dock 1",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97247"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 24
+    }
+  ],
+  "submitted_at": "2026-09-28T10:43:00"
+}

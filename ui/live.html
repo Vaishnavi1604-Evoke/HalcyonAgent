@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Live orders · Halcyon Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FB; --surface:#FFFFFF; --sunk:#EEF4F8; --ink:#0B1F3A; --muted:#4F6680; --line:#D6E2EC;
+  --nav:#0A2A4F; --nav-ink:#EAF4F8; --nav-muted:#9FBAD3;
+  --teal:#0E9F95; --teal-soft:#D3F2EE;
+  --ok:#0E9384; --ok-soft:#D3F2EE; --late:#B8432F; --late-soft:#F6DED8; --amber:#B7791F; --amber-soft:#F7EBD3; --slate:#6B8299;
+  --focus:#0E9F95;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Roboto,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2,h3,.num{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:500;letter-spacing:0;margin:0}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:21px;line-height:1.2}
+h3{font-size:17px}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+[hidden]{display:none!important}
+
+/* ---------- Login ---------- */
+#login{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.login-brand{background:var(--nav);color:var(--nav-ink);padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:500;letter-spacing:.12em}
+.wordmark svg{flex:none}
+.login-lane{margin:48px 0}
+.login-lane h1{font-size:clamp(32px,4vw,50px);line-height:1.1;max-width:13ch;font-weight:500}
+.login-lane p{margin-top:18px;color:var(--nav-muted);max-width:42ch;font-size:16px}
+.dock{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:460px}
+.dock div{border-top:3px solid var(--teal);padding-top:8px;font-size:13px;color:var(--nav-muted)}
+.dock div b{display:block;color:var(--nav-ink);font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:18px;font-weight:600}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px;background:var(--surface)}
+.login-form{width:100%;max-width:360px}
+.login-form h2{font-size:28px;margin-bottom:6px}
+.field{display:block;margin-top:18px}
+.field span{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.input:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 25%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600}
+.btn-primary{background:var(--nav);border-color:var(--nav);color:#fff;width:100%;margin-top:24px;padding:12px}
+:root[data-theme="dark"] .btn-primary{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:#0B6E78;border-color:#0B6E78}}
+.err{color:var(--late);font-size:13px;margin-top:12px;min-height:20px}
+.demo{margin-top:22px;padding:12px 14px;background:var(--sunk);border-radius:6px;font-size:13px;color:var(--muted)}
+.demo code{color:var(--ink);font-family:inherit;font-weight:600}
+.role-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.role-row label{flex:1;min-width:96px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;font-size:14px;display:flex;gap:6px;align-items:center}
+.role-row input{accent-color:var(--nav)}
+
+/* ---------- Shell ---------- */
+#app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--nav);color:var(--nav-ink);padding:24px 16px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;text-decoration:none;color:var(--nav-muted);font-weight:500}
+.side nav a:hover{color:var(--nav-ink);background:rgba(255,255,255,.06)}
+.side nav a[aria-current="page"]{color:var(--nav-ink);background:rgba(255,255,255,.1);box-shadow:inset 3px 0 0 var(--teal)}
+.side .who{margin-top:auto;font-size:13px;color:var(--nav-muted);border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.side .who b{display:block;color:var(--nav-ink);font-weight:600;font-size:14px}
+.side .who button,.side .who a.tb{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:var(--nav-ink);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+main{padding:28px 32px 56px;min-width:0}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pagehead p{margin-top:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.panel + .panel,.grid + .panel,.panel + .grid,.grid + .grid{margin-top:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.grid{display:grid;gap:18px;align-items:start}
+.grid > .panel{margin-top:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g32{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.kpi{padding:18px 22px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .num{font-size:38px;line-height:1;font-weight:500}
+.kpi .lbl{font-size:14px;font-weight:600;margin-top:6px}
+.kpi .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Hero: the path to benchmark */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:start}
+.hero h2{font-size:26px;max-width:18ch;line-height:1.1}
+.hero .lede{margin-top:10px;color:var(--muted);max-width:52ch}
+.split{margin-top:22px}
+.splitbar{display:flex;height:34px;border-radius:5px;overflow:hidden}
+.splitbar div{height:100%}
+.legend{display:grid;gap:10px;margin-top:14px}
+.legend div{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:baseline;font-size:14px}
+.legend i{width:12px;height:12px;border-radius:2px;display:block;transform:translateY(1px)}
+.legend b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;font-weight:600}
+.steps{position:relative}
+.steps svg{width:100%;height:auto;display:block}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover{background:var(--sunk)}
+.bar{position:relative;height:8px;background:var(--sunk);border-radius:4px;min-width:90px}
+.bar span{position:absolute;inset:0 auto 0 0;border-radius:4px}
+.bar .bench{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.55}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.5}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-late{background:var(--late-soft);color:var(--late)}
+.p-amber{background:var(--amber-soft);color:var(--amber)}
+.p-slate{background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.flags{display:flex;gap:4px}
+.flag{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--amber-soft);color:var(--amber)}
+
+/* orders */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}
+.filters .input,.filters select{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);min-width:120px;font-size:14px}
+.filters .search{min-width:220px}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:14px}
+.checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.checks input{accent-color:var(--teal)}
+.summary{display:flex;gap:24px;flex-wrap:wrap;margin:16px 0 4px;font-size:14px}
+.summary b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:20px;font-weight:600;margin-right:4px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:14px;flex-wrap:wrap}
+.pager div{display:flex;gap:6px}
+.pager button{padding:6px 12px}
+.pager button:disabled{opacity:.4;cursor:default}
+th.sort{cursor:pointer}
+th.sort:hover{color:var(--ink)}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,18,24,.4);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);z-index:21;border-left:1px solid var(--line);padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;transform:translateX(0);transition:transform .22s ease}
+.drawer.closed{transform:translateX(100%)}
+.drawer .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;border:0;background:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1;padding:6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin-top:16px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:500}
+.timeline{list-style:none;padding:0;margin:20px 0 0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 14px 18px;font-size:14px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--slate)}
+.timeline li.ok::before{border-color:var(--ok);background:var(--ok)}
+.timeline li.bad::before{border-color:var(--late);background:var(--late)}
+.timeline li span{display:block;color:var(--muted);font-size:13px}
+.why{margin-top:20px;display:grid;gap:10px}
+.why div{border-left:3px solid var(--amber);padding:6px 12px;background:var(--sunk);font-size:14px;border-radius:0 6px 6px 0}
+.why div b{display:block}
+
+/* procurement */
+.decision{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.decision h2{font-size:24px;max-width:22ch}
+.verdict{border-left:4px solid var(--late);padding-left:16px;margin-top:14px}
+.plan{counter-reset:s;list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.plan li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px}
+.plan li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--nav);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.plan li b{display:block;font-size:15px}
+.chart svg{width:100%;height:auto;display:block}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.menu-btn{display:none}
+@media (max-width:980px){
+  .hero,.decision,.g32,.g2{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(3){border-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  #login{grid-template-columns:1fr}
+  .login-brand{padding:32px 24px}
+  .login-lane{margin:28px 0}
+  #app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;padding:10px 14px;gap:12px;z-index:10;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+  .side .wordmark span{display:none}
+  .side nav{flex-direction:row;flex:1;overflow-x:auto}
+  .side nav a{padding:8px 10px;white-space:nowrap}
+  .side nav a svg{display:none}
+  .side .who{margin:0;border:0;padding:0}
+  .side .who b,.side .who span{display:none}
+  .side .who button,.side .who a.tb{margin:0}
+  main{padding:20px 16px 48px}
+  .kpi .num{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.side .who .row{display:flex;gap:6px;flex-wrap:wrap}
+.side .who .row button{margin-top:10px}
+
+/* ---------- agent pages ---------- */
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.controls select{padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.btn-go{background:var(--nav);border-color:var(--nav);color:#fff}
+:root[data-theme="dark"] .btn-go{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-go{background:#0B6E78;border-color:#0B6E78}}
+.clock{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:600;min-width:120px}
+.counters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:18px}
+.counters div{padding:14px 18px;border-left:1px solid var(--line)}
+.counters div:first-child{border-left:0}
+.counters .num{font-size:30px;line-height:1;font-weight:500}
+.counters span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.workbench{display:grid;grid-template-columns:300px minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
+.queue{padding:0;overflow:hidden}
+.qtabs{display:flex;gap:2px;padding:10px 10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.qtabs button{border:0;background:none;padding:8px 10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.qtabs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--amber)}
+.qlist{max-height:640px;overflow-y:auto;list-style:none;margin:0;padding:0}
+.qlist li{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
+.qlist li:hover{background:var(--sunk)}
+.qlist li[aria-selected="true"]{background:var(--sunk);box-shadow:inset 3px 0 0 var(--nav)}
+.qlist li.new{animation:arrive .5s ease}
+@keyframes arrive{from{background:var(--amber-soft)}to{background:transparent}}
+.qlist .t{color:var(--muted);font-size:13px}
+.qlist .who2{min-width:0}
+.qlist .who2 b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.ch-Email{border-color:var(--teal);color:var(--teal)}
+.empty{padding:28px 18px;color:var(--muted);font-size:14px}
+pre.raw{margin:0;background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;max-height:240px;overflow:auto}
+.fields{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin-top:14px}
+.fields dt{color:var(--muted)}
+.fields dd{margin:0;font-weight:500}
+.fields dd.miss{color:var(--late);font-weight:600}
+.conf{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:12px}
+.conf .bar{flex:1;max-width:160px}
+.trail{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.trail li{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.trail li:last-child{border-bottom:0}
+.trail .dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;background:var(--ok)}
+.trail .dot.warn{background:var(--amber)}
+.trail .dot.stop{background:var(--late)}
+.trail b{display:block;font-size:15px}
+.trail .why2{color:var(--muted);font-size:13px;margin-top:2px}
+.trail .alts{margin-top:6px;font-size:13px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.actions .btn{padding:7px 12px;font-size:13px}
+.history{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:6px;font-size:13px;color:var(--muted)}
+.history b{color:var(--ink)}
+.network svg{width:100%;height:auto;display:block}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:7px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--nav);color:#fff}
+.heat td.cell{text-align:center;font-weight:600;border-left:1px solid var(--surface)}
+.heat td.pick{outline:2px solid var(--ink);outline-offset:-3px}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.toggle{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.toggle:last-child{border-bottom:0}
+.toggle input{width:18px;height:18px;margin-top:2px;accent-color:var(--nav)}
+.toggle b{display:block}
+.toggle span.muted{font-size:13px}
+.toggle .cnt{font-size:13px;color:var(--muted);white-space:nowrap}
+.bignum{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:68px;line-height:1;font-weight:400}
+.gauge{position:relative;height:16px;background:var(--sunk);border-radius:8px;margin-top:18px}
+.gauge span{position:absolute;inset:0 auto 0 0;border-radius:8px;background:var(--ok);transition:width .3s ease}
+.gauge i{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.gauge-l{position:relative;height:20px;font-size:12px;color:var(--muted);margin-top:6px}
+.gauge-l em{position:absolute;font-style:normal;transform:translateX(-50%);white-space:nowrap}
+.flow-legend{display:flex;gap:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;margin-top:8px}
+.flow-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+@media (max-width:1180px){.workbench{grid-template-columns:280px minmax(0,1fr)}.workbench .decide{grid-column:1 / -1}}
+@media (max-width:980px){.sim{grid-template-columns:minmax(0,1fr)}.counters{grid-template-columns:repeat(3,minmax(0,1fr))}.counters div:nth-child(4){border-left:0}.counters div:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:760px){.workbench{grid-template-columns:minmax(0,1fr)}.qlist{max-height:320px}.counters{grid-template-columns:repeat(2,minmax(0,1fr))}.counters div{border-left:0!important;border-top:1px solid var(--line)}.counters div:first-child{border-top:0}.bignum{font-size:56px}}
+.live-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.total{font-size:15px;color:var(--muted)}
+.total b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:24px;color:var(--ink);font-weight:600;margin-right:4px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px 20px;display:flex;flex-direction:column;gap:6px;min-height:230px}
+.tile-email{border-color:var(--teal);box-shadow:inset 0 4px 0 var(--teal)}
+.tile-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tile-h h2{font-size:22px}
+.count{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:88px;line-height:1;font-weight:400;margin-top:10px;transition:color .6s ease}
+.count.bump{color:var(--ok)}
+.plus{font-size:15px;font-weight:600;color:var(--ok);opacity:0;transition:opacity .3s}
+.plus.on{opacity:1}
+.tile .how{color:var(--muted);font-size:14px;margin-top:auto}
+.tile .alltime{font-size:13px;color:var(--muted)}
+.livetag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ok)}
+.livetag i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
+.livetag.err{color:var(--late)} .livetag.err i{background:var(--late);animation:none}
+.livetag.off{color:var(--muted)} .livetag.off i{background:var(--slate);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.watch{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.watch .btn{padding:5px 10px;font-size:13px}
+.offline{background:var(--amber-soft);border:1px solid var(--amber);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:14px}
+.offline code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+.feed{list-style:none;margin:0;padding:0}
+.feed li{display:grid;grid-template-columns:70px 64px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.feed li:last-child{border-bottom:0}
+@media (max-width:900px){.tiles{grid-template-columns:minmax(0,1fr)}.tile{min-height:0}.count{font-size:72px}}
+@media (max-width:560px){.feed li{grid-template-columns:56px 56px 1fr}.feed li>:last-child{grid-column:2 / -1}}
+@media (prefers-reduced-motion:reduce){.livetag i{animation:none}}
+.statusline{display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin:-8px 0 18px}
+.statusline b{color:var(--ink);font-weight:600}
+.statusline .livetag{margin-right:4px}
+.pipe{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.pipe button{all:unset;cursor:pointer;padding:14px 18px;border-left:1px solid var(--line);position:relative}
+.pipe button:first-child{border-left:0}
+.pipe button:hover{background:var(--sunk)}
+.pipe button[aria-pressed="true"]{background:var(--sunk);box-shadow:inset 0 -3px 0 var(--nav)}
+.pipe button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.pipe .num{font-size:32px;line-height:1;font-weight:500}
+.pipe span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.cbar{display:grid;grid-template-columns:90px 1fr 44px;gap:10px;align-items:center;font-size:14px;padding:5px 0}
+.cbar .bar{height:12px}
+.alerts{list-style:none;margin:0;padding:0;font-size:14px}
+.alerts li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)}
+.alerts li:last-child{border-bottom:0}
+.dsec{margin-top:20px}
+.dsec h3{font-size:15px;margin-bottom:6px;color:var(--muted);font-family:Roboto,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.kv2{display:grid;grid-template-columns:minmax(150px,auto) 1fr;gap:5px 14px;font-size:13.5px}
+.kv2 dt{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+.kv2 dd{margin:0;word-break:break-word}
+.kv2 dd.nil{color:var(--muted)}
+.drawer{width:min(560px,100%)}
+@media (max-width:980px){#view-live .grid{grid-template-columns:minmax(0,1fr)!important}.pipe{grid-template-columns:repeat(3,minmax(0,1fr))}.pipe button:nth-child(4){border-left:0}.pipe button:nth-child(n+4){border-top:1px solid var(--line)}}
+#planPanel .plan{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,2.4fr);gap:28px;align-items:start}
+#planPanel .bignum{font-size:56px;line-height:1;font-weight:400}
+table.causes td{white-space:normal;vertical-align:top;font-size:13.5px}
+table.causes td:first-child{font-weight:500;min-width:150px}
+table.causes td:nth-child(3){color:var(--muted);min-width:220px}
+table.causes td:nth-child(4){min-width:170px}
+@media (max-width:1100px){#planPanel .plan{grid-template-columns:minmax(0,1fr)}}
+.dgrid{display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2.6fr);gap:28px;align-items:start}
+.dstats{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.dstats .num{font-size:32px;line-height:1;font-weight:500}
+.dstats span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.dstats .note{grid-column:1 / -1}
+.cd{font-variant-numeric:tabular-nums;font-weight:500}
+@media (max-width:1000px){.dgrid{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<section id="app">
+  <aside class="side">
+    <div class="wordmark"><svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8v14M22 8v14M8 15h14" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round"/></svg><span>HALCYON</span></div>
+    <nav aria-label="Main"><a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 13h8V3H3zM13 21h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z"/></svg>Dashboard</a><a href="live.html" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Live orders</a><a href="forecast.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg>Forecast</a><a href="intake.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Order inbox</a><a href="routing.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 6h3a3 3 0 013 3M9 18h3a3 3 0 003-3"/></svg>Warehouse routing</a><a href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Orders</a><a href="procurement.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7M5 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z"/></svg>Procurement</a></nav>
+    <div class="who"><b id="whoName">—</b><span id="whoRole">—</span><div class="row"><button id="themeBtn" type="button">Theme</button><button id="logout" type="button">Sign out</button></div></div>
+  </aside>
+  <main><div id="view-live"></div></main>
+</section>
+
+<script>
+const AGG = {stats:{}};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('en-US');
+const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
+const usd=(n,d=0)=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const usdK=n=>n>=1e6?'$'+(n/1e6).toFixed(2)+'M':'$'+Math.round(n/1e3)+'K';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S=AGG.stats, BENCH=.94;
+const CH=['API','EDI','Email'], CM=['Standard','Next day','Same day'], RG=['Midwest','Southeast','Northeast','West'];
+const WN={1:'Midwest 1',2:'Midwest 2',3:'Southeast',4:'Northeast',5:'West'};
+
+
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+let storageOK=true; try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){storageOK=false;}
+let session=null; try{session=JSON.parse(store.get('halcyon_session')||'null')}catch(e){}
+const th=store.get('halcyon_theme'); if(th) document.documentElement.dataset.theme=th;
+if(!session && storageOK){ location.replace('login.html'); return; }
+if(session && session.role==='Customer'){ location.replace('shop.html'); return; }
+if(!session) session={name:'Demo user',role:'Operations'};
+$('#whoName').textContent=session.name; $('#whoRole').textContent=session.role==='Admin'||!session.role||session.role==='Operations'?'Admin':session.role;
+$('#logout').addEventListener('click',()=>{store.del('halcyon_session');location.href='login.html';});
+/* ---------- theme ---------- */
+function toggleTheme(){ const r=document.documentElement; const dark=r.dataset.theme? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme=dark?'light':'dark'; store.set('halcyon_theme',r.dataset.theme); }
+
+
+
+$('#themeBtn').addEventListener('click',toggleTheme);
+/* ---------- small chart helpers ---------- */
+function barCell(v,color,bench=true){ return `<div class="bar"><span style="width:${(v*100).toFixed(1)}%;background:${color}"></span>${bench?`<i class="bench" style="left:${BENCH*100}%"></i>`:''}</div>`; }
+const otColor=v=>v>=.9?'var(--ok)':v>=.72?'var(--slate)':'var(--late)';
+
+function fd2(ymd){ const [y,m,d]=ymd.split('-'); return (+d)+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]; }
+/* ================= LIVE ORDERS ================= */
+function buildLiveOrders(){
+  const today=new Date(); const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  let F={date:iso(today),channel:'',warehouse:'',carrier:'',status:'',stage:'',q:''}, page=0, openId=null; const PER=50;
+  const STAGES=[['','All orders'],['On hold','On hold'],['Allocated','Allocated'],['Picking','Picking'],['Shipped','Shipped'],['Delivered','Delivered']];
+  const ST={ASSIGNED:'<span class="pill p-ok">Assigned</span>',ASSIGNED_FALLBACK:'<span class="pill p-amber">Fallback site</span>',HELD_ADDRESS:'<span class="pill p-late">Held: address</span>',HELD_STOCK:'<span class="pill p-late">Held: stock</span>',REVIEW:'<span class="pill p-amber">Review</span>'};
+  const SG={'On hold':'p-late',Allocated:'p-slate',Picking:'p-amber',Shipped:'p-ok',Delivered:'p-ok'};
+  const SV={same_day:'Same day',next_day:'Next day',standard:'Standard'};
+  $('#view-live').innerHTML=`
+  <div class="pagehead"><div><h1>Live orders</h1><p class="muted">Orders received today from EDI, API and email, and where the agent allocated each one.</p></div>
+    <label class="filters" style="flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)">Day<input class="input" type="date" id="fdate" value="${F.date}" style="min-width:150px"></label></div>
+  <div class="statusline" id="sline"><span>Connecting to the agent…</span></div>
+  <div class="offline" id="offline" hidden>The live agent isn’t running. Start it with <code>python server.py</code> in the halcyon_agent folder, then open <code>http://localhost:8000/live.html</code>.</div>
+  <div class="panel" id="planPanel" style="margin-bottom:18px">
+    <div class="plan">
+      <div>
+        <h2>On-time delivery</h2>
+        <p class="muted small" style="margin-top:4px">Expected for today’s allocated orders, from the reliability of each order’s lane.</p>
+        <div style="margin-top:16px"><span class="bignum" id="projNum">—</span> <span class="muted" id="projSub"></span></div>
+        <div class="gauge" aria-hidden="true"><span id="projBar"></span><i style="left:71%"></i><i style="left:95%"></i></div>
+        <div class="gauge-l" aria-hidden="true"><em style="left:71%">Before 71%</em><em style="left:95%">Target 95%</em></div>
+        <p class="small" id="deliv" style="margin-top:14px"></p>
+        <p class="note" id="btNote"></p>
+      </div>
+      <div class="tbl-wrap"><table class="causes">
+        <thead><tr><th>Cause</th><th class="r">On time before</th><th>Rule the agent applies now</th><th>Today</th><th class="r">Expected now</th></tr></thead>
+        <tbody id="causeBody"><tr><td colspan="5" class="muted">Loading…</td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="pipe" id="pipe" role="group" aria-label="Filter by stage">${STAGES.map(([k,l])=>`<button type="button" data-stage="${k}" aria-pressed="${k===''}"><div class="num" id="sg-${k||'all'}">—</div><span>${l}</span></button>`).join('')}</div>
+  <div class="panel" style="margin-top:18px" id="delivPanel">
+    <div class="panel-head"><h2>Deliveries</h2><span class="muted small" id="dlMode"></span></div>
+    <div class="dgrid">
+      <div class="dstats">
+        <div><div class="num" id="dDel" style="color:var(--ok)">—</div><span>Delivered today</span></div>
+        <div><div class="num" id="dOT">—</div><span>Delivered on time</span></div>
+        <div><div class="num" id="dRoad">—</div><span>On the road</span></div>
+        <div><div class="num" id="dLate" style="color:var(--late)">—</div><span>Past their ETA</span></div>
+        <p class="note">At collection the agent works out each ETA from the warehouse address and the delivery address: road miles, driving at 50 mph for up to 10 hours a day, a 07:00 depot sort, then the order’s stop number in that day’s line-up for the city (08:30 for stop 1, 15 minutes per stop). An order turns Delivered only when the carrier’s proof of delivery arrives.</p>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin-bottom:6px">Arriving next</h3>
+        <div class="tbl-wrap"><table><thead><tr><th>Delivery</th><th>Route</th><th class="r">Miles</th><th class="r">Stop</th><th>ETA</th><th class="r">Arrives in</th><th>Against promise</th></tr></thead><tbody id="arrBody"></tbody></table></div>
+        <h3 style="font-size:16px;margin:16px 0 6px">Just delivered</h3>
+        <ul class="alerts" id="justDel"></ul>
+      </div>
+    </div>
+  </div>
+  <div class="grid" style="margin-top:18px;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr)">
+    <div class="panel"><div class="panel-head"><h2>Warehouse allocation</h2><span class="muted small">Today</span></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Warehouse</th><th class="r">Orders</th><th class="r">Wave 1<br>08:00</th><th class="r">Wave 2<br>11:00</th><th class="r">Tomorrow</th><th class="r">Not nearest</th><th class="r">Units</th><th style="min-width:150px">Stock left</th></tr></thead><tbody id="whBody"></tbody></table></div></div>
+    <div class="panel"><div class="panel-head"><h2>Carrier allocation</h2></div><div id="carBars"></div>
+      <h3 style="margin-top:16px;font-size:16px">Restock alerts</h3><ul class="alerts" id="alerts"></ul></div>
+  </div>
+  <div class="panel">
+    <div class="panel-head"><h2>Tracking events</h2><span class="muted small">A stage only changes when one of these confirms it</span></div>
+    <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px">
+      <div><div class="legend" id="evSrc"></div><p class="note" id="evWait"></p></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Received</th><th>Delivery</th><th>Event</th><th>Source</th><th>Carrier</th><th>Business time</th></tr></thead><tbody id="evBody"></tbody></table></div>
+    </div>
+  </div>
+  <div class="panel" id="orders">
+    <div class="panel-head"><h2>Orders</h2><span class="muted small" id="tcount"></span></div>
+    <div class="filters">
+      <label>Search<input class="input search" id="fq" type="search" placeholder="Delivery, order or client"></label>
+      <label>Channel<select id="fchannel"><option value="">All</option><option>EDI</option><option>API</option><option>Email</option></select></label>
+      <label>Warehouse<select id="fwarehouse"><option value="">All</option>${['W1','W2','W3','W4','W5'].map(w=>`<option>${w}</option>`).join('')}</select></label>
+      <label>Carrier<select id="fcarrier"><option value="">All</option>${'ABCDEF'.split('').map(c=>`<option>${c}</option>`).join('')}</select></label>
+      <label>Agent decision<select id="fstatus"><option value="">All</option><option value="ASSIGNED">Assigned</option><option value="ASSIGNED_FALLBACK">Fallback site</option><option value="HELD_ADDRESS,HELD_STOCK">Held: address or stock</option><option value="HELD_ADDRESS">Held: address</option><option value="HELD_STOCK">Held: stock</option><option value="REVIEW">Review</option></select></label>
+    </div>
+    <div class="tbl-wrap" style="margin-top:14px"><table>
+      <thead><tr><th>Delivery</th><th>Received</th><th>Channel</th><th>Client</th><th>Service</th><th>Region</th><th>Warehouse</th><th>Carrier</th><th>Pick wave</th><th>Promised</th><th>Agent decision</th><th>Stage</th></tr></thead>
+      <tbody id="obody"><tr><td colspan="12" class="muted">Loading…</td></tr></tbody></table></div>
+    <div class="pager"><span id="opage" class="muted"></span><div><button class="btn" id="oprev" type="button">Previous</button><button class="btn" id="onext" type="button">Next</button></div></div>
+  </div>
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer closed" id="drawer" aria-hidden="true" role="dialog" aria-label="Order detail"><button class="x" id="drawerX" aria-label="Close">×</button><div id="drawerBody"></div></aside>`;
+  const qs=o=>Object.entries(o).filter(([,v])=>v!==''&&v!=null).map(([k,v])=>k+'='+encodeURIComponent(v)).join('&');
+  const t5=s=>s?s.slice(11,16):'';
+  const d2=s=>s?fd2(s.slice(0,10)):'—';
+  async function getJSON(u){ const r=await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return r.json(); }
+  async function loadSummary(){
+    const [s,a,P]=await Promise.all([getJSON('/api/summary'),getJSON('/api/allocation?date='+F.date),getJSON('/api/policy?date='+F.date)]);
+    renderPlan(P);
+    try{ renderDeliveries(await getJSON('/api/deliveries?date='+F.date)); }catch(e){}
+    try{ const T=await getJSON('/api/tracking?date='+F.date); renderTracking(T); }catch(e){}
+    const w=s.watcher||{}, tot=Object.values(a.by_stage).reduce((x,y)=>x+y,0); window.__simMode=w.sim_mode;
+    $('#sline').innerHTML=`<span><span class="livetag ${w.sim_status==='error'?'err':''}"><i></i>${w.simulator==='on'?'Order simulator':'Live feeds'}</span> ${w.simulator==='on'?`<b>${fmt(w.sim_released||0)}</b> of ${fmt(w.sim_planned||0)} orders planned for today released (forecast ${Math.round(w.sim_forecast||0)}) · ${w.sim_mode==='demo'?'demo mode, a new order '+esc(w.sim_next||''):'next order at '+t5(w.sim_next||'')}`:''}</span>
+      <span>Email: <b>${esc(w.mailbox||'')}</b> checked ${t5((w.last_check||'').replace('T',' '))}${w.watcher==='error'?' · <span style="color:var(--late)">mailbox error</span>':''}</span>`;
+    $('#sg-all').textContent=fmt(tot);
+    STAGES.slice(1).forEach(([k])=>{ document.getElementById('sg-'+k).textContent=fmt(a.by_stage[k]||0); });
+    $('#whBody').innerHTML=a.warehouses.length?a.warehouses.map(r=>{ const st=a.stock[r.warehouse]||{now:0,opening:1,low:[]}; const f=st.opening?st.now/st.opening:0;
+      return `<tr class="click" data-wh="${r.warehouse}" tabindex="0"><td><b>${r.warehouse}</b> <span class="muted small">${({W1:'Midwest 1',W2:'Midwest 2',W3:'Southeast',W4:'Northeast',W5:'West'})[r.warehouse]}</span></td><td class="r"><b>${r.orders}</b></td><td class="r">${r.wave1||0}</td><td class="r">${r.wave2||0}</td><td class="r">${r.tomorrow||0}</td><td class="r">${r.fallback||0}</td><td class="r">${fmt(r.units||0)}</td><td>${barCell(f,f<.25?'var(--late)':'var(--ok)',false)}<div class="small muted" style="margin-top:3px">${fmt(st.now)} of ${fmt(st.opening)}${st.low.length?` · <span style="color:var(--late)">${st.low.length} SKU${st.low.length>1?'s':''} low</span>`:''}</div></td></tr>`;}).join(''):'<tr><td colspan="8" class="muted">No orders allocated yet.</td></tr>';
+    const cmax=Math.max(1,...Object.values(a.by_carrier));
+    $('#carBars').innerHTML='ABCDEF'.split('').map(c=>`<div class="cbar"><span>Carrier ${c}</span>${barCell((a.by_carrier[c]||0)/cmax,'var(--nav)',false)}<b class="r">${a.by_carrier[c]||0}</b></div>`).join('');
+    $('#alerts').innerHTML=a.restock.length?a.restock.slice(0,6).map(r=>{const [w,s]=r.alert.split(':');return `<li><span><b>${w}</b> short of ${s}</span><span class="muted">${r.n} order${r.n>1?'s':''} sent elsewhere</span></li>`;}).join(''):'<li class="muted">None today.</li>';
+    $('#whBody').querySelectorAll('[data-wh]').forEach(tr=>tr.addEventListener('click',()=>{ F.warehouse=tr.dataset.wh; $('#fwarehouse').value=F.warehouse; page=0; loadOrders(); }));
+  }
+  function renderPlan(P){
+    const v=P.projected_today, ok=v!=null&&v>=.95;
+    $('#projNum').textContent=v==null?'—':pct(v); $('#projNum').style.color=v==null?'':ok?'var(--ok)':v>=.9?'var(--ink)':'var(--late)';
+    $('#projSub').textContent=v==null?'No orders allocated yet':`across ${fmt(P.allocated)} allocated order${P.allocated===1?'':'s'}`;
+    $('#projBar').style.width=((v||0)*100)+'%'; $('#projBar').style.background=ok?'var(--ok)':'var(--slate)';
+    $('#deliv').innerHTML=P.delivered?`Delivered so far: <b>${fmt(P.delivered)}</b>, of which <b>${pct(P.delivered_on_time)}</b> on time.`:'No deliveries yet for this day; orders ship in the 14:00–18:00 collection.';
+    const B=P.backtest||{}, A=B.assumptions||{};
+    $('#btNote').textContent=B.projected?`Backtest on the 48,340 orders from April to September: ${pct(B.baseline)} → ${pct(B.projected)}, if at least ${pct(A.address_resolved,0)} of incomplete addresses are resolved before the pick list and ${pct(A.stockout_prevented,0)} of stock-outs at the nearest site are prevented.`:'';
+    const bc={}; (B.causes||[]).forEach(c=>bc[c.key]=c);
+    const ex=(...xs)=>{ const n=xs.reduce((a,x)=>a+(x&&x.n||0),0); if(!n) return null; return xs.reduce((a,x)=>a+(x&&x.n?x.n*(x.expected||0):0),0)/n; };
+    const pc=x=>x==null?'<span class="muted">—</span>':`<b style="color:${x>=.9?'var(--ok)':'var(--late)'}">${pct(x)}</b>`;
+    const R={}; P.rules.forEach(r=>R[r.key]=r);
+    const rows=[
+      ['address','Incomplete address at order entry', c=>`${c.repaired.n} completed from site list · ${c.confirmed.n} confirmed by client · ${c.waiting} waiting`, c=>ex(c.repaired,c.confirmed)],
+      ['cutoff','Same-day after 08:00 cut-off', c=>`${c.wave2.n} in wave 2 · ${c.express.n} express wave · ${c.repromised.n} honest next-day date`, c=>ex(c.wave2,c.express,c.repromised)],
+      ['stock','No stock at nearest warehouse', c=>`${c.fallback.n} shipped from a farther site · ${c.held} waiting for stock`, c=>ex(c.fallback)],
+      ['carrier_d','Carrier D, chosen on price', c=>`D skipped on ${fmt(c.avoided.n)} orders where it was cheaper · used ${c.used} times`, c=>ex(c.avoided)],
+      ['weak_lane','Weak lanes: F from W3/W4, E from W5', c=>`Skipped on ${fmt(c.avoided.n)} orders · used ${c.used} times`, c=>ex(c.avoided)]];
+    $('#causeBody').innerHTML=rows.map(([k,label,today,expf])=>{ const r=R[k], b=bc[k]||{}; return `<tr><td>${label}<div class="small muted">${b.share?pct(b.share,0)+' of orders':''}</div></td><td class="r" style="color:var(--late)">${b.before?pct(b.before,0):'—'}</td><td>${esc(r.rule)}</td><td>${today(r.caught)}</td><td class="r">${pc(expf(r.caught))}</td></tr>`; }).join('');
+  }
+  const EV={PICKED:'Picked',COLLECTED:'Collected by carrier',DELIVERED:'Delivered'};
+  function renderTracking(T){
+    const src=[['WMS scan','Warehouse scans (picking)','var(--slate)'],['Carrier API','Carriers A, B, C · API, instant','var(--ok)'],['Carrier batch file','Carriers E, F · batch file','var(--amber)'],['Carrier portal check','Carrier D · portal check','var(--late)']];
+    $('#evSrc').innerHTML=src.map(([k,l,c])=>`<div><i style="background:${c}"></i><span>${l}</span><b>${fmt(T.by_source[k]||0)}</b></div>`).join('');
+    const w=T.waiting.reduce((a,x)=>a+x.n,0);
+    const demoNote=window.__simMode==='demo'?' Demo mode compresses the warehouse and carrier schedule into minutes; business time is the date and time each event stands for.':'';
+    $('#evWait').textContent=(w?`${fmt(w)} orders with carriers E or F are in transit; their scans arrive with the next batch file, so they can lag behind carriers with an API.`:'Events received today, by source.')+demoNote;
+    $('#evBody').innerHTML=T.recent.length?T.recent.map(e=>`<tr class="click" data-id="${e.delivery_id}"><td>${(e.received_at||'').slice(11,19)}</td><td><b>${e.delivery_id}</b> <span class="small muted">${esc(e.client_name||'')}</span></td><td>${EV[e.event_type]||e.event_type}</td><td>${esc(e.source)}</td><td>${e.carrier||''}</td><td>${e.event_time?fd2(e.event_time.slice(0,10))+', '+e.event_time.slice(11,16):''}</td></tr>`).join(''):'<tr><td colspan="6" class="muted">No events yet.</td></tr>';
+    $('#evBody').querySelectorAll('[data-id]').forEach(tr=>tr.addEventListener('click',()=>openOrder(tr.dataset.id)));
+  }
+  let ARR=[], fetchedAt=0;
+  function cdText(s){ if(s<=0) return '<span style="color:var(--late)">due now</span>'; const m=Math.floor(s/60), x=Math.floor(s%60); return m>=120?`${Math.round(m/60)} h`:m?`${m} min ${String(x).padStart(2,'0')} s`:`${x} s`; }
+  function tickCountdown(){ const el=document.querySelectorAll('#arrBody [data-due]'); const passed=(Date.now()-fetchedAt)/1000; el.forEach(td=>td.innerHTML=cdText(+td.dataset.due-passed)); }
+  setInterval(tickCountdown,1000);
+  function renderDeliveries(D){
+    $('#dDel').textContent=fmt(D.delivered); $('#dOT').textContent=D.delivered_on_time==null?'—':pct(D.delivered_on_time);
+    $('#dRoad').textContent=fmt(D.on_road); $('#dLate').textContent=fmt(D.running_late);
+    $('#dlMode').textContent=(D.delivered_last_hour?`${fmt(D.delivered_last_hour)} delivered in the last hour · `:'')+(D.mode==='demo'?'Demo mode: transit time is compressed; ETAs show business time.':'Real time');
+    fetchedAt=Date.now();
+    $('#arrBody').innerHTML=D.arriving.length?D.arriving.map(r=>`<tr class="click" data-id="${r.delivery_id}"><td><b>${r.delivery_id}</b><div class="small muted">${esc(r.client_name||'')}</div></td><td>${r.wh} → ${esc(r.city)}</td><td class="r">${fmt(+r.transit_miles)}</td><td class="r">${r.route_stop}</td><td>${fd2(r.eta.slice(0,10))}, ${r.eta.slice(11,16)}</td><td class="r cd" data-due="${r.due_in_s}">${cdText(r.due_in_s)}</td><td>${r.eta_after_promise?'<span class="pill p-late">After promise</span>':'<span class="pill p-ok">Within promise</span>'}</td></tr>`).join(''):'<tr><td colspan="7" class="muted">Nothing on the road right now.</td></tr>';
+    $('#justDel').innerHTML=D.recent.length?D.recent.map(r=>`<li><span><b>${r.delivery_id}</b> ${esc(r.client_name||'')} · ${r.wh} → ${esc(r.city||'')} · ${fd2(r.delivered_at.slice(0,10))}, ${r.delivered_at.slice(11,16)}</span><span>${r.on_time==='Y'?'<span class="pill p-ok">On time</span>':`<span class="pill p-late">${r.days_late} day${r.days_late==1?'':'s'} late</span>`}</span></li>`).join(''):'<li class="muted">No deliveries yet today.</li>';
+    $('#arrBody').querySelectorAll('[data-id]').forEach(tr=>tr.addEventListener('click',()=>openOrder(tr.dataset.id)));
+  }
+  async function loadOrders(){
+    const d=await getJSON('/api/orders?'+qs({...F,limit:PER,offset:page*PER}));
+    const pages=Math.max(1,Math.ceil(d.total/PER));
+    $('#tcount').textContent=`${fmt(d.total)} order${d.total===1?'':'s'}`;
+    $('#obody').innerHTML=d.rows.length?d.rows.map(r=>`<tr class="click" data-id="${r.delivery_id}" tabindex="0"><td><b>${r.delivery_id}</b><div class="small muted">${esc(r.order_id||'')}</div></td><td>${t5(r.order_received_ts)}</td><td><span class="ch ${r.order_channel==='Email'?'ch-Email':''}">${r.order_channel}</span></td><td>${esc(r.client_name||'Unknown')}${r.priority==='Y'?' <span class="small" style="color:var(--amber)">priority</span>':''}</td><td>${SV[r.commitment_type]||'—'}</td><td>${r.destination_region||'—'}</td><td>${r.fulfilment_warehouse_id?`<b>${r.fulfilment_warehouse_id}</b>${r.nearest_warehouse_had_stock==='N'?` <span class="small muted">nearest ${r.nearest_warehouse_id}</span>`:''}`:'—'}</td><td>${r.carrier_id||'—'}</td><td>${r.pick_wave?({W2:'Wave 2',W3:'Express'}[r.pick_wave.slice(0,2)]||'Wave 1')+(r.pick_list_date>r.order_received_ts.slice(0,10)?', tomorrow':''):'—'}</td><td>${d2(r.promised_date)}</td><td>${ST[r.agent_status]||esc(r.agent_status||'')}</td><td><span class="pill ${SG[r.stage]||'p-slate'}">${r.stage||''}</span></td></tr>`).join(''):`<tr><td colspan="12" style="padding:24px 10px;white-space:normal" class="muted">No orders match. ${F.date!==iso(new Date())?'Pick another day, or':'Clear a filter, or'} wait for the next order to arrive.</td></tr>`;
+    $('#opage').textContent=d.total?`Showing ${page*PER+1}–${Math.min(d.total,page*PER+PER)} of ${fmt(d.total)} · newest first`:'';
+    $('#oprev').disabled=page===0; $('#onext').disabled=page>=pages-1;
+  }
+  const GROUPS=[['Order (data dictionary)',['delivery_id','order_id','client_id','order_channel','email_format_id','order_received_ts','commitment_type','promised_date','address_status','destination_region']],
+    ['Allocation by the agent',['nearest_warehouse_id','fulfilment_warehouse_id','nearest_warehouse_had_stock','distance_miles','carrier_id','carrier_rate_usd','pick_list_date','pick_wave','lane_on_time','expected_on_time','causes','agent_status','agent_reason','restock_alert','client_notice','priority']],
+    ['Shipping and delivery',['stage','shipped_ts','stops_on_route','planned_route_km','actual_route_km','delivered_date','days_late','on_time','redelivery_cost_usd']],
+    ['What the agent read',['client_name','sku','qty','ship_to','missing_fields','extractor','extraction_confidence','source_file','ingested_at','allocated_at']]];
+  async function openOrder(id){
+    openId=id; const [r,E]=await Promise.all([getJSON('/api/orders/'+id),getJSON('/api/orders/'+id+'/events')]);
+    $('#drawerBody').innerHTML=`<p class="muted small">${r.order_channel} order · ${esc(r.order_id||'')}</p><h2 style="font-size:26px">${r.delivery_id}</h2>
+      <p style="margin-top:6px">${ST[r.agent_status]||''} <span class="pill ${SG[r.stage]||'p-slate'}">${r.stage}</span></p>
+      ${GROUPS.map(([h,cols])=>`<div class="dsec"><h3>${h}</h3><dl class="kv2">${cols.map(c=>`<dt>${c}</dt><dd class="${r[c]==null||r[c]===''?'nil':''}">${r[c]==null||r[c]===''?'—':esc(r[c])}</dd>`).join('')}</dl></div>`).join('')}
+      <div class="dsec"><h3>Tracking events</h3>${E.length?`<ul class="timeline" style="margin-top:8px">${E.map(e=>`<li class="ok">${EV[e.event_type]||e.event_type} · ${fd2(e.event_time.slice(0,10))}, ${e.event_time.slice(11,16)}<span>${esc(e.source)}${e.carrier&&e.source!=='WMS scan'?' (carrier '+e.carrier+')':''} · received ${(e.received_at||'').replace('T',' ').slice(0,19)}</span></li>`).join('')}</ul>`:'<p class="small muted">No events yet. The order stays Allocated until the warehouse scans it onto a pick list.</p>'}</div>
+      <div class="dsec"><h3>Raw message</h3><pre class="raw">${esc(r.raw_message||'')}</pre></div>`;
+    $('#scrim').hidden=false; const d=$('#drawer'); d.classList.remove('closed'); d.setAttribute('aria-hidden','false'); $('#drawerX').focus();
+  }
+  function closeDrawer(){ openId=null; $('#scrim').hidden=true; const d=$('#drawer'); d.classList.add('closed'); d.setAttribute('aria-hidden','true'); }
+  $('#scrim').addEventListener('click',closeDrawer); $('#drawerX').addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+  $('#obody').addEventListener('click',e=>{ const tr=e.target.closest('tr[data-id]'); if(tr) openOrder(tr.dataset.id); });
+  $('#obody').addEventListener('keydown',e=>{ const tr=e.target.closest('tr[data-id]'); if(tr&&e.key==='Enter') openOrder(tr.dataset.id); });
+  ['channel','warehouse','carrier','status'].forEach(k=>$('#f'+k).addEventListener('change',e=>{ F[k]=e.target.value; page=0; loadOrders(); }));
+  let tq; $('#fq').addEventListener('input',e=>{ clearTimeout(tq); tq=setTimeout(()=>{ F.q=e.target.value.trim(); page=0; loadOrders(); },250); });
+  $('#fdate').addEventListener('change',e=>{ F.date=e.target.value||iso(new Date()); page=0; tick(); });
+  document.querySelectorAll('#pipe button').forEach(b=>b.addEventListener('click',()=>{ F.stage=b.dataset.stage; document.querySelectorAll('#pipe button').forEach(x=>x.setAttribute('aria-pressed',x===b)); page=0; loadOrders(); }));
+  $('#oprev').addEventListener('click',()=>{ page--; loadOrders(); }); $('#onext').addEventListener('click',()=>{ page++; loadOrders(); });
+  async function tick(){ try{ await Promise.all([loadSummary(), page===0?loadOrders():Promise.resolve()]); $('#offline').hidden=true; }catch(e){ $('#offline').hidden=false; $('#sline').innerHTML='<span>Not connected to the agent.</span>'; $('#obody').innerHTML='<tr><td colspan="12" class="muted">Start the agent server to see live orders.</td></tr>'; } }
+  // filters passed in the address, e.g. live.html?status=HELD_ADDRESS,HELD_STOCK from the Order inbox
+  const U=new URLSearchParams(location.search);
+  ['channel','warehouse','carrier','status'].forEach(k=>{ const v=U.get(k); if(!v) return; const sel=$('#f'+k);
+    if(![...sel.options].some(o=>o.value===v)){ const o=document.createElement('option'); o.value=v; o.textContent=v.replace(/_/g,' ').toLowerCase(); sel.appendChild(o); }
+    sel.value=v; F[k]=v; });
+  if(U.get('stage')){ F.stage=U.get('stage'); document.querySelectorAll('#pipe button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.stage===F.stage)); }
+  if(U.get('date')){ F.date=U.get('date'); $('#fdate').value=F.date; }
+  tick().then(()=>{ if(location.hash==='#orders'||[...U.keys()].length) document.getElementById('orders').scrollIntoView({block:'start'}); });
+  setInterval(tick,4000);
+}
+
+buildLiveOrders();
+})();
+</script>
+</body>
+</html>

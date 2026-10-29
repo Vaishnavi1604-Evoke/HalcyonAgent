@@ -1,0 +1,6 @@
+warehouse_id,warehouse_name,region,pick_list_cutoff,carrier_collection_window
+W1,Midwest 1,Midwest,08:00,14:00-18:00
+W2,Midwest 2,Midwest,08:00,14:00-18:00
+W3,Southeast,Southeast,08:00,14:00-18:00
+W4,Northeast,Northeast,08:00,14:00-18:00
+W5,West,West,08:00,14:00-18:00

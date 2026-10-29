@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-87446405",
+  "client_id": "C236",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 236",
+    "line1": "5657 Depot Rd",
+    "line2": "Dock 9",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97244"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 16
+    }
+  ],
+  "submitted_at": "2026-09-28T13:28:00"
+}

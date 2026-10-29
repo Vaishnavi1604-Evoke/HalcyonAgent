@@ -1,0 +1,18 @@
+From: Purchasing <orders@client202.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-10931415
+Date: Thu, 29 Oct 2026 16:57:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-10931415 below:
+SKU-44102 | 9 EA
+Address - Dock 6, Columbus, OH, 43229
+Priority: next day
+
+Thanks,
+Client 202 purchasing

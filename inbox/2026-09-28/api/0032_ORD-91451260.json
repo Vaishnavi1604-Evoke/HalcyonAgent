@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-91451260",
+  "client_id": "C111",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 111",
+    "line1": "1516 Mill St",
+    "line2": "Dock 4",
+    "city": "Detroit",
+    "state": "MI",
+    "postal_code": "48216"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 9
+    }
+  ],
+  "submitted_at": "2026-09-28T03:13:00"
+}

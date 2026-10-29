@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-86932744",
+  "client_id": "C118",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 118",
+    "line1": "5067 Harbor Ave",
+    "line2": "Dock 6",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60663"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 22
+    }
+  ],
+  "submitted_at": "2026-09-28T01:22:00"
+}

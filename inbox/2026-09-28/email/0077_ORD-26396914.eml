@@ -1,0 +1,16 @@
+From: Purchasing <orders@client003.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-26396914
+Date: Mon, 28 Sep 2026 07:14:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 38 units of SKU-44102 to our Charlotte site (4475 Logistics Way, =
+Dock 5, Charlotte, NC, 28203). We need this next day. PO ORD-26396914.
+
+Thanks,
+Client 003 purchasing

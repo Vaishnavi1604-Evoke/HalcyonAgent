@@ -1,0 +1,18 @@
+From: Purchasing <orders@client264.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-80952732
+Date: Thu, 29 Oct 2026 12:25:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-80952732
+Item: SKU-66014 x 33
+Deliver to: 2996 Foundry Ln, Dock 5, Hartford, CT, 06140
+Service: next day
+
+Thanks,
+Client 264 purchasing

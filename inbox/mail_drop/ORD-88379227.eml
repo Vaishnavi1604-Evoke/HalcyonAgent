@@ -1,0 +1,16 @@
+From: Purchasing <orders@client128.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-88379227
+Date: Thu, 29 Oct 2026 12:29:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-44102 (qty 6)? Ship to 3904 Mill S=
+t, Dock 3, Columbia, SC, 29242. Our reference is ORD-88379227.
+
+Thanks,
+Client 128 purchasing

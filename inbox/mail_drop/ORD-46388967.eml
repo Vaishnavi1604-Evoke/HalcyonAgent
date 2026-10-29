@@ -1,0 +1,16 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 10
+Subject: Order ORD-46388967
+Date: Thu, 29 Oct 2026 15:46:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange next day delivery of SKU-51268 (qty 45)? Ship to 4676 Harbo=
+r Ave, Dock 5, Milwaukee, WI, 53254. Our reference is ORD-46388967.
+
+Thanks,
+Client 190 purchasing

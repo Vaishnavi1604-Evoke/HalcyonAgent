@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-96831783",
+  "client_id": "C235",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 235",
+    "line1": "8397 Logistics Way",
+    "line2": "Dock 7",
+    "city": "Columbus",
+    "state": "OH",
+    "postal_code": "43258"
+  },
+  "lines": [
+    {
+      "sku": "SKU-20431",
+      "qty": 10
+    }
+  ],
+  "submitted_at": "2026-09-28T06:29:00"
+}

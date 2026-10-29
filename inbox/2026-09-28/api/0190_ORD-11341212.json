@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-11341212",
+  "client_id": "C010",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 010",
+    "line1": "6119 Industrial Pkwy",
+    "line2": "Dock 4",
+    "city": "Columbia",
+    "state": "SC",
+    "postal_code": "29218"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 28
+    }
+  ],
+  "submitted_at": "2026-09-28T12:41:00"
+}

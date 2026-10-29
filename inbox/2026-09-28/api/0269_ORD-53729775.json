@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-53729775",
+  "client_id": "C232",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 232",
+    "line1": null,
+    "line2": "Dock 3",
+    "city": "Newark",
+    "state": "NJ",
+    "postal_code": "07147"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 27
+    }
+  ],
+  "submitted_at": "2026-09-28T17:44:00"
+}

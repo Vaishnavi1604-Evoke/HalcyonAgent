@@ -1,0 +1,18 @@
+From: Purchasing <orders@client175.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-10972299
+Date: Mon, 28 Sep 2026 14:47:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-10972299 below:
+SKU-51268 | 6 EA
+Address - 8620 Logistics Way, Dock 2, Pittsburgh, PA
+Priority: standard
+
+Thanks,
+Client 175 purchasing

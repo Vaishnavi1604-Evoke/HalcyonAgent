@@ -1,0 +1,18 @@
+From: Purchasing <orders@client061.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-67029651
+Date: Thu, 29 Oct 2026 15:00:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-67029651
+Item: SKU-30977 x 26
+Deliver to: 3150 Depot Rd, Dock 5, Portland, OR, 97203
+Service: standard
+
+Thanks,
+Client 061 purchasing

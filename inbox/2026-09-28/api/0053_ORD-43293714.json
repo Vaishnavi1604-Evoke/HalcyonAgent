@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-43293714",
+  "client_id": "C194",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 194",
+    "line1": "6891 Commerce Dr",
+    "line2": "Dock 3",
+    "city": "Albany",
+    "state": "NY",
+    "postal_code": "12299"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 19
+    }
+  ],
+  "submitted_at": "2026-09-28T05:52:00"
+}

@@ -1,0 +1,18 @@
+From: Purchasing <orders@client031.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-87616481
+Date: Mon, 28 Sep 2026 13:47:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-87616481 below:
+SKU-44102 | 33 EA
+Address - 4492 Foundry Ln, Dock 9, Milwaukee, WI, 53211
+Priority: standard
+
+Thanks,
+Client 031 purchasing

@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-69015248",
+  "client_id": "C270",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 270",
+    "line1": "8833 Industrial Pkwy",
+    "line2": "Dock 6",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "postal_code": "15289"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 35
+    }
+  ],
+  "submitted_at": "2026-09-28T10:59:00"
+}

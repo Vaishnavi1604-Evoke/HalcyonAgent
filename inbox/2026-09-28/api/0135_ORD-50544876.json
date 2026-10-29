@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-50544876",
+  "client_id": "C026",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 026",
+    "line1": "947 Foundry Ln",
+    "line2": "Dock 3",
+    "city": "Phoenix",
+    "state": "AZ",
+    "postal_code": "85012"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 7
+    }
+  ],
+  "submitted_at": "2026-09-28T09:44:00"
+}

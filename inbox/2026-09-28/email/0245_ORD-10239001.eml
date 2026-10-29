@@ -1,0 +1,18 @@
+From: Purchasing <orders@client064.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-10239001
+Date: Mon, 28 Sep 2026 16:00:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-10239001 below:
+SKU-20431 | 29 EA
+Address - 2875 Riverside Blvd, Dock 8, Charlotte, NC, 28281
+Priority: standard
+
+Thanks,
+Client 064 purchasing

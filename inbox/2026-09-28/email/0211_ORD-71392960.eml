@@ -1,0 +1,18 @@
+From: Purchasing <orders@client029.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-71392960
+Date: Mon, 28 Sep 2026 13:38:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-71392960
+Item: SKU-51268 x 11
+Deliver to: 5502 Logistics Way, Dock 3, Indianapolis, IN, 46262
+Service: standard
+
+Thanks,
+Client 029 purchasing

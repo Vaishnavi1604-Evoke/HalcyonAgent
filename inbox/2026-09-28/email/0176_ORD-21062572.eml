@@ -1,0 +1,16 @@
+From: Purchasing <orders@client102.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-21062572
+Date: Mon, 28 Sep 2026 12:00:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 16 units of SKU-51268 to our Columbus site (5798 Foundry Ln, Dock=
+ 1, Columbus, OH, 43211). We need this same day. PO ORD-21062572.
+
+Thanks,
+Client 102 purchasing

@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-23568587",
+  "client_id": "C236",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 236",
+    "line1": "4620 Riverside Blvd",
+    "line2": "Dock 4",
+    "city": "Indianapolis",
+    "state": "IN",
+    "postal_code": "46282"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 10
+    }
+  ],
+  "submitted_at": "2026-09-28T02:29:00"
+}

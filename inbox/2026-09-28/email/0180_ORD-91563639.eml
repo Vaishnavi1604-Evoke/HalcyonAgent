@@ -1,0 +1,16 @@
+From: Purchasing <orders@client248.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-91563639
+Date: Mon, 28 Sep 2026 12:11:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange next day delivery of SKU-51268 (qty 6)? Ship to 4199 Foundr=
+y Ln, Dock 3, Columbus, OH, 43278. Our reference is ORD-91563639.
+
+Thanks,
+Client 248 purchasing

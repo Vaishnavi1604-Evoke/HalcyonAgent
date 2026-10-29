@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-61582489",
+  "client_id": "C002",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 002",
+    "line1": "7662 Logistics Way",
+    "line2": "Dock 4",
+    "city": "Phoenix",
+    "state": "AZ",
+    "postal_code": "85043"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 23
+    }
+  ],
+  "submitted_at": "2026-09-28T06:16:00"
+}

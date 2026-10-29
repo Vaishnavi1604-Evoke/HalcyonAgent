@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-64077731",
+  "client_id": "C025",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 025",
+    "line1": "1984 Harbor Ave",
+    "line2": "Dock 3",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "postal_code": "15274"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 10
+    }
+  ],
+  "submitted_at": "2026-09-28T19:42:00"
+}

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order inbox · Halcyon Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FB; --surface:#FFFFFF; --sunk:#EEF4F8; --ink:#0B1F3A; --muted:#4F6680; --line:#D6E2EC;
+  --nav:#0A2A4F; --nav-ink:#EAF4F8; --nav-muted:#9FBAD3;
+  --teal:#0E9F95; --teal-soft:#D3F2EE;
+  --ok:#0E9384; --ok-soft:#D3F2EE; --late:#B8432F; --late-soft:#F6DED8; --amber:#B7791F; --amber-soft:#F7EBD3; --slate:#6B8299;
+  --focus:#0E9F95;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#061A31; --surface:#0B2440; --sunk:#0F2C4D; --ink:#E6F0F7; --muted:#93AAC2; --line:#1D3B5E;
+  --nav:#04142A; --nav-ink:#E6F0F7; --nav-muted:#86A3BF;
+  --teal:#2DD4BF; --teal-soft:#0F3B3A;
+  --ok:#2DD4BF; --ok-soft:#0F3B3A; --late:#F08A72; --late-soft:#43231D; --amber:#E3B04B; --amber-soft:#3B2F15; --slate:#8AA0B6; --focus:#5EEAD4;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Roboto,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2,h3,.num{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:500;letter-spacing:0;margin:0}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:21px;line-height:1.2}
+h3{font-size:17px}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+[hidden]{display:none!important}
+
+/* ---------- Login ---------- */
+#login{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.login-brand{background:var(--nav);color:var(--nav-ink);padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:500;letter-spacing:.12em}
+.wordmark svg{flex:none}
+.login-lane{margin:48px 0}
+.login-lane h1{font-size:clamp(32px,4vw,50px);line-height:1.1;max-width:13ch;font-weight:500}
+.login-lane p{margin-top:18px;color:var(--nav-muted);max-width:42ch;font-size:16px}
+.dock{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:460px}
+.dock div{border-top:3px solid var(--teal);padding-top:8px;font-size:13px;color:var(--nav-muted)}
+.dock div b{display:block;color:var(--nav-ink);font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:18px;font-weight:600}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px;background:var(--surface)}
+.login-form{width:100%;max-width:360px}
+.login-form h2{font-size:28px;margin-bottom:6px}
+.field{display:block;margin-top:18px}
+.field span{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.input:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 25%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600}
+.btn-primary{background:var(--nav);border-color:var(--nav);color:#fff;width:100%;margin-top:24px;padding:12px}
+:root[data-theme="dark"] .btn-primary{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:#0B6E78;border-color:#0B6E78}}
+.err{color:var(--late);font-size:13px;margin-top:12px;min-height:20px}
+.demo{margin-top:22px;padding:12px 14px;background:var(--sunk);border-radius:6px;font-size:13px;color:var(--muted)}
+.demo code{color:var(--ink);font-family:inherit;font-weight:600}
+.role-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.role-row label{flex:1;min-width:96px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;font-size:14px;display:flex;gap:6px;align-items:center}
+.role-row input{accent-color:var(--nav)}
+
+/* ---------- Shell ---------- */
+#app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--nav);color:var(--nav-ink);padding:24px 16px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;text-decoration:none;color:var(--nav-muted);font-weight:500}
+.side nav a:hover{color:var(--nav-ink);background:rgba(255,255,255,.06)}
+.side nav a[aria-current="page"]{color:var(--nav-ink);background:rgba(255,255,255,.1);box-shadow:inset 3px 0 0 var(--teal)}
+.side .who{margin-top:auto;font-size:13px;color:var(--nav-muted);border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.side .who b{display:block;color:var(--nav-ink);font-weight:600;font-size:14px}
+.side .who button,.side .who a.tb{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:var(--nav-ink);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+main{padding:28px 32px 56px;min-width:0}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pagehead p{margin-top:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.panel + .panel,.grid + .panel,.panel + .grid,.grid + .grid{margin-top:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.grid{display:grid;gap:18px;align-items:start}
+.grid > .panel{margin-top:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g32{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.kpi{padding:18px 22px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .num{font-size:38px;line-height:1;font-weight:500}
+.kpi .lbl{font-size:14px;font-weight:600;margin-top:6px}
+.kpi .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Hero: the path to benchmark */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:start}
+.hero h2{font-size:26px;max-width:18ch;line-height:1.1}
+.hero .lede{margin-top:10px;color:var(--muted);max-width:52ch}
+.split{margin-top:22px}
+.splitbar{display:flex;height:34px;border-radius:5px;overflow:hidden}
+.splitbar div{height:100%}
+.legend{display:grid;gap:10px;margin-top:14px}
+.legend div{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:baseline;font-size:14px}
+.legend i{width:12px;height:12px;border-radius:2px;display:block;transform:translateY(1px)}
+.legend b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;font-weight:600}
+.steps{position:relative}
+.steps svg{width:100%;height:auto;display:block}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover{background:var(--sunk)}
+.bar{position:relative;height:8px;background:var(--sunk);border-radius:4px;min-width:90px}
+.bar span{position:absolute;inset:0 auto 0 0;border-radius:4px}
+.bar .bench{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.55}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.5}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-late{background:var(--late-soft);color:var(--late)}
+.p-amber{background:var(--amber-soft);color:var(--amber)}
+.p-slate{background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.flags{display:flex;gap:4px}
+.flag{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--amber-soft);color:var(--amber)}
+
+/* orders */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}
+.filters .input,.filters select{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);min-width:120px;font-size:14px}
+.filters .search{min-width:220px}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:14px}
+.checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.checks input{accent-color:var(--teal)}
+.summary{display:flex;gap:24px;flex-wrap:wrap;margin:16px 0 4px;font-size:14px}
+.summary b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:20px;font-weight:600;margin-right:4px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:14px;flex-wrap:wrap}
+.pager div{display:flex;gap:6px}
+.pager button{padding:6px 12px}
+.pager button:disabled{opacity:.4;cursor:default}
+th.sort{cursor:pointer}
+th.sort:hover{color:var(--ink)}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,18,24,.4);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);z-index:21;border-left:1px solid var(--line);padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;transform:translateX(0);transition:transform .22s ease}
+.drawer.closed{transform:translateX(100%)}
+.drawer .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;border:0;background:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1;padding:6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin-top:16px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:500}
+.timeline{list-style:none;padding:0;margin:20px 0 0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 14px 18px;font-size:14px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--slate)}
+.timeline li.ok::before{border-color:var(--ok);background:var(--ok)}
+.timeline li.bad::before{border-color:var(--late);background:var(--late)}
+.timeline li span{display:block;color:var(--muted);font-size:13px}
+.why{margin-top:20px;display:grid;gap:10px}
+.why div{border-left:3px solid var(--amber);padding:6px 12px;background:var(--sunk);font-size:14px;border-radius:0 6px 6px 0}
+.why div b{display:block}
+
+/* procurement */
+.decision{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.decision h2{font-size:24px;max-width:22ch}
+.verdict{border-left:4px solid var(--late);padding-left:16px;margin-top:14px}
+.plan{counter-reset:s;list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.plan li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px}
+.plan li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--nav);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.plan li b{display:block;font-size:15px}
+.chart svg{width:100%;height:auto;display:block}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.menu-btn{display:none}
+@media (max-width:980px){
+  .hero,.decision,.g32,.g2{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(3){border-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  #login{grid-template-columns:1fr}
+  .login-brand{padding:32px 24px}
+  .login-lane{margin:28px 0}
+  #app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;padding:10px 14px;gap:12px;z-index:10;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+  .side .wordmark span{display:none}
+  .side nav{flex-direction:row;flex:1;overflow-x:auto}
+  .side nav a{padding:8px 10px;white-space:nowrap}
+  .side nav a svg{display:none}
+  .side .who{margin:0;border:0;padding:0}
+  .side .who b,.side .who span{display:none}
+  .side .who button,.side .who a.tb{margin:0}
+  main{padding:20px 16px 48px}
+  .kpi .num{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.side .who .row{display:flex;gap:6px;flex-wrap:wrap}
+.side .who .row button{margin-top:10px}
+
+/* ---------- agent pages ---------- */
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.controls select{padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.btn-go{background:var(--nav);border-color:var(--nav);color:#fff}
+:root[data-theme="dark"] .btn-go{background:#0B6E78;border-color:#0B6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-go{background:#0B6E78;border-color:#0B6E78}}
+.clock{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:600;min-width:120px}
+.counters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:18px}
+.counters div{padding:14px 18px;border-left:1px solid var(--line)}
+.counters div:first-child{border-left:0}
+.counters .num{font-size:30px;line-height:1;font-weight:500}
+.counters span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.workbench{display:grid;grid-template-columns:300px minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
+.queue{padding:0;overflow:hidden}
+.qtabs{display:flex;gap:2px;padding:10px 10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.qtabs button{border:0;background:none;padding:8px 10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.qtabs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--amber)}
+.qlist{max-height:640px;overflow-y:auto;list-style:none;margin:0;padding:0}
+.qlist li{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
+.qlist li:hover{background:var(--sunk)}
+.qlist li[aria-selected="true"]{background:var(--sunk);box-shadow:inset 3px 0 0 var(--nav)}
+.qlist li.new{animation:arrive .5s ease}
+@keyframes arrive{from{background:var(--amber-soft)}to{background:transparent}}
+.qlist .t{color:var(--muted);font-size:13px}
+.qlist .who2{min-width:0}
+.qlist .who2 b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.ch-Email{border-color:var(--teal);color:var(--teal)}
+.empty{padding:28px 18px;color:var(--muted);font-size:14px}
+pre.raw{margin:0;background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;max-height:240px;overflow:auto}
+.fields{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin-top:14px}
+.fields dt{color:var(--muted)}
+.fields dd{margin:0;font-weight:500}
+.fields dd.miss{color:var(--late);font-weight:600}
+.conf{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:12px}
+.conf .bar{flex:1;max-width:160px}
+.trail{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.trail li{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.trail li:last-child{border-bottom:0}
+.trail .dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;background:var(--ok)}
+.trail .dot.warn{background:var(--amber)}
+.trail .dot.stop{background:var(--late)}
+.trail b{display:block;font-size:15px}
+.trail .why2{color:var(--muted);font-size:13px;margin-top:2px}
+.trail .alts{margin-top:6px;font-size:13px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.actions .btn{padding:7px 12px;font-size:13px}
+.history{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:6px;font-size:13px;color:var(--muted)}
+.history b{color:var(--ink)}
+.network svg{width:100%;height:auto;display:block}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:7px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--nav);color:#fff}
+.heat td.cell{text-align:center;font-weight:600;border-left:1px solid var(--surface)}
+.heat td.pick{outline:2px solid var(--ink);outline-offset:-3px}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.toggle{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.toggle:last-child{border-bottom:0}
+.toggle input{width:18px;height:18px;margin-top:2px;accent-color:var(--nav)}
+.toggle b{display:block}
+.toggle span.muted{font-size:13px}
+.toggle .cnt{font-size:13px;color:var(--muted);white-space:nowrap}
+.bignum{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:68px;line-height:1;font-weight:400}
+.gauge{position:relative;height:16px;background:var(--sunk);border-radius:8px;margin-top:18px}
+.gauge span{position:absolute;inset:0 auto 0 0;border-radius:8px;background:var(--ok);transition:width .3s ease}
+.gauge i{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.gauge-l{position:relative;height:20px;font-size:12px;color:var(--muted);margin-top:6px}
+.gauge-l em{position:absolute;font-style:normal;transform:translateX(-50%);white-space:nowrap}
+.flow-legend{display:flex;gap:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;margin-top:8px}
+.flow-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+@media (max-width:1180px){.workbench{grid-template-columns:280px minmax(0,1fr)}.workbench .decide{grid-column:1 / -1}}
+@media (max-width:980px){.sim{grid-template-columns:minmax(0,1fr)}.counters{grid-template-columns:repeat(3,minmax(0,1fr))}.counters div:nth-child(4){border-left:0}.counters div:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:760px){.workbench{grid-template-columns:minmax(0,1fr)}.qlist{max-height:320px}.counters{grid-template-columns:repeat(2,minmax(0,1fr))}.counters div{border-left:0!important;border-top:1px solid var(--line)}.counters div:first-child{border-top:0}.bignum{font-size:56px}}
+.sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.src{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 18px;border-top:3px solid var(--slate)}
+.src-email{border-top-color:var(--teal)}
+.src-h{display:flex;gap:8px;align-items:center}
+.src p{margin-top:4px}
+.src-n{margin-top:10px;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.src-n span{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:22px;font-weight:600}
+.src-n .btn{padding:6px 10px;font-size:13px}
+.invgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.invh{margin-bottom:8px}
+.modal{position:fixed;z-index:31;left:50%;top:50%;transform:translate(-50%,-50%);width:min(620px,calc(100% - 32px));max-height:calc(100% - 40px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px}
+#cscrim{z-index:30}
+.modal textarea{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin-top:14px;resize:vertical}
+.stack{display:flex;height:20px;border-radius:4px;overflow:hidden;min-width:180px}
+.stack span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;overflow:hidden}
+@media (max-width:980px){.sources{grid-template-columns:minmax(0,1fr)}.invgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.invgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.counters[style]{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+.live-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.total{font-size:15px;color:var(--muted)}
+.total b{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:24px;color:var(--ink);font-weight:600;margin-right:4px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px 20px;display:flex;flex-direction:column;gap:6px;min-height:230px}
+.tile-email{border-color:var(--teal);box-shadow:inset 0 4px 0 var(--teal)}
+.tile-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tile-h h2{font-size:22px}
+.count{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-size:88px;line-height:1;font-weight:400;margin-top:10px;transition:color .6s ease}
+.count.bump{color:var(--ok)}
+.plus{font-size:15px;font-weight:600;color:var(--ok);opacity:0;transition:opacity .3s}
+.plus.on{opacity:1}
+.tile .how{color:var(--muted);font-size:14px;margin-top:auto}
+.tile .alltime{font-size:13px;color:var(--muted)}
+.livetag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ok)}
+.livetag i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
+.livetag.err{color:var(--late)} .livetag.err i{background:var(--late);animation:none}
+.livetag.off{color:var(--muted)} .livetag.off i{background:var(--slate);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.watch{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.watch .btn{padding:5px 10px;font-size:13px}
+.offline{background:var(--amber-soft);border:1px solid var(--amber);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:14px}
+.offline code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+.feed{list-style:none;margin:0;padding:0}
+.feed li{display:grid;grid-template-columns:70px 64px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.feed li:last-child{border-bottom:0}
+@media (max-width:900px){.tiles{grid-template-columns:minmax(0,1fr)}.tile{min-height:0}.count{font-size:72px}}
+@media (max-width:560px){.feed li{grid-template-columns:56px 56px 1fr}.feed li>:last-child{grid-column:2 / -1}}
+@media (prefers-reduced-motion:reduce){.livetag i{animation:none}}
+.statusline{display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin:-8px 0 18px}
+.statusline b{color:var(--ink);font-weight:600}
+.statusline .livetag{margin-right:4px}
+.pipe{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.pipe button{all:unset;cursor:pointer;padding:14px 18px;border-left:1px solid var(--line);position:relative}
+.pipe button:first-child{border-left:0}
+.pipe button:hover{background:var(--sunk)}
+.pipe button[aria-pressed="true"]{background:var(--sunk);box-shadow:inset 0 -3px 0 var(--nav)}
+.pipe button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.pipe .num{font-size:32px;line-height:1;font-weight:500}
+.pipe span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.cbar{display:grid;grid-template-columns:90px 1fr 44px;gap:10px;align-items:center;font-size:14px;padding:5px 0}
+.cbar .bar{height:12px}
+.alerts{list-style:none;margin:0;padding:0;font-size:14px}
+.alerts li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)}
+.alerts li:last-child{border-bottom:0}
+.dsec{margin-top:20px}
+.dsec h3{font-size:15px;margin-bottom:6px;color:var(--muted);font-family:Roboto,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.kv2{display:grid;grid-template-columns:minmax(150px,auto) 1fr;gap:5px 14px;font-size:13.5px}
+.kv2 dt{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+.kv2 dd{margin:0;word-break:break-word}
+.kv2 dd.nil{color:var(--muted)}
+.drawer{width:min(560px,100%)}
+@media (max-width:980px){.pipe{grid-template-columns:repeat(3,minmax(0,1fr))}.pipe button:nth-child(4){border-left:0}.pipe button:nth-child(n+4){border-top:1px solid var(--line)}}
+
+.workbench > .panel{margin-top:0;min-width:0}
+.decide table.small td,.decide table.small th{padding:5px 8px;font-size:12.5px}
+#view-intake .workbench{grid-template-columns:300px minmax(0,1fr) minmax(0,1.1fr)}
+#view-intake .workbench>*{min-width:0}
+@media (max-width:1180px){#view-intake .workbench{grid-template-columns:280px minmax(0,1fr)}}
+@media (max-width:760px){#view-intake .workbench{grid-template-columns:minmax(0,1fr)}}
+#view-intake .trail li{grid-template-columns:26px minmax(0,1fr)}
+#view-intake .trail li>div{min-width:0}
+.counters a.cnt-link{display:block;padding:14px 18px;border-left:1px solid var(--line);color:inherit;text-decoration:none;position:relative}
+.counters a.cnt-link:first-child{border-left:0}
+.counters a.cnt-link > div{padding:0;border:0}
+.counters a.cnt-link:hover{background:var(--sunk)}
+.counters a.cnt-link span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.counters a.cnt-link::after{content:"View orders →";position:absolute;right:14px;top:14px;font-size:12px;color:var(--teal);opacity:0;transition:opacity .15s}
+.counters a.cnt-link:hover::after,.counters a.cnt-link:focus-visible::after{opacity:1}
+@media (max-width:760px){.counters a.cnt-link{border-left:0;border-top:1px solid var(--line)}.counters a.cnt-link:first-child{border-top:0}}
+</style>
+</head>
+<body>
+<section id="app">
+  <aside class="side">
+    <div class="wordmark"><svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8v14M22 8v14M8 15h14" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round"/></svg><span>HALCYON</span></div>
+    <nav aria-label="Main"><a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 13h8V3H3zM13 21h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z"/></svg>Dashboard</a><a href="live.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Live orders</a><a href="forecast.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg>Forecast</a><a href="intake.html" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Order inbox</a><a href="routing.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 6h3a3 3 0 013 3M9 18h3a3 3 0 003-3"/></svg>Warehouse routing</a><a href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Orders</a><a href="procurement.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7M5 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z"/></svg>Procurement</a></nav>
+    <div class="who"><b id="whoName">—</b><span id="whoRole">—</span><div class="row"><button id="themeBtn" type="button">Theme</button><button id="logout" type="button">Sign out</button></div></div>
+  </aside>
+  <main><div id="view-intake"></div></main>
+</section>
+
+<script>
+const AGG = {stats:{}};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('en-US');
+const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
+const usd=(n,d=0)=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const usdK=n=>n>=1e6?'$'+(n/1e6).toFixed(2)+'M':'$'+Math.round(n/1e3)+'K';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S=AGG.stats, BENCH=.94;
+const CH=['API','EDI','Email'], CM=['Standard','Next day','Same day'], RG=['Midwest','Southeast','Northeast','West'];
+const WN={1:'Midwest 1',2:'Midwest 2',3:'Southeast',4:'Northeast',5:'West'};
+
+
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+let storageOK=true; try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){storageOK=false;}
+let session=null; try{session=JSON.parse(store.get('halcyon_session')||'null')}catch(e){}
+const th=store.get('halcyon_theme'); if(th) document.documentElement.dataset.theme=th;
+if(!session && storageOK){ location.replace('login.html'); return; }
+if(session && session.role==='Customer'){ location.replace('shop.html'); return; }
+if(!session) session={name:'Demo user',role:'Operations'};
+$('#whoName').textContent=session.name; $('#whoRole').textContent=session.role==='Admin'||!session.role||session.role==='Operations'?'Admin':session.role;
+$('#logout').addEventListener('click',()=>{store.del('halcyon_session');location.href='login.html';});
+/* ---------- theme ---------- */
+function toggleTheme(){ const r=document.documentElement; const dark=r.dataset.theme? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme=dark?'light':'dark'; store.set('halcyon_theme',r.dataset.theme); }
+
+
+
+$('#themeBtn').addEventListener('click',toggleTheme);
+/* ---------- small chart helpers ---------- */
+function barCell(v,color,bench=true){ return `<div class="bar"><span style="width:${(v*100).toFixed(1)}%;background:${color}"></span>${bench?`<i class="bench" style="left:${BENCH*100}%"></i>`:''}</div>`; }
+const otColor=v=>v>=.9?'var(--ok)':v>=.72?'var(--slate)':'var(--late)';
+
+function fd2(ymd){ const [y,m,d]=ymd.split('-'); return (+d)+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]; }
+/* ================= ORDER INBOX (live, from the agent server) ================= */
+function buildInbox(){
+  const WN={W1:'Midwest 1',W2:'Midwest 2',W3:'Southeast',W4:'Northeast',W5:'West'};
+  const SV={same_day:'Same day',next_day:'Next day',standard:'Standard'};
+  const PILL={ASSIGNED:'<span class="pill p-ok">Assigned</span>',ASSIGNED_FALLBACK:'<span class="pill p-amber">Fallback site</span>',HELD_ADDRESS:'<span class="pill p-late">Held: address</span>',HELD_STOCK:'<span class="pill p-late">Held: stock</span>',REVIEW:'<span class="pill p-amber">Review</span>'};
+  let tab='all', sel=null, follow=true, known=new Set(), first=true, rows=[];
+  const sample=`From: Purchasing <orders@client190.example>
+Subject: urgent order
+
+Hi team,
+
+Please send 18 units of SKU-30977 to our Nashville site (2210 Depot Rd, Dock 3, Nashville, TN, 37215). We need this same day. PO ORD-55500123.
+
+Thanks,
+Client 190 purchasing`;
+  $('#view-intake').innerHTML=`
+  <div class="pagehead">
+    <div><h1>Order inbox</h1><p class="muted">Every new order from EDI, API and email as it arrives, with the warehouse the agent picked by distance and stock.</p></div>
+    <div class="controls"><label class="small" style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" id="follow" checked style="accent-color:var(--nav)"> Show each new order as it arrives</label></div>
+  </div>
+  <div class="statusline" id="sline"><span>Connecting to the agent…</span></div>
+  <div class="offline" id="offline" hidden>The live agent isn’t running. Start it with <code>python server.py</code> in the halcyon_agent folder, then open <code>http://localhost:8000/intake.html</code>.</div>
+  <div class="sources">
+    <div class="src"><div class="src-h"><span class="ch">EDI</span><b>Arrives automatically</b></div><p class="muted small">X12 850 purchase orders from the EDI feed.</p><div class="src-n"><span id="nEDI">—</span> today</div></div>
+    <div class="src"><div class="src-h"><span class="ch">API</span><b>Customer storefront</b></div><p class="muted small">Placed by customers on Halcyon Supply, sent through the order API.</p><div class="src-n"><span id="nAPI">—</span> today</div></div>
+    <div class="src src-email"><div class="src-h"><span class="ch ch-Email">Email</span><b>Read by the agent</b></div><p class="muted small" id="mailTxt">Keyed by hand before the agent.</p><div class="src-n"><span id="nEmail">—</span> today <button class="btn" id="compose" type="button">Add an email order</button></div></div>
+  </div>
+  <div class="counters" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+    <a class="cnt-link" href="live.html#orders"><div class="num" id="cAll">—</div><span>Received today</span></a>
+    <a class="cnt-link" href="live.html?status=ASSIGNED#orders"><div class="num" id="cOk" style="color:var(--ok)">—</div><span>Nearest warehouse with stock</span></a>
+    <a class="cnt-link" href="live.html?status=ASSIGNED_FALLBACK#orders"><div class="num" id="cFb" style="color:var(--amber)">—</div><span>Farther warehouse, no stock nearby</span></a>
+    <a class="cnt-link" href="live.html?status=HELD_ADDRESS,HELD_STOCK#orders"><div class="num" id="cHeld" style="color:var(--late)">—</div><span>Held: address or stock</span></a>
+    <a class="cnt-link" href="live.html?status=REVIEW#orders"><div class="num" id="cRev">—</div><span>Needs review</span></a>
+  </div>
+  <div class="panel inv"><div class="panel-head"><h2>Stock on hand</h2><span class="muted small">Today’s opening stock, reduced as the agent allocates orders</span></div><div class="invgrid" id="inv"></div></div>
+  <div class="workbench" style="margin-top:18px">
+    <div class="panel queue">
+      <div class="qtabs" role="group" aria-label="Filter queue">${[['all','All'],['ex','Exceptions'],['EDI','EDI'],['API','API'],['Email','Email']].map(([k,l])=>`<button type="button" data-tab="${k}" aria-pressed="${k==='all'}">${l}</button>`).join('')}</div>
+      <ul class="qlist" id="qlist" aria-label="Orders, newest first"><li class="empty" style="display:block">Loading…</li></ul>
+    </div>
+    <div class="panel" id="srcPanel"><div class="empty"><h2 style="margin-bottom:8px">No order selected</h2>Select an order to see the message the agent read and the record it built.</div></div>
+    <div class="panel decide" id="decPanel"><div class="empty"><h2 style="margin-bottom:8px">Agent decisions</h2>Read, address check, warehouse by distance and stock, carrier, pick wave and client notice.</div></div>
+  </div>
+  <div class="scrim" id="cscrim" hidden></div>
+  <div class="modal" id="cmodal" role="dialog" aria-modal="true" aria-labelledby="cmTitle" hidden>
+    <h2 id="cmTitle">Add an email order</h2>
+    <p class="muted small" style="margin-top:4px">Paste or edit an order email. The agent reads it exactly as it reads the mailbox and saves it to the database. Try deleting the postal code to see an address hold.</p>
+    <textarea id="cmText" class="input" rows="12" spellcheck="false">${esc(sample)}</textarea>
+    <div class="err" id="cmErr" role="alert"></div>
+    <div class="actions" style="justify-content:flex-end;margin-top:8px"><button class="btn" id="cmCancel" type="button">Cancel</button><button class="btn btn-go" id="cmGo" type="button">Read with agent</button></div>
+  </div>`;
+  const get=async u=>{ const r=await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return r.json(); };
+  const t5=s=>s?s.slice(11,16):'';
+  function listUrl(){ const p=new URLSearchParams({limit:'150'}); if(tab==='ex') p.set('exceptions','1'); else if(tab!=='all') p.set('channel',tab); return '/api/orders?'+p; }
+  function renderList(){
+    $('#qlist').innerHTML=rows.length?rows.map(r=>`<li data-id="${r.delivery_id}" tabindex="0" aria-selected="${sel===r.delivery_id}" class="${!first&&!known.has(r.delivery_id)?'new':''}"><span class="t">${t5(r.order_received_ts)}</span><span class="who2"><b>${esc(r.client_name||'Unknown sender')}</b><span class="ch ${r.order_channel==='Email'?'ch-Email':''}">${r.order_channel}</span>${r.fulfilment_warehouse_id?` <span class="small muted">→ ${r.fulfilment_warehouse_id}</span>`:''}${r.priority==='Y'?' <span class="small" style="color:var(--amber)">priority</span>':''}</span>${PILL[r.agent_status]||''}</li>`).join(''):'<li class="empty" style="display:block">No orders in this view yet today.</li>';
+    rows.forEach(r=>known.add(r.delivery_id)); first=false;
+  }
+  async function refresh(){
+    try{
+      const [s,a,l]=await Promise.all([get('/api/summary'),get('/api/allocation'),get(listUrl())]);
+      $('#offline').hidden=true;
+      ['EDI','API','Email'].forEach(c=>$('#n'+c).textContent=fmt(s.today[c]));
+      const w=s.watcher||{};
+      $('#mailTxt').textContent=`Read live from ${w.mailbox||'the order mailbox'}, checked ${t5((w.last_check||'').replace('T',' '))}. Keyed by hand before the agent.`;
+      $('#sline').innerHTML=`<span><span class="livetag"><i></i>${w.simulator==='on'?'Order simulator':'Live feeds'}</span> ${w.simulator==='on'?`<b>${fmt(w.sim_released||0)}</b> orders released today`:''}</span><span>Same counts as the dashboard</span>`;
+      const b=a.by_status, tot=Object.values(b).reduce((x,y)=>x+y,0);
+      $('#cAll').textContent=fmt(tot); $('#cOk').textContent=fmt(b.ASSIGNED||0); $('#cFb').textContent=fmt(b.ASSIGNED_FALLBACK||0);
+      $('#cHeld').textContent=fmt((b.HELD_ADDRESS||0)+(b.HELD_STOCK||0)); $('#cRev').textContent=fmt(b.REVIEW||0);
+      $('#inv').innerHTML=Object.entries(a.stock).map(([wh,v])=>{ const f=v.opening?v.now/v.opening:0; return `<div class="invc"><div class="invh"><b>${wh}</b> <span class="muted small">${WN[wh]}</span></div>${barCell(f,f<.25?'var(--late)':'var(--ok)',false)}<div class="small" style="margin-top:6px">${fmt(v.now)} of ${fmt(v.opening)} units</div><div class="small" style="color:${v.low.length?'var(--late)':'var(--muted)'}">${v.low.length?v.low.length+' SKU'+(v.low.length>1?'s':'')+' running low':'All SKUs stocked'}</div></div>`; }).join('');
+      const newest=l.rows[0]&&l.rows[0].delivery_id, isNew=newest&&!known.has(newest);
+      rows=l.rows; renderList();
+      if((follow&&isNew)||(!sel&&newest)) show(newest);
+    }catch(e){ $('#offline').hidden=false; $('#sline').innerHTML='<span>Not connected to the agent.</span>'; }
+  }
+  async function show(id){
+    sel=id; document.querySelectorAll('#qlist li[data-id]').forEach(li=>li.setAttribute('aria-selected',li.dataset.id===id));
+    const [r,E]=await Promise.all([get('/api/orders/'+id),get('/api/orders/'+id+'/events')]); if(sel!==id) return;
+    const miss=(r.missing_fields||'').split(',').filter(Boolean), m=k=>miss.some(x=>x.startsWith(k));
+    const row=(label,k,v)=>`<dt>${label}</dt><dd class="${m(k)?'miss':''}">${m(k)?'Not found':v||'—'}</dd>`;
+    const [street,...rest]=(r.ship_to||'').split(', ');
+    $('#srcPanel').innerHTML=`
+      <div class="panel-head"><h2>${r.order_channel==='Email'?'Email':r.order_channel+' message'}</h2><span class="muted small">${r.delivery_id} · ${t5(r.order_received_ts)}</span></div>
+      <pre class="raw">${esc(r.raw_message||'')}</pre>
+      <h3 style="margin-top:18px">Order record</h3>
+      <dl class="fields">
+        ${row('Client','client',`${esc(r.client_name||'')} (${r.client_id||'?'})`)}${row('Order reference','order_ref',esc(r.order_id||''))}
+        ${row('Item','sku',`${esc(r.sku||'')} × ${r.qty||'?'}`)}${row('Service','service',SV[r.commitment_type]||'')}
+        <dt>Ship to</dt><dd>${esc(r.ship_to||'')}${miss.filter(x=>/street|postal|city|state/.test(x)).length?` <span class="miss" style="color:var(--late);font-weight:600">· missing ${miss.filter(x=>/street|postal|city|state/.test(x)).join(', ').replace(/_/g,' ')}</span>`:''}</dd>${row('Region','state',r.destination_region||'')}
+      </dl>
+      ${r.order_channel==='Email'?`<div class="conf">Extraction confidence ${(+r.extraction_confidence||0).toFixed(2)} ${barCell(+r.extraction_confidence||0,(+r.extraction_confidence||0)>=.85?'var(--ok)':'var(--late)',false)}</div>`:''}`;
+    const T=r.allocation_trace?JSON.parse(r.allocation_trace):null;
+    const steps=[];
+    steps.push(['ok',r.order_channel==='Email'?'Read email':r.source_file==='storefront'?'Storefront order':'Read '+r.order_channel+' order',r.order_channel==='Email'?`Read from the mailbox and turned into an order record (confidence ${(+r.extraction_confidence||0).toFixed(2)}).`:r.source_file==='storefront'?`Placed by the customer on the Halcyon Supply storefront and received through the order API.`:`Arrived automatically and was read into the order record.`]);
+    const CZ=(r.causes||'').split(',').filter(Boolean), has=k=>CZ.includes(k);
+    if(r.agent_status==='HELD_ADDRESS') steps.push(['stop','Address incomplete, held',`Missing ${miss.filter(x=>/street|city|state|postal/.test(x)).join(', ').replace(/_/g,' ')}, and more than one of the client’s known sites matches. Held before the pick list until the client confirms; the order is allocated as soon as they do.`]);
+    else if(has('address_confirmed')) steps.push(['ok','Address confirmed by the client',`The client replied to the request. ${esc(r.ship_to||'')} → ${r.destination_region||''}. Allocated at confirmation.`]);
+    else if(T&&T.address_repaired&&T.address_repaired.length) steps.push(['ok','Address completed from client master data',`The order was missing the ${T.address_repaired.join(' and ')}. Only one of the client’s known sites matches, so the agent filled it in and sent the client a confirmation. ${esc(r.ship_to||'')}.`]);
+    else steps.push(['ok','Address check passed',`${esc(r.ship_to||'')} → ${r.destination_region||''}.`]);
+    if(r.agent_status==='REVIEW') steps.push(['warn','Needs review',esc(r.agent_reason||'')]);
+    if(T){
+      const tbl=`<div class="tbl-wrap" style="margin-top:8px"><table class="small"><thead><tr><th>Site</th><th class="r">Miles</th><th class="r">On hand</th><th>Result</th></tr></thead><tbody>${T.candidates.map(c=>`<tr${c.warehouse===T.chosen?' style="background:var(--ok-soft)"':''}><td><b>${c.warehouse}</b>${c.in_region?' <span class="muted">in region</span>':''}</td><td class="r">${c.miles}</td><td class="r">${fmt(c.stock)}</td><td>${c.warehouse===T.chosen?'<b style="color:var(--ok)">Chosen</b>':!c.enough?'<span style="color:var(--late)">Short</span>':'<span class="muted">Farther</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+      const ch=T.candidates.find(c=>c.warehouse===T.chosen);
+      if(!T.chosen) steps.push(['stop','No warehouse has the stock',`Needs ${T.qty} × ${esc(T.sku)}. Held until stock arrives.${tbl}`]);
+      else if(ch.in_region) steps.push(['ok',`Warehouse ${T.chosen} ${WN[T.chosen]}`,`Nearest site to ${T.region} with ${T.qty} × ${esc(T.sku)} in stock, ${ch.miles} miles. ${fmt(ch.stock)} on hand before this order, ${fmt(T.stock_after)} after.${tbl}`]);
+      else steps.push(['warn',`No stock in ${T.region}; ship from ${T.chosen}`,`No in-region site holds ${T.qty} × ${esc(T.sku)}. ${T.chosen} ${WN[T.chosen]} is the closest site that does, ${ch.miles} miles. Restock alert raised.${tbl}`]);
+      if(T.carriers&&r.carrier_id){ const o=T.origin||r.fulfilment_warehouse_id, pk=T.carriers.find(x=>x.picked)||{}, best=Math.max(...T.carriers.filter(x=>x.eligible).map(x=>x.on_time));
+        const why=x=>x.picked?'<b style="color:var(--ok)">Picked</b>':!x.eligible?`<span style="color:var(--late)">Below 90% from ${o}</span>`:x.on_time<best-0.01?'<span class="muted">Less reliable</span>':x.used>=x.cap?'<span class="muted">Full today</span>':'<span class="muted">Within 1 pt, costs more</span>';
+        const ctbl=`<div class="tbl-wrap" style="margin-top:8px"><table class="small"><thead><tr><th>Carrier</th><th class="r">On time from ${o}</th><th class="r">Rate</th><th class="r">Today</th><th>Result</th></tr></thead><tbody>${T.carriers.map(x=>`<tr${x.picked?' style="background:var(--ok-soft)"':''}><td><b>${x.carrier}</b></td><td class="r">${pct(x.on_time)}</td><td class="r">${usd(x.rate,2)}</td><td class="r">${x.used}/${x.cap}</td><td>${why(x)}</td></tr>`).join('')}</tbody></table></div>`;
+        const av=(T.avoided||[]); 
+        steps.push([pk.eligible?'ok':'warn',`Carrier ${r.carrier_id}`,`${pk.eligible?`Most reliable carrier from ${o} with capacity, ${pct(pk.on_time)} on time; carriers within 1 point of the best compete on price.`:'Every reliable carrier was full; best available used.'}${av.length?` Skipped cheaper but unreliable here: ${av.join(', ')}.`:''}${ctbl}`]); }
+      if(T.wave){ const wv=T.wave.slice(0,2), tom=T.pick_date>T.received.slice(0,10);
+        const lab=wv==='W3'?'Same-day express wave, 13:00 today':wv==='W2'?'Wave 2, 11:00'+(tom?' tomorrow':' today'):'Wave 1, 08:00'+(tom?' tomorrow':' today');
+        const why=T.repromised?`Arrived ${t5(T.received)}, after the last same-day wave. The delivery date is set honestly to ${fd2(T.promised)} at intake and the client is told now.`
+          :wv==='W3'?`Same-day order arrived ${t5(T.received)}, after the 11:00 wave; the 13:00 express wave still makes the afternoon collection. Promised ${fd2(T.promised)}.`
+          :wv==='W2'&&has('cutoff_wave2')?`Same-day order arrived ${t5(T.received)}, after the 08:00 cut-off; wave 2 at 11:00 keeps it same-day. Promised ${fd2(T.promised)}.`
+          :`Arrived ${t5(T.received)}. Promised ${fd2(T.promised)}.`;
+        steps.push([T.repromised?'warn':'ok',lab,why]); }
+    }
+    if(r.fulfilment_warehouse_id){ const EVN={PICKED:'Picked',COLLECTED:'Collected by carrier',DELIVERED:'Delivered'};
+      const tl=E.map(e=>`${EVN[e.event_type]} ${fd2(e.event_time.slice(0,10))} ${e.event_time.slice(11,16)} · ${esc(e.source)}`).join('<br>');
+      const lvl=r.on_time==='N'?'warn':'ok';
+      steps.push([lvl,`Tracking: ${r.stage}`,(tl||'Waiting for the warehouse to scan it onto the pick list.')+(r.stage==='Delivered'?`<div class="alts">Delivered ${fd2(r.delivered_date)} against a promise of ${fd2(r.promised_date)}: ${r.on_time==='Y'?'on time':r.days_late+' day(s) late'}.</div>`:'')]); }
+    steps.push(['ok',r.priority==='Y'?'Client notice · priority account':'Client notice',esc(r.client_notice||'Order confirmation sent; delay alerts stay on until delivery.')]);
+    const N={ok:'✓',warn:'!',stop:'×'};
+    $('#decPanel').innerHTML=`<div class="panel-head"><h2>Agent decisions</h2><span>${PILL[r.agent_status]||''} <span class="pill p-slate">${esc(r.stage||'')}</span></span></div>
+      ${r.expected_on_time?`<p class="small" style="margin:-4px 0 6px">Expected on-time: <b style="color:${+r.expected_on_time>=.9?'var(--ok)':'var(--late)'}">${pct(+r.expected_on_time)}</b> <span class="muted">· target 95%</span></p>`:''}
+      <ol class="trail">${steps.map(([l,k,w])=>`<li><span class="dot ${l==='ok'?'':l}" aria-hidden="true">${N[l]}</span><div><b>${esc(k)}</b><div class="why2">${w}</div></div></li>`).join('')}</ol>
+      <p class="note">Saved as ${r.delivery_id} in the orders table · <a href="live.html">Live orders</a></p>`;
+  }
+  $('#follow').addEventListener('change',e=>follow=e.target.checked);
+  document.querySelectorAll('.qtabs button').forEach(b=>b.addEventListener('click',()=>{ tab=b.dataset.tab; document.querySelectorAll('.qtabs button').forEach(x=>x.setAttribute('aria-pressed',x===b)); first=true; refresh(); }));
+  $('#qlist').addEventListener('click',e=>{ const li=e.target.closest('li[data-id]'); if(li){ follow=false; $('#follow').checked=false; show(li.dataset.id);} });
+  $('#qlist').addEventListener('keydown',e=>{ const li=e.target.closest('li[data-id]'); if(li&&e.key==='Enter'){ follow=false; $('#follow').checked=false; show(li.dataset.id);} });
+  const openC=()=>{ $('#cmErr').textContent=''; $('#cscrim').hidden=false; $('#cmodal').hidden=false; $('#cmText').focus(); }, closeC=()=>{ $('#cscrim').hidden=true; $('#cmodal').hidden=true; $('#compose').focus(); };
+  $('#compose').addEventListener('click',openC); $('#cmCancel').addEventListener('click',closeC); $('#cscrim').addEventListener('click',closeC);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#cmodal').hidden) closeC(); });
+  $('#cmGo').addEventListener('click',async()=>{
+    try{ const r=await fetch('/api/email-order',{method:'POST',body:$('#cmText').value}); const j=await r.json();
+      if(!j.accepted){ $('#cmErr').textContent='The agent didn’t find an order in this email. Add an order reference, or an item and a quantity.'; return; }
+      closeC(); await refresh(); follow=false; $('#follow').checked=false; show(j.delivery_id);
+    }catch(e){ $('#cmErr').textContent='Couldn’t reach the agent. Start python server.py and try again.'; }
+  });
+  refresh(); setInterval(refresh,3000);
+}
+
+buildInbox();
+})();
+</script>
+</body>
+</html>

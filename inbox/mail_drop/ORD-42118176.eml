@@ -1,0 +1,18 @@
+From: Purchasing <orders@client209.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-42118176
+Date: Thu, 29 Oct 2026 07:04:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-42118176 below:
+SKU-44102 | 9 EA
+Address - 2451 Mill St, Dock 2, Hartford, CT, 06157
+Priority: next day
+
+Thanks,
+Client 209 purchasing

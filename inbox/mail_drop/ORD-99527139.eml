@@ -1,0 +1,18 @@
+From: Purchasing <orders@client130.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-99527139
+Date: Thu, 29 Oct 2026 10:10:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-99527139 below:
+SKU-44102 | 22 EA
+Address - 1911 Mill St, Dock 7, Denver, CO, 80262
+Priority: same day
+
+Thanks,
+Client 130 purchasing

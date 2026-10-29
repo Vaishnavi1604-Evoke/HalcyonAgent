@@ -1,0 +1,16 @@
+From: Purchasing <orders@client059.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-19465229
+Date: Mon, 28 Sep 2026 14:44:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 11 units of SKU-51268 to our Indianapolis site (Dock 8, Indianapo=
+lis, IN, 46265). We need this standard. PO ORD-19465229.
+
+Thanks,
+Client 059 purchasing

@@ -1,0 +1,18 @@
+From: Purchasing <orders@client210.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-17472491
+Date: Thu, 29 Oct 2026 10:03:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-17472491
+Item: SKU-30977 x 10
+Deliver to: 300 Riverside Blvd, Dock 3, Detroit, MI
+Service: next day
+
+Thanks,
+Client 210 purchasing

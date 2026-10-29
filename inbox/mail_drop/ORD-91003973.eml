@@ -1,0 +1,18 @@
+From: Purchasing <orders@client094.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-91003973
+Date: Thu, 29 Oct 2026 10:52:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-91003973
+Item: SKU-44102 x 23
+Deliver to: 3772 Depot Rd, Dock 9, Columbus, OH
+Service: next day
+
+Thanks,
+Client 094 purchasing

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client032.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 2
+Subject: Order ORD-90670519
+Date: Thu, 29 Oct 2026 13:40:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-20431 (qty 41)? Ship to 944 Rivers=
+ide Blvd, Dock 9, Detroit, MI, 48221. Our reference is ORD-90670519.
+
+Thanks,
+Client 032 purchasing

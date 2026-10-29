@@ -1,0 +1,18 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-50005685
+Date: Mon, 28 Sep 2026 16:28:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-50005685 below:
+SKU-11820 | 20 EA
+Address - 7326 Logistics Way, Dock 8, Chicago, IL, 60684
+Priority: standard
+
+Thanks,
+Client 263 purchasing

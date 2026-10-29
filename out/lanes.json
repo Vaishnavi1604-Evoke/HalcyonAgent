@@ -1,0 +1,170 @@
+[
+  {
+    "carrier": "A",
+    "region": "Midwest",
+    "on_time": 0.9575,
+    "rate": 16.66,
+    "daily_volume": 16.5
+  },
+  {
+    "carrier": "A",
+    "region": "Northeast",
+    "on_time": 0.9605,
+    "rate": 16.39,
+    "daily_volume": 15.2
+  },
+  {
+    "carrier": "A",
+    "region": "Southeast",
+    "on_time": 0.9437,
+    "rate": 16.21,
+    "daily_volume": 16.4
+  },
+  {
+    "carrier": "A",
+    "region": "West",
+    "on_time": 0.9415,
+    "rate": 17.8,
+    "daily_volume": 11.8
+  },
+  {
+    "carrier": "B",
+    "region": "Midwest",
+    "on_time": 0.9504,
+    "rate": 16.07,
+    "daily_volume": 15.6
+  },
+  {
+    "carrier": "B",
+    "region": "Northeast",
+    "on_time": 0.947,
+    "rate": 15.91,
+    "daily_volume": 14.4
+  },
+  {
+    "carrier": "B",
+    "region": "Southeast",
+    "on_time": 0.9531,
+    "rate": 15.82,
+    "daily_volume": 14.3
+  },
+  {
+    "carrier": "B",
+    "region": "West",
+    "on_time": 0.9463,
+    "rate": 16.64,
+    "daily_volume": 10.6
+  },
+  {
+    "carrier": "C",
+    "region": "Midwest",
+    "on_time": 0.9537,
+    "rate": 17.7,
+    "daily_volume": 10.9
+  },
+  {
+    "carrier": "C",
+    "region": "Northeast",
+    "on_time": 0.9567,
+    "rate": 17.52,
+    "daily_volume": 9.7
+  },
+  {
+    "carrier": "C",
+    "region": "Southeast",
+    "on_time": 0.9552,
+    "rate": 17.44,
+    "daily_volume": 10.0
+  },
+  {
+    "carrier": "C",
+    "region": "West",
+    "on_time": 0.9572,
+    "rate": 18.78,
+    "daily_volume": 7.4
+  },
+  {
+    "carrier": "D",
+    "region": "Midwest",
+    "on_time": 0.544,
+    "rate": 13.24,
+    "daily_volume": 15.7
+  },
+  {
+    "carrier": "D",
+    "region": "Northeast",
+    "on_time": 0.7783,
+    "rate": 13.4,
+    "daily_volume": 15.0
+  },
+  {
+    "carrier": "D",
+    "region": "Southeast",
+    "on_time": 0.5567,
+    "rate": 13.02,
+    "daily_volume": 7.9
+  },
+  {
+    "carrier": "D",
+    "region": "West",
+    "on_time": 0.7791,
+    "rate": 14.43,
+    "daily_volume": 11.6
+  },
+  {
+    "carrier": "E",
+    "region": "Midwest",
+    "on_time": 0.9515,
+    "rate": 14.2,
+    "daily_volume": 7.6
+  },
+  {
+    "carrier": "E",
+    "region": "Northeast",
+    "on_time": 0.9657,
+    "rate": 14.15,
+    "daily_volume": 7.6
+  },
+  {
+    "carrier": "E",
+    "region": "Southeast",
+    "on_time": 0.9488,
+    "rate": 14.03,
+    "daily_volume": 7.1
+  },
+  {
+    "carrier": "E",
+    "region": "West",
+    "on_time": 0.5404,
+    "rate": 14.54,
+    "daily_volume": 7.7
+  },
+  {
+    "carrier": "F",
+    "region": "Midwest",
+    "on_time": 0.9577,
+    "rate": 12.43,
+    "daily_volume": 15.2
+  },
+  {
+    "carrier": "F",
+    "region": "Northeast",
+    "on_time": 0.5662,
+    "rate": 11.93,
+    "daily_volume": 9.3
+  },
+  {
+    "carrier": "F",
+    "region": "Southeast",
+    "on_time": 0.5367,
+    "rate": 11.88,
+    "daily_volume": 3.7
+  },
+  {
+    "carrier": "F",
+    "region": "West",
+    "on_time": 0.9514,
+    "rate": 13.41,
+    "daily_volume": 10.6
+  }
+]

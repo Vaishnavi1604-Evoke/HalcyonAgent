@@ -1,0 +1,18 @@
+From: Purchasing <orders@client248.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-15165361
+Date: Thu, 29 Oct 2026 14:31:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-15165361 below:
+SKU-20431 | 34 EA
+Address - 4199 Foundry Ln, Dock 3, Columbus, OH
+Priority: standard
+
+Thanks,
+Client 248 purchasing

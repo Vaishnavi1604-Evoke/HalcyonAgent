@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-36788067",
+  "client_id": "C174",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 174",
+    "line1": "6798 Mill St",
+    "line2": "Dock 4",
+    "city": "Boston",
+    "state": "MA",
+    "postal_code": "02119"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 14
+    }
+  ],
+  "submitted_at": "2026-09-28T05:33:00"
+}

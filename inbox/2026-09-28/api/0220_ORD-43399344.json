@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-43399344",
+  "client_id": "C025",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 025",
+    "line1": "3032 Depot Rd",
+    "line2": "Dock 1",
+    "city": "Sacramento",
+    "state": "CA",
+    "postal_code": "95813"
+  },
+  "lines": [
+    {
+      "sku": "SKU-44102",
+      "qty": 24
+    }
+  ],
+  "submitted_at": "2026-09-28T14:04:00"
+}

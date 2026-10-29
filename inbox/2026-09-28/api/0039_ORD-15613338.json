@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-15613338",
+  "client_id": "C012",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 012",
+    "line1": "3262 Depot Rd",
+    "line2": "Dock 2",
+    "city": "Albany",
+    "state": "NY",
+    "postal_code": "12280"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 7
+    }
+  ],
+  "submitted_at": "2026-09-28T04:19:00"
+}

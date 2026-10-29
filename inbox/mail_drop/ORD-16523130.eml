@@ -1,0 +1,16 @@
+From: Purchasing <orders@client271.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-16523130
+Date: Thu, 29 Oct 2026 16:08:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-51268 (qty 8)? Ship to 6911 Mill S=
+t, Dock 4, Columbus, OH, 43240. Our reference is ORD-16523130.
+
+Thanks,
+Client 271 purchasing

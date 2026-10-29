@@ -1,0 +1,16 @@
+From: Purchasing <orders@client259.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 2
+Subject: Order ORD-13286490
+Date: Thu, 29 Oct 2026 13:49:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange same day delivery of SKU-66014 (qty 26)? Ship to 6788 River=
+side Blvd, Dock 1, Portland, OR, 97269. Our reference is ORD-13286490.
+
+Thanks,
+Client 259 purchasing

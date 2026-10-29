@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-68234458",
+  "client_id": "C063",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 063",
+    "line1": "3667 Riverside Blvd",
+    "line2": "Dock 2",
+    "city": "Milwaukee",
+    "state": "WI",
+    "postal_code": "53234"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 14
+    }
+  ],
+  "submitted_at": "2026-09-28T17:27:00"
+}

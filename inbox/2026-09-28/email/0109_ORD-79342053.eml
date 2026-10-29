@@ -1,0 +1,16 @@
+From: Purchasing <orders@client150.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-79342053
+Date: Mon, 28 Sep 2026 08:37:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 18 units of SKU-20431 to our Nashville site (5305 Riverside Blvd,=
+ Dock 9, Nashville, TN, 37299). We need this standard. PO ORD-79342053.
+
+Thanks,
+Client 150 purchasing

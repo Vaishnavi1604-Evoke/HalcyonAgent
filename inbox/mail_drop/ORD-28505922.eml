@@ -1,0 +1,18 @@
+From: Purchasing <orders@client263.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 13
+Subject: Order ORD-28505922
+Date: Thu, 29 Oct 2026 12:57:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-28505922
+Item: SKU-51268 x 13
+Deliver to: 7326 Logistics Way, Dock 8, Chicago, IL, 60684
+Service: same day
+
+Thanks,
+Client 263 purchasing

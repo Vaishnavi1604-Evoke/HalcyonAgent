@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-85034514",
+  "client_id": "C073",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 073",
+    "line1": "7293 Harbor Ave",
+    "line2": "Dock 6",
+    "city": "Albany",
+    "state": "NY",
+    "postal_code": "12215"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 31
+    }
+  ],
+  "submitted_at": "2026-09-28T17:43:00"
+}

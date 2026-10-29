@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-53052280",
+  "client_id": "C236",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 236",
+    "line1": "8015 Mill St",
+    "line2": "Dock 6",
+    "city": "Albany",
+    "state": "NY",
+    "postal_code": "12238"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 32
+    }
+  ],
+  "submitted_at": "2026-09-28T07:02:00"
+}

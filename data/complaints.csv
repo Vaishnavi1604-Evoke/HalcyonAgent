@@ -1,0 +1,35 @@
+complaint_id,complaint_date,client_id,delivery_id,channel,category,escalated_to_account_owner,text
+CMP001,2026-07-03,C055,D023590,Email,Redelivery needed,Y,The shipment did not arrive and we had to ask for it to be sent again.
+CMP002,2026-07-09,C098,D025350,Phone,Redelivery needed,N,The shipment did not arrive and we had to ask for it to be sent again.
+CMP003,2026-07-13,C022,D025711,Phone,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP004,2026-07-15,C190,D026632,Phone,Delivery late,Y,This is the third late delivery this month. Please explain what is being done.
+CMP005,2026-07-18,C098,D028567,Email,Delivery late,N,Order arrived 2 days after the promised date. We had customers waiting.
+CMP006,2026-07-22,C099,D027961,Phone,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP007,2026-07-24,C055,D028202,Email,Redelivery needed,Y,The shipment did not arrive and we had to ask for it to be sent again.
+CMP008,2026-07-28,C263,D029625,Email,Redelivery needed,Y,The shipment did not arrive and we had to ask for it to be sent again.
+CMP009,2026-08-02,C033,D031327,Email,Delivery late,Y,Order arrived 3 days after the promised date. We had customers waiting.
+CMP010,2026-08-03,C040,D033171,Email,Not told about the delay,N,Nobody told us it would be late. We only found out when we chased.
+CMP011,2026-08-06,C082,D032590,Email,Delivery late,Y,Order arrived 2 days after the promised date. We had customers waiting.
+CMP012,2026-08-07,C111,D033675,Email,Delivery late,Y,This is the third late delivery this month. Please explain what is being done.
+CMP013,2026-08-10,C099,D034954,Phone,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP014,2026-08-19,C231,D036473,Email,Not told about the delay,N,Nobody told us it would be late. We only found out when we chased.
+CMP015,2026-08-19,C190,D036924,Phone,Delivery late,Y,Order arrived 1 days after the promised date. We had customers waiting.
+CMP016,2026-08-21,C190,D037104,Phone,Redelivery needed,Y,The shipment did not arrive and we had to ask for it to be sent again.
+CMP017,2026-08-22,C190,D036518,Phone,Delivery late,Y,Order arrived 5 days after the promised date. We had customers waiting.
+CMP018,2026-08-22,C118,D036879,Email,Not told about the delay,N,Nobody told us it would be late. We only found out when we chased.
+CMP019,2026-08-23,C055,D036531,Phone,Delivery late,Y,Order arrived 4 days after the promised date. We had customers waiting.
+CMP020,2026-08-24,C190,D037094,Phone,Delivery late,Y,Order arrived 4 days after the promised date. We had customers waiting.
+CMP021,2026-08-24,C190,D037096,Email,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP022,2026-08-27,C190,D037767,Email,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP023,2026-08-30,C153,D038107,Phone,Penalty dispute,N,We are disputing the delivery performance for this order and want to understand the cause.
+CMP024,2026-09-04,C190,D040382,Phone,Delivery late,Y,Order arrived 3 days after the promised date. We had customers waiting.
+CMP025,2026-09-05,C219,D040775,Phone,Delivery late,N,Order arrived 4 days after the promised date. We had customers waiting.
+CMP026,2026-09-06,C190,D039889,Email,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP027,2026-09-07,C049,D042080,Email,Delivery late,Y,Order arrived 2 days after the promised date. We had customers waiting.
+CMP028,2026-09-08,C189,D042066,Email,Penalty dispute,N,We are disputing the delivery performance for this order and want to understand the cause.
+CMP029,2026-09-08,C263,D042441,Email,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP030,2026-09-11,C263,D042344,Phone,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP031,2026-09-23,C034,D045999,Phone,Delivery late,Y,This is the third late delivery this month. Please explain what is being done.
+CMP032,2026-09-24,C190,D045967,Email,Not told about the delay,Y,Nobody told us it would be late. We only found out when we chased.
+CMP033,2026-09-26,C055,D044827,Phone,Delivery late,Y,Order arrived 5 days after the promised date. We had customers waiting.
+CMP034,2026-09-26,C190,D047125,Email,Redelivery needed,Y,The shipment did not arrive and we had to ask for it to be sent again.

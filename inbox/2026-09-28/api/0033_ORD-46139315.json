@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-46139315",
+  "client_id": "C121",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 121",
+    "line1": "1729 Mill St",
+    "line2": "Dock 8",
+    "city": "Columbus",
+    "state": "OH",
+    "postal_code": "43264"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 18
+    }
+  ],
+  "submitted_at": "2026-09-28T03:20:00"
+}

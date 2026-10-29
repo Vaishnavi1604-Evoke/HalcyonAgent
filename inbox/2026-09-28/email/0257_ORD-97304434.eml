@@ -1,0 +1,18 @@
+From: Purchasing <orders@client041.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-97304434
+Date: Mon, 28 Sep 2026 16:49:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-97304434 below:
+SKU-66014 | 20 EA
+Address - 1610 Harbor Ave, Dock 7, Chicago, IL
+Priority: next day
+
+Thanks,
+Client 041 purchasing

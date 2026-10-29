@@ -1,0 +1,18 @@
+From: Purchasing <orders@client199.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-22084959
+Date: Mon, 28 Sep 2026 10:02:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-22084959
+Item: SKU-11820 x 26
+Deliver to: 6105 Mill St, Dock 9, Charlotte, NC, 28299
+Service: standard
+
+Thanks,
+Client 199 purchasing

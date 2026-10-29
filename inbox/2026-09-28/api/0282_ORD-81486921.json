@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-81486921",
+  "client_id": "C217",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 217",
+    "line1": "1054 Logistics Way",
+    "line2": "Dock 3",
+    "city": "Hartford",
+    "state": "CT",
+    "postal_code": "06197"
+  },
+  "lines": [
+    {
+      "sku": "SKU-44102",
+      "qty": 15
+    }
+  ],
+  "submitted_at": "2026-09-28T19:42:00"
+}

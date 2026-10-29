@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-39043600",
+  "client_id": "C124",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 124",
+    "line1": "4520 Mill St",
+    "line2": "Dock 8",
+    "city": "Newark",
+    "state": "NJ",
+    "postal_code": "07155"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 24
+    }
+  ],
+  "submitted_at": "2026-09-28T08:54:00"
+}

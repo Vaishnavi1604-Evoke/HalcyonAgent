@@ -1,0 +1,18 @@
+From: Purchasing <orders@client061.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-48395987
+Date: Mon, 28 Sep 2026 12:15:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-48395987 below:
+SKU-66014 | 45 EA
+Address - 8993 Commerce Dr, Dock 1, Sacramento, CA
+Priority: standard
+
+Thanks,
+Client 061 purchasing

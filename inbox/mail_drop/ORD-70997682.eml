@@ -1,0 +1,16 @@
+From: Purchasing <orders@client161.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 10
+Subject: Order ORD-70997682
+Date: Thu, 29 Oct 2026 09:26:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-20431 (qty 14)? Ship to 2874 Harbo=
+r Ave, Dock 4, Columbia, SC, 29261. Our reference is ORD-70997682.
+
+Thanks,
+Client 161 purchasing

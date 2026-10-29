@@ -1,0 +1,16 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 12
+Subject: Order ORD-98495919
+Date: Thu, 29 Oct 2026 12:11:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 34 units of SKU-30977 to our Charlotte site (7433 Depot Rd, Dock =
+6, Charlotte, NC, 28285). We need this standard. PO ORD-98495919.
+
+Thanks,
+Client 190 purchasing

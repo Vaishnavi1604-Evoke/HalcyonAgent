@@ -1,0 +1,18 @@
+From: Purchasing <orders@client076.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-46827335
+Date: Thu, 29 Oct 2026 10:14:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-46827335 below:
+SKU-44102 | 8 EA
+Address - 7211 Commerce Dr, Dock 2, Denver, CO, 80232
+Priority: same day
+
+Thanks,
+Client 076 purchasing

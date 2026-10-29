@@ -1,0 +1,18 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 13
+Subject: Order ORD-85513412
+Date: Thu, 29 Oct 2026 15:39:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-85513412
+Item: SKU-66014 x 31
+Deliver to: 3135 Foundry Ln, Dock 7, Detroit, MI, 48262
+Service: standard
+
+Thanks,
+Client 190 purchasing

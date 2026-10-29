@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-41066256",
+  "client_id": "C022",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 022",
+    "line1": "7829 Commerce Dr",
+    "line2": "Dock 3",
+    "city": "Newark",
+    "state": "NJ",
+    "postal_code": "07107"
+  },
+  "lines": [
+    {
+      "sku": "SKU-20431",
+      "qty": 43
+    }
+  ],
+  "submitted_at": "2026-09-28T18:01:00"
+}

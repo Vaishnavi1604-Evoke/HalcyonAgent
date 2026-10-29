@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-59561411",
+  "client_id": "C219",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 219",
+    "line1": "1053 Commerce Dr",
+    "line2": "Dock 1",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "postal_code": "15247"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 8
+    }
+  ],
+  "submitted_at": "2026-09-28T03:37:00"
+}

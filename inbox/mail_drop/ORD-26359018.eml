@@ -1,0 +1,18 @@
+From: Purchasing <orders@client124.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-26359018
+Date: Thu, 29 Oct 2026 12:57:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-26359018 below:
+SKU-51268 | 27 EA
+Address - 4520 Mill St, Dock 8, Newark, NJ, 07155
+Priority: standard
+
+Thanks,
+Client 124 purchasing

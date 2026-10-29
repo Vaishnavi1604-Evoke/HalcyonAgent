@@ -1,0 +1,16 @@
+From: Purchasing <orders@client059.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-39429434
+Date: Thu, 29 Oct 2026 13:12:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 14 units of SKU-30977 to our Pittsburgh site (796 Depot Rd, Dock =
+9, Pittsburgh, PA, 15219). We need this same day. PO ORD-39429434.
+
+Thanks,
+Client 059 purchasing

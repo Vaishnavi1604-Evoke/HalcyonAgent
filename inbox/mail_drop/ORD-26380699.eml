@@ -1,0 +1,16 @@
+From: Purchasing <orders@client248.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 6
+Subject: Order ORD-26380699
+Date: Thu, 29 Oct 2026 07:13:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-30977 (qty 11)? Ship to 2612 Harbo=
+r Ave, Dock 5, Orlando, FL, 32803. Our reference is ORD-26380699.
+
+Thanks,
+Client 248 purchasing

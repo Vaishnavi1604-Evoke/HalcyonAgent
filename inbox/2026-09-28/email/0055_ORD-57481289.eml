@@ -1,0 +1,18 @@
+From: Purchasing <orders@client032.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 11
+Subject: Order ORD-57481289
+Date: Mon, 28 Sep 2026 06:08:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-57481289 below:
+SKU-30977 | 27 EA
+Address - 944 Riverside Blvd, Dock 9, Detroit, MI, 48221
+Priority: same day
+
+Thanks,
+Client 032 purchasing

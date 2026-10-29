@@ -1,0 +1,18 @@
+From: Purchasing <orders@client102.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-46517274
+Date: Mon, 28 Sep 2026 14:17:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-46517274 below:
+SKU-51268 | 16 EA
+Address - 5938 Riverside Blvd, Dock 8, Boston, MA, 02104
+Priority: standard
+
+Thanks,
+Client 102 purchasing

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client028.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 2
+Subject: Order ORD-60201156
+Date: Thu, 29 Oct 2026 14:43:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange next day delivery of SKU-66014 (qty 15)? Ship to 8679 River=
+side Blvd, Dock 4, Nashville, TN, 37240. Our reference is ORD-60201156.
+
+Thanks,
+Client 028 purchasing

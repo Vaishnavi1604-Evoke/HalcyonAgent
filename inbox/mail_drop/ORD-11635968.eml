@@ -1,0 +1,16 @@
+From: Purchasing <orders@client277.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 2
+Subject: Order ORD-11635968
+Date: Thu, 29 Oct 2026 13:00:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-66014 (qty 17)? Ship to 3162 Found=
+ry Ln, Dock 4, Orlando, FL, 32829. Our reference is ORD-11635968.
+
+Thanks,
+Client 277 purchasing

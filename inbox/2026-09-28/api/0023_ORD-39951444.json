@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-39951444",
+  "client_id": "C121",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 121",
+    "line1": "647 Harbor Ave",
+    "line2": "Dock 5",
+    "city": "Sacramento",
+    "state": "CA",
+    "postal_code": "95817"
+  },
+  "lines": [
+    {
+      "sku": "SKU-11820",
+      "qty": 13
+    }
+  ],
+  "submitted_at": "2026-09-28T01:50:00"
+}

@@ -1,0 +1,18 @@
+From: Purchasing <orders@client102.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 3
+Subject: Order ORD-73171080
+Date: Mon, 28 Sep 2026 11:26:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-73171080 below:
+SKU-30977 | 6 EA
+Address - 4047 Industrial Pkwy, Dock 9, Nashville, TN, 37237
+Priority: next day
+
+Thanks,
+Client 102 purchasing

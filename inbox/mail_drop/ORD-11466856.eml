@@ -1,0 +1,18 @@
+From: Purchasing <orders@client063.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 13
+Subject: Order ORD-11466856
+Date: Thu, 29 Oct 2026 12:15:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-11466856
+Item: SKU-30977 x 25
+Deliver to: 3667 Riverside Blvd, Dock 2, Milwaukee, WI, 53234
+Service: standard
+
+Thanks,
+Client 063 purchasing

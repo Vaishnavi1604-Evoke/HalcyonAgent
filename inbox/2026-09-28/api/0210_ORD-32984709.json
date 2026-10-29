@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-32984709",
+  "client_id": "C099",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 099",
+    "line1": "3565 Logistics Way",
+    "line2": "Dock 9",
+    "city": "Milwaukee",
+    "state": "WI",
+    "postal_code": "53227"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 8
+    }
+  ],
+  "submitted_at": "2026-09-28T13:35:00"
+}

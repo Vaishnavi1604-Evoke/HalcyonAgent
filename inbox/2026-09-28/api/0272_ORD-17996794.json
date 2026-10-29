@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-17996794",
+  "client_id": "C022",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 022",
+    "line1": "3848 Industrial Pkwy",
+    "line2": "Dock 3",
+    "city": "Nashville",
+    "state": "TN",
+    "postal_code": "37267"
+  },
+  "lines": [
+    {
+      "sku": "SKU-51268",
+      "qty": 42
+    }
+  ],
+  "submitted_at": "2026-09-28T18:00:00"
+}

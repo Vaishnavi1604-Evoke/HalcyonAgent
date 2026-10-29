@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-24411282",
+  "client_id": "C073",
+  "service_level": "same_day",
+  "ship_to": {
+    "name": "Client 073",
+    "line1": null,
+    "line2": "Dock 6",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60644"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 21
+    }
+  ],
+  "submitted_at": "2026-09-28T09:35:00"
+}

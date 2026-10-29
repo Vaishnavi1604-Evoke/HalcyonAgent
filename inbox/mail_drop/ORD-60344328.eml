@@ -1,0 +1,18 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-60344328
+Date: Thu, 29 Oct 2026 10:22:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-60344328
+Item: SKU-51268 x 44
+Deliver to: 7433 Depot Rd, Dock 6, Charlotte, NC, 28285
+Service: next day
+
+Thanks,
+Client 190 purchasing

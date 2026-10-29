@@ -1,0 +1,16 @@
+From: Purchasing <orders@client076.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 10
+Subject: Order ORD-93111808
+Date: Mon, 28 Sep 2026 08:13:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange standard delivery of SKU-44102 (qty 8)? Ship to 725 Mill St=
+, Dock 9, Detroit, MI, 48241. Our reference is ORD-93111808.
+
+Thanks,
+Client 076 purchasing

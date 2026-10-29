@@ -1,0 +1,16 @@
+From: Purchasing <orders@client094.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 14
+Subject: Order ORD-69837010
+Date: Mon, 28 Sep 2026 06:12:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange same day delivery of SKU-11820 (qty 43)? Ship to 904 Commer=
+ce Dr, Dock 2, Atlanta, GA, 30313. Our reference is ORD-69837010.
+
+Thanks,
+Client 094 purchasing

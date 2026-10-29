@@ -1,0 +1,18 @@
+From: Purchasing <orders@client202.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-25429378
+Date: Mon, 28 Sep 2026 07:48:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-25429378
+Item: SKU-51268 x 37
+Deliver to: 896 Foundry Ln, Dock 5, Portland, OR, 97229
+Service: same day
+
+Thanks,
+Client 202 purchasing

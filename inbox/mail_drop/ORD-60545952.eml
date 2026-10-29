@@ -1,0 +1,18 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 5
+Subject: Order ORD-60545952
+Date: Thu, 29 Oct 2026 14:37:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-60545952
+Item: SKU-51268 x 15
+Deliver to: 7185 Industrial Pkwy, Dock 7, Sacramento, CA, 95863
+Service: standard
+
+Thanks,
+Client 190 purchasing

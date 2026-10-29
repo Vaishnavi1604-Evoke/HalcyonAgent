@@ -1,0 +1,18 @@
+From: Purchasing <orders@client267.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 9
+Subject: Order ORD-98294329
+Date: Thu, 29 Oct 2026 11:26:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-98294329
+Item: SKU-51268 x 33
+Deliver to: 1522 Commerce Dr, Dock 8, Portland, OR, 97201
+Service: next day
+
+Thanks,
+Client 267 purchasing

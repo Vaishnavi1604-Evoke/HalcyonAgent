@@ -1,0 +1,16 @@
+From: Purchasing <orders@client190.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 6
+Subject: Order ORD-77298765
+Date: Mon, 28 Sep 2026 12:55:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange same day delivery of SKU-66014 (qty 33)? Ship to 3135 Found=
+ry Ln, Dock 7, Detroit, MI, 48262. Our reference is ORD-77298765.
+
+Thanks,
+Client 190 purchasing

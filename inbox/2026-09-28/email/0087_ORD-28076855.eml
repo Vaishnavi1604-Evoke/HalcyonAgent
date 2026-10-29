@@ -1,0 +1,16 @@
+From: Purchasing <orders@client140.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 12
+Subject: Order ORD-28076855
+Date: Mon, 28 Sep 2026 07:48:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 43 units of SKU-51268 to our Chicago site (556 Riverside Blvd, Do=
+ck 6, Chicago, IL, 60682). We need this same day. PO ORD-28076855.
+
+Thanks,
+Client 140 purchasing

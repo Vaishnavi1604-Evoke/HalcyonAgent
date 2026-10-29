@@ -1,0 +1,18 @@
+From: Purchasing <orders@client259.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 1
+Subject: Order ORD-70831701
+Date: Thu, 29 Oct 2026 09:07:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-70831701
+Item: SKU-20431 x 42
+Deliver to: 7033 Logistics Way, Dock 3, Chicago, IL, 60619
+Service: same day
+
+Thanks,
+Client 259 purchasing

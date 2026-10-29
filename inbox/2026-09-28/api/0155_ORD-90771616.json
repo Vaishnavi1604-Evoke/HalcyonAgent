@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-90771616",
+  "client_id": "C033",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 033",
+    "line1": "3767 Riverside Blvd",
+    "line2": "Dock 5",
+    "city": "Newark",
+    "state": "NJ",
+    "postal_code": "07149"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 26
+    }
+  ],
+  "submitted_at": "2026-09-28T11:02:00"
+}

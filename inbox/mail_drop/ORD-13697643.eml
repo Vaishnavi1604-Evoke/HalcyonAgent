@@ -1,0 +1,18 @@
+From: Purchasing <orders@client076.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 13
+Subject: Order ORD-13697643
+Date: Thu, 29 Oct 2026 09:20:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+PO: ORD-13697643
+Item: SKU-44102 x 32
+Deliver to: 5833 Industrial Pkwy, Dock 1, Albany, NY, 12291
+Service: standard
+
+Thanks,
+Client 076 purchasing

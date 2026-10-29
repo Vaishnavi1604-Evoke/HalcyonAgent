@@ -1,0 +1,16 @@
+From: Purchasing <orders@client076.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 6
+Subject: Order ORD-43522631
+Date: Thu, 29 Oct 2026 12:43:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Could you arrange next day delivery of SKU-44102 (qty 13)? Ship to 7211 Comme=
+rce Dr, Dock 2, Denver, CO, 80232. Our reference is ORD-43522631.
+
+Thanks,
+Client 076 purchasing

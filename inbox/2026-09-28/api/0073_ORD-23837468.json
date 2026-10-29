@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-23837468",
+  "client_id": "C214",
+  "service_level": "next_day",
+  "ship_to": {
+    "name": "Client 214",
+    "line1": "3969 Riverside Blvd",
+    "line2": "Dock 9",
+    "city": "Columbia",
+    "state": "SC",
+    "postal_code": "29299"
+  },
+  "lines": [
+    {
+      "sku": "SKU-66014",
+      "qty": 17
+    }
+  ],
+  "submitted_at": "2026-09-28T07:09:00"
+}

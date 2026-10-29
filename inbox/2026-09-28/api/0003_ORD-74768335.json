@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-74768335",
+  "client_id": "C099",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 099",
+    "line1": "6082 Mill St",
+    "line2": "Dock 7",
+    "city": "Reno",
+    "state": "NV",
+    "postal_code": "89581"
+  },
+  "lines": [
+    {
+      "sku": "SKU-20431",
+      "qty": 40
+    }
+  ],
+  "submitted_at": "2026-09-28T00:12:00"
+}

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client175.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 4
+Subject: Order ORD-15547610
+Date: Thu, 29 Oct 2026 12:25:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 45 units of SKU-11820 to our Denver site (8093 Industrial Pkwy, D=
+ock 7, Denver, CO, 80244). We need this next day. PO ORD-15547610.
+
+Thanks,
+Client 175 purchasing

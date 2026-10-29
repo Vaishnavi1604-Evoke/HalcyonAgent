@@ -1,0 +1,7 @@
+carrier_id,carrier_name,has_api,delivery_event_feed,preferred_supplier_agreement,base_rate_usd
+A,Carrier A,Y,API,N,14.0
+B,Carrier B,Y,API,N,13.5
+C,Carrier C,Y,API,N,15.0
+D,Carrier D,N,Portal only,N,11.5
+E,Carrier E,N,Batch file,N,12.0
+F,Carrier F,N,Batch file,Y,10.5

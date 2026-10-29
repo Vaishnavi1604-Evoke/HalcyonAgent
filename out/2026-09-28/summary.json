@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-28",
+  "orders": 284,
+  "by_source": {
+    "Email": 108,
+    "EDI": 90,
+    "API": 86
+  },
+  "by_status": {
+    "ASSIGNED": 280,
+    "HELD_ADDRESS": 3,
+    "ASSIGNED_FALLBACK": 1
+  },
+  "by_warehouse": {
+    "W4": 64,
+    "W3": 59,
+    "W1": 56,
+    "W5": 54,
+    "W2": 48
+  },
+  "by_carrier": {
+    "A": 80,
+    "B": 73,
+    "C": 54,
+    "F": 39,
+    "E": 35
+  },
+  "email_extractor": {
+    "rules": 108
+  },
+  "evaluation": {
+    "email_orders": 108,
+    "field_accuracy": {
+      "sku": 1.0,
+      "qty": 1.0,
+      "service": 1.0,
+      "street": 1.0,
+      "city": 1.0,
+      "state": 1.0,
+      "postal_code": 1.0,
+      "client_id": 1.0
+    },
+    "region_accuracy": 1.0,
+    "unmatched": 0
+  }
+}

@@ -1,0 +1,16 @@
+From: Purchasing <orders@client102.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 8
+Subject: Order ORD-91886842
+Date: Thu, 29 Oct 2026 14:57:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi team,
+
+Please send 45 units of SKU-11820 to our Denver site (2894 Foundry Ln, Dock 1=
+, Denver, CO, 80206). We need this standard. PO ORD-91886842.
+
+Thanks,
+Client 102 purchasing

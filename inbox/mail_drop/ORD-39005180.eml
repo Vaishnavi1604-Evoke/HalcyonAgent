@@ -1,0 +1,18 @@
+From: Purchasing <orders@client096.example>
+To: orders@halcyon.example
+X-Halcyon-Layout: 7
+Subject: Order ORD-39005180
+Date: Thu, 29 Oct 2026 16:19:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi team,
+
+Order ORD-39005180 below:
+SKU-20431 | 7 EA
+Address - 1896 Foundry Ln, Dock 6, Pittsburgh, PA, 15221
+Priority: standard
+
+Thanks,
+Client 096 purchasing

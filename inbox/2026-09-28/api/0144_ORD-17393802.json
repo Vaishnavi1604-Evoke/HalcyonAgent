@@ -1,0 +1,20 @@
+{
+  "order_ref": "ORD-17393802",
+  "client_id": "C044",
+  "service_level": "standard",
+  "ship_to": {
+    "name": "Client 044",
+    "line1": "7546 Foundry Ln",
+    "line2": "Dock 9",
+    "city": "Detroit",
+    "state": "MI",
+    "postal_code": "48274"
+  },
+  "lines": [
+    {
+      "sku": "SKU-30977",
+      "qty": 6
+    }
+  ],
+  "submitted_at": "2026-09-28T10:22:00"
+}
