@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Halcyon order agent
 
 One system that takes in every order, whatever channel it came from, and assigns it to a warehouse.
@@ -253,3 +254,6 @@ In demo mode, each business hour of transit takes `DEMO_SECONDS_PER_HOUR` second
 - the deliveries made today, and the on-time share
 
 The Live orders screen shows all of this.
+=======
+# HalcyonAgent
+>>>>>>> 1f5b3eed791058c25098caa383860e4cbd39ec72
